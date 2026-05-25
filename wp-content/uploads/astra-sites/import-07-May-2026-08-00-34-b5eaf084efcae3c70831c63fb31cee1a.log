@@ -1,0 +1,678 @@
+
+[20:02:56 UTC] [SUCCESS] {"required_plugins":{"active":[],"inactive":[],"notinstalled":[{"slug":"ultimate-addons-for-gutenberg","init":"ultimate-addons-for-gutenberg\/ultimate-addons-for-gutenberg.php","name":"Spectra","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=ultimate-addons-for-gutenberg&_wpnonce=ee713c67a2"},{"slug":"surecart","init":"surecart\/surecart.php","name":"SureCart","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=surecart&_wpnonce=cfc982e5ab"},{"slug":"sureforms","init":"sureforms\/sureforms.php","name":"SureForms","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=sureforms&_wpnonce=b921af44bb"}]},"third_party_required_plugins":[],"update_avilable_plugins":[],"incompatible_plugins":[],"error":false} | Context: {"required_plugins":{"active":[],"inactive":[],"notinstalled":[{"slug":"ultimate-addons-for-gutenberg","init":"ultimate-addons-for-gutenberg\/ultimate-addons-for-gutenberg.php","name":"Spectra","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=ultimate-addons-for-gutenberg&_wpnonce=ee713c67a2"},{"slug":"surecart","init":"surecart\/surecart.php","name":"SureCart","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=surecart&_wpnonce=cfc982e5ab"},{"slug":"sureforms","init":"sureforms\/sureforms.php","name":"SureForms","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=sureforms&_wpnonce=b921af44bb"}]},"third_party_required_plugins":[],"update_avilable_plugins":[],"incompatible_plugins":[],"error":false}
+[20:02:57 UTC] [SUCCESS] {"permissions":{"is_readable":true,"is_writable":true,"is_wp_filesystem":true},"directory":"C:\\xampp\\htdocs\\wordpress\/wp-content\/uploads"} | Context: {"permissions":{"is_readable":true,"is_writable":true,"is_wp_filesystem":true},"directory":"C:\\xampp\\htdocs\\wordpress\/wp-content\/uploads"}
+[20:04:50 UTC] [SUCCESS] {"required_plugins":{"active":[],"inactive":[],"notinstalled":[{"slug":"ultimate-addons-for-gutenberg","init":"ultimate-addons-for-gutenberg\/ultimate-addons-for-gutenberg.php","name":"Spectra","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=ultimate-addons-for-gutenberg&_wpnonce=ee713c67a2"},{"slug":"surecart","init":"surecart\/surecart.php","name":"SureCart","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=surecart&_wpnonce=cfc982e5ab"},{"slug":"sureforms","init":"sureforms\/sureforms.php","name":"SureForms","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=sureforms&_wpnonce=b921af44bb"}]},"third_party_required_plugins":[],"update_avilable_plugins":[],"incompatible_plugins":[],"error":false} | Context: {"required_plugins":{"active":[],"inactive":[],"notinstalled":[{"slug":"ultimate-addons-for-gutenberg","init":"ultimate-addons-for-gutenberg\/ultimate-addons-for-gutenberg.php","name":"Spectra","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=ultimate-addons-for-gutenberg&_wpnonce=ee713c67a2"},{"slug":"surecart","init":"surecart\/surecart.php","name":"SureCart","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=surecart&_wpnonce=cfc982e5ab"},{"slug":"sureforms","init":"sureforms\/sureforms.php","name":"SureForms","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=sureforms&_wpnonce=b921af44bb"}]},"third_party_required_plugins":[],"update_avilable_plugins":[],"incompatible_plugins":[],"error":false}
+[20:04:51 UTC] [SUCCESS] {"permissions":{"is_readable":true,"is_writable":true,"is_wp_filesystem":true},"directory":"C:\\xampp\\htdocs\\wordpress\/wp-content\/uploads"} | Context: {"permissions":{"is_readable":true,"is_writable":true,"is_wp_filesystem":true},"directory":"C:\\xampp\\htdocs\\wordpress\/wp-content\/uploads"}
+[20:04:52 UTC] [SUCCESS] {"required_plugins":{"active":[],"inactive":[],"notinstalled":[{"slug":"astra-widgets","init":"astra-widgets\/astra-widgets.php","name":"Astra Widgets","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=astra-widgets&_wpnonce=129ddb0211"},{"slug":"ultimate-addons-for-gutenberg","init":"ultimate-addons-for-gutenberg\/ultimate-addons-for-gutenberg.php","name":"Spectra","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=ultimate-addons-for-gutenberg&_wpnonce=ee713c67a2"},{"slug":"sureforms","init":"sureforms\/sureforms.php","name":"SureForms","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=sureforms&_wpnonce=b921af44bb"},{"slug":"variation-swatches-woo","init":"variation-swatches-woo\/variation-swatches-woo.php","name":"Variation Swatches for WooCommerce","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=variation-swatches-woo&_wpnonce=df37b76587"},{"slug":"woocommerce","init":"woocommerce\/woocommerce.php","name":"WooCommerce","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=woocommerce&_wpnonce=336672adb3"},{"slug":"woo-cart-abandonment-recovery","init":"woo-cart-abandonment-recovery\/woo-cart-abandonment-recovery.php","name":"Cart Abandonment Recovery for WooCommerce","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=woo-cart-abandonment-recovery&_wpnonce=e2226bbea7"},{"slug":"woocommerce-payments","init":"woocommerce-payments\/woocommerce-payments.php","name":"WooPayments","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=woocommerce-payments&_wpnonce=0ef687ee1e"}]},"third_party_required_plugins":[],"update_avilable_plugins":[],"incompatible_plugins":[],"error":false} | Context: {"required_plugins":{"active":[],"inactive":[],"notinstalled":[{"slug":"astra-widgets","init":"astra-widgets\/astra-widgets.php","name":"Astra Widgets","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=astra-widgets&_wpnonce=129ddb0211"},{"slug":"ultimate-addons-for-gutenberg","init":"ultimate-addons-for-gutenberg\/ultimate-addons-for-gutenberg.php","name":"Spectra","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=ultimate-addons-for-gutenberg&_wpnonce=ee713c67a2"},{"slug":"sureforms","init":"sureforms\/sureforms.php","name":"SureForms","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=sureforms&_wpnonce=b921af44bb"},{"slug":"variation-swatches-woo","init":"variation-swatches-woo\/variation-swatches-woo.php","name":"Variation Swatches for WooCommerce","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=variation-swatches-woo&_wpnonce=df37b76587"},{"slug":"woocommerce","init":"woocommerce\/woocommerce.php","name":"WooCommerce","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=woocommerce&_wpnonce=336672adb3"},{"slug":"woo-cart-abandonment-recovery","init":"woo-cart-abandonment-recovery\/woo-cart-abandonment-recovery.php","name":"Cart Abandonment Recovery for WooCommerce","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=woo-cart-abandonment-recovery&_wpnonce=e2226bbea7"},{"slug":"woocommerce-payments","init":"woocommerce-payments\/woocommerce-payments.php","name":"WooPayments","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=woocommerce-payments&_wpnonce=0ef687ee1e"}]},"third_party_required_plugins":[],"update_avilable_plugins":[],"incompatible_plugins":[],"error":false}
+[20:04:53 UTC] [SUCCESS] {"permissions":{"is_readable":true,"is_writable":true,"is_wp_filesystem":true},"directory":"C:\\xampp\\htdocs\\wordpress\/wp-content\/uploads"} | Context: {"permissions":{"is_readable":true,"is_writable":true,"is_wp_filesystem":true},"directory":"C:\\xampp\\htdocs\\wordpress\/wp-content\/uploads"}
+[20:04:57 UTC] [SUCCESS] {"required_plugins":{"active":[],"inactive":[],"notinstalled":[{"slug":"astra-widgets","init":"astra-widgets\/astra-widgets.php","name":"Astra Widgets","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=astra-widgets&_wpnonce=129ddb0211"},{"slug":"ultimate-addons-for-gutenberg","init":"ultimate-addons-for-gutenberg\/ultimate-addons-for-gutenberg.php","name":"Spectra","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=ultimate-addons-for-gutenberg&_wpnonce=ee713c67a2"},{"slug":"sureforms","init":"sureforms\/sureforms.php","name":"SureForms","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=sureforms&_wpnonce=b921af44bb"},{"slug":"variation-swatches-woo","init":"variation-swatches-woo\/variation-swatches-woo.php","name":"Variation Swatches for WooCommerce","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=variation-swatches-woo&_wpnonce=df37b76587"},{"slug":"woocommerce","init":"woocommerce\/woocommerce.php","name":"WooCommerce","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=woocommerce&_wpnonce=336672adb3"},{"slug":"woo-cart-abandonment-recovery","init":"woo-cart-abandonment-recovery\/woo-cart-abandonment-recovery.php","name":"Cart Abandonment Recovery for WooCommerce","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=woo-cart-abandonment-recovery&_wpnonce=e2226bbea7"},{"slug":"woocommerce-payments","init":"woocommerce-payments\/woocommerce-payments.php","name":"WooPayments","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=woocommerce-payments&_wpnonce=0ef687ee1e"},{"name":"SureRank","slug":"surerank","init":"surerank\/surerank.php","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=surerank&_wpnonce=8e936a2ab4"}]},"third_party_required_plugins":[],"update_avilable_plugins":[],"incompatible_plugins":[],"error":false} | Context: {"required_plugins":{"active":[],"inactive":[],"notinstalled":[{"slug":"astra-widgets","init":"astra-widgets\/astra-widgets.php","name":"Astra Widgets","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=astra-widgets&_wpnonce=129ddb0211"},{"slug":"ultimate-addons-for-gutenberg","init":"ultimate-addons-for-gutenberg\/ultimate-addons-for-gutenberg.php","name":"Spectra","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=ultimate-addons-for-gutenberg&_wpnonce=ee713c67a2"},{"slug":"sureforms","init":"sureforms\/sureforms.php","name":"SureForms","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=sureforms&_wpnonce=b921af44bb"},{"slug":"variation-swatches-woo","init":"variation-swatches-woo\/variation-swatches-woo.php","name":"Variation Swatches for WooCommerce","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=variation-swatches-woo&_wpnonce=df37b76587"},{"slug":"woocommerce","init":"woocommerce\/woocommerce.php","name":"WooCommerce","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=woocommerce&_wpnonce=336672adb3"},{"slug":"woo-cart-abandonment-recovery","init":"woo-cart-abandonment-recovery\/woo-cart-abandonment-recovery.php","name":"Cart Abandonment Recovery for WooCommerce","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=woo-cart-abandonment-recovery&_wpnonce=e2226bbea7"},{"slug":"woocommerce-payments","init":"woocommerce-payments\/woocommerce-payments.php","name":"WooPayments","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=woocommerce-payments&_wpnonce=0ef687ee1e"},{"name":"SureRank","slug":"surerank","init":"surerank\/surerank.php","action":"http:\/\/localhost\/wordpress\/wp-admin\/update.php?action=install-plugin&plugin=surerank&_wpnonce=8e936a2ab4"}]},"third_party_required_plugins":[],"update_avilable_plugins":[],"incompatible_plugins":[],"error":false}
+[20:05:04 UTC] [INFO] Starting import process | Context: {"template_type":"classic","uuid":""}
+[20:05:04 UTC] [INFO] Started Import Process
+[20:05:04 UTC] [INFO] # System Details: 
+[20:05:04 UTC] [INFO] Debug Mode 		: Desactivado
+[20:05:04 UTC] [INFO] Operating System 	: WINNT
+[20:05:04 UTC] [INFO] Software 		: Apache/2.4.58 (Win64) OpenSSL/3.1.3 PHP/8.2.12
+[20:05:04 UTC] [INFO] MySQL version 		: 10.4.32
+[20:05:04 UTC] [INFO] XML Reader 		: Sí
+[20:05:04 UTC] [INFO] PHP Version 		: 8.2.12
+[20:05:04 UTC] [INFO] PHP Max Input Vars 	: 1000
+[20:05:04 UTC] [INFO] PHP Max Post Size 	: 40M
+[20:05:04 UTC] [INFO] PHP Extension GD 	: No
+[20:05:04 UTC] [INFO] PHP Max Execution Time 	: 120
+[20:05:04 UTC] [INFO] Max Upload Size 	: 40 MB
+[20:05:04 UTC] [INFO] Memory Limit 		: El límite de memoria actual es 40M. Recomendamos ajustar la memoria a por lo menos 64M.
+[20:05:04 UTC] [INFO] Timezone 		: -5
+[20:05:04 UTC] [INFO] 
+-----
+
+[20:05:04 UTC] [INFO] Importing Started! - 20:05:04 UTC
+[20:05:04 UTC] [INFO] ---
+
+[20:05:05 UTC] [INFO] WHY IMPORT PROCESS CAN FAIL? READ THIS - 
+[20:05:05 UTC] [INFO] https://wpastra.com/docs/?p=1314&utm_source=demo-import-panel&utm_campaign=import-error&utm_medium=wp-dashboard
+
+[20:05:05 UTC] [INFO] ---
+
+[20:05:05 UTC] [SUCCESS] Import process start flag set successfully | Context: {"template_type":"classic"}
+[20:05:05 UTC] [INFO] Image subsizes deferral enabled for import
+[20:05:06 UTC] [INFO] Checking if plugin directory clearing is needed
+[20:05:10 UTC] [INFO] Checking if plugin directory clearing is needed
+[20:05:12 UTC] [INFO] Image subsizes deferral enabled for import
+[20:05:12 UTC] [SUCCESS] Plugin activado | Context: {"success":true,"status":"activated","message":"Plugin activado"}
+[20:05:12 UTC] [INFO] Plugin install clear directory enabled - Will clear destination directory
+[20:05:12 UTC] [INFO] Plugin install clear directory options returned
+[20:05:20 UTC] [INFO] Checking if plugin directory clearing is needed
+[20:05:20 UTC] [INFO] Plugin install clear directory enabled - Will clear destination directory
+[20:05:20 UTC] [INFO] Plugin install clear directory options returned
+[20:05:22 UTC] [INFO] Image subsizes deferral enabled for import
+[20:05:22 UTC] [SUCCESS] Plugin activado | Context: {"success":true,"status":"activated","message":"Plugin activado"}
+[20:05:24 UTC] [INFO] Checking if plugin directory clearing is needed
+[20:05:24 UTC] [INFO] Plugin install clear directory enabled - Will clear destination directory
+[20:05:24 UTC] [INFO] Plugin install clear directory options returned
+[20:05:32 UTC] [INFO] Image subsizes deferral enabled for import
+[20:05:33 UTC] [SUCCESS] Plugin activado | Context: {"success":true,"status":"activated","message":"Plugin activado"}
+[20:05:33 UTC] [INFO] Checking if plugin directory clearing is needed
+[20:05:33 UTC] [INFO] Plugin install clear directory enabled - Will clear destination directory
+[20:05:33 UTC] [INFO] Plugin install clear directory options returned
+[20:05:34 UTC] [INFO] Image subsizes deferral enabled for import
+[20:05:38 UTC] [INFO] Image subsizes deferral enabled for import
+[20:05:39 UTC] [SUCCESS] Plugin activado | Context: {"success":true,"status":"activated","message":"Plugin activado"}
+[20:05:39 UTC] [INFO] Checking if plugin directory clearing is needed
+[20:05:39 UTC] [INFO] Plugin install clear directory enabled - Will clear destination directory
+[20:05:39 UTC] [INFO] Plugin install clear directory options returned
+[20:05:41 UTC] [INFO] Image subsizes deferral enabled for import
+[20:05:55 UTC] [INFO] Checking if plugin directory clearing is needed
+[20:05:55 UTC] [INFO] Plugin install clear directory enabled - Will clear destination directory
+[20:05:55 UTC] [INFO] Plugin install clear directory options returned
+[20:06:00 UTC] [INFO] Image subsizes deferral enabled for import
+[20:06:01 UTC] [INFO] Checking if plugin directory clearing is needed
+[20:06:01 UTC] [INFO] Plugin install clear directory enabled - Will clear destination directory
+[20:06:01 UTC] [INFO] Plugin install clear directory options returned
+[20:06:04 UTC] [SUCCESS] Plugin activado | Context: {"success":true,"status":"activated","message":"Plugin activado"}
+[20:06:09 UTC] [INFO] Image subsizes deferral enabled for import
+[20:06:11 UTC] [INFO] Checking if plugin directory clearing is needed
+[20:06:11 UTC] [INFO] Plugin install clear directory enabled - Will clear destination directory
+[20:06:11 UTC] [INFO] Plugin install clear directory options returned
+[20:06:13 UTC] [SUCCESS] Plugin activado | Context: {"success":true,"status":"activated","message":"Plugin activado"}
+[20:06:15 UTC] [INFO] Image subsizes deferral enabled for import
+[20:06:17 UTC] [INFO] Checking if plugin directory clearing is needed
+[20:06:17 UTC] [INFO] Plugin install clear directory enabled - Will clear destination directory
+[20:06:17 UTC] [INFO] Plugin install clear directory options returned
+[20:06:20 UTC] [INFO] Image subsizes deferral enabled for import
+[20:06:21 UTC] [INFO] Image subsizes deferral enabled for import
+[20:06:23 UTC] [INFO] Checking if plugin directory clearing is needed
+[20:06:23 UTC] [INFO] Plugin install clear directory enabled - Will clear destination directory
+[20:06:23 UTC] [INFO] Plugin install clear directory options returned
+[20:06:23 UTC] [SUCCESS] Plugin activado | Context: {"success":true,"status":"activated","message":"Plugin activado"}
+[20:06:32 UTC] [INFO] Image subsizes deferral enabled for import
+[20:06:35 UTC] [SUCCESS] Plugin activado | Context: {"success":true,"status":"activated","message":"Plugin activado"}
+[20:06:37 UTC] [INFO] Image subsizes deferral enabled for import
+[20:06:40 UTC] [INFO] Image subsizes deferral enabled for import
+[20:06:41 UTC] [INFO] All required plugins verified successfully.
+[20:06:42 UTC] [INFO] Image subsizes deferral enabled for import
+[20:06:44 UTC] [INFO] Image subsizes deferral enabled for import
+[20:06:49 UTC] [INFO] Image subsizes deferral enabled for import
+[20:06:50 UTC] [INFO] ---
+
+[20:06:50 UTC] [INFO] Starting Cart Abandonment Recovery import process
+[20:06:50 UTC] [INFO] info | Context: {"file_url":"https:\/\/websitedemos.net\/wp-content\/uploads\/astra-sites\/1551\/cart-abandonment-recovery.json","timeout_seconds":300}
+[20:06:51 UTC] [INFO] success | Context: {"file_url":"https:\/\/websitedemos.net\/wp-content\/uploads\/astra-sites\/1551\/cart-abandonment-recovery.json","file_size":3251,"uploaded_file":"C:\\xampp\\htdocs\\wordpress\/wp-content\/uploads\/2026\/05\/cart-abandonment-recovery.json"}
+[20:06:51 UTC] [SUCCESS] File downloaded successfully from: https://websitedemos.net/wp-content/uploads/astra-sites/1551/cart-abandonment-recovery.json
+[20:06:51 UTC] [INFO] Checking if Cart Abandonment Recovery is already loaded
+[20:06:51 UTC] [INFO] Cart Abandonment Recovery is already loaded and ready
+[20:06:51 UTC] [SUCCESS] Cart Abandonment Recovery templates inserted successfully
+[20:06:51 UTC] [SUCCESS] Imported Cart Abandonment Recovery data from https://websitedemos.net/wp-content/uploads/astra-sites/1551/cart-abandonment-recovery.json
+[20:06:54 UTC] [INFO] Image subsizes deferral enabled for import
+[20:06:55 UTC] [INFO] ---
+
+[20:06:55 UTC] [INFO] Starting import customizer settings
+[20:06:55 UTC] [INFO] Importing customizer settings | Context: {"settings_count":0}
+[20:06:55 UTC] [INFO] Fetched customizer data from site data | Context: {"settings_count":2}
+[20:06:55 UTC] [INFO] Starting customizer settings import | Context: {"settings_count":2}
+[20:06:55 UTC] [INFO] Validating customizer data keys | Context: {"keys":["astra-settings","custom-css"]}
+[20:06:55 UTC] [INFO] Old customizer data backed up
+[20:06:55 UTC] [SUCCESS] Astra theme settings updated | Context: {"option_key":"astra-settings"}
+[20:06:56 UTC] [SUCCESS] Custom CSS updated | Context: {"option_key":"custom-css"}
+[20:06:56 UTC] [SUCCESS] Customizer settings import completed successfully
+[20:06:56 UTC] [SUCCESS] Customizer settings imported successfully
+[20:06:58 UTC] [INFO] Image subsizes deferral enabled for import
+[20:06:59 UTC] [INFO] ---
+
+[20:06:59 UTC] [INFO] Starting import Spectra settings
+[20:06:59 UTC] [INFO] Starting Spectra settings import | Context: {"settings_count":30}
+[20:06:59 UTC] [SUCCESS] Spectra settings imported successfully
+[20:06:59 UTC] [SUCCESS] Spectra settings imported successfully. | Context: {"message":"Spectra settings imported successfully.","url":""}
+[20:07:02 UTC] [INFO] Image subsizes deferral enabled for import
+[20:07:06 UTC] [INFO] ---
+
+[20:07:06 UTC] [INFO] Starting XML preparation process
+[20:07:06 UTC] [INFO] Starting XML data preparation | Context: {"wxr_url":"https:\/\/websitedemos.net\/wp-content\/uploads\/astra-sites\/1551\/wxr.xml"}
+[20:07:06 UTC] [INFO] info | Context: {"url":"https:\/\/websitedemos.net\/wp-content\/uploads\/astra-sites\/1551\/wxr.xml","host":"websitedemos.net"}
+[20:07:06 UTC] [INFO] WXR URL validation passed
+[20:07:06 UTC] [INFO] Starting XML file download | Context: {"url":"https:\/\/websitedemos.net\/wp-content\/uploads\/astra-sites\/1551\/wxr.xml"}
+[20:07:06 UTC] [INFO] info | Context: {"file_url":"https:\/\/websitedemos.net\/wp-content\/uploads\/astra-sites\/1551\/wxr.xml","timeout_seconds":300}
+[20:07:07 UTC] [INFO] success | Context: {"file_url":"https:\/\/websitedemos.net\/wp-content\/uploads\/astra-sites\/1551\/wxr.xml","file_size":632148,"uploaded_file":"C:\\xampp\\htdocs\\wordpress\/wp-content\/uploads\/2026\/05\/wxr.xml"}
+[20:07:07 UTC] [SUCCESS] XML file downloaded successfully | Context: {"file_path":"C:\\xampp\\htdocs\\wordpress\/wp-content\/uploads\/2026\/05\/wxr.xml"}
+[20:07:07 UTC] [INFO] Inserting XML file as attachment | Context: {"filename":"wxr.xml"}
+[20:07:07 UTC] [SUCCESS] XML attachment created | Context: {"post_id":12}
+[20:07:07 UTC] [INFO] Generating attachment metadata | Context: {"post_id":12}
+[20:07:07 UTC] [INFO] Parsing XML data from file | Context: {"post_id":12}
+[20:07:07 UTC] [INFO] info | Context: {"xml_file_path":"C:\\xampp\\htdocs\\wordpress\/wp-content\/uploads\/2026\/05\/wxr.xml","xml_post_id":12}
+[20:07:07 UTC] [INFO] success | Context: {"xml_file_path":"C:\\xampp\\htdocs\\wordpress\/wp-content\/uploads\/2026\/05\/wxr.xml","post_count":43,"media_count":53,"author_count":1,"comment_count":0,"term_count":23}
+[20:07:07 UTC] [SUCCESS] XML data preparation completed successfully | Context: {"post_id":12,"has_data":true}
+[20:07:07 UTC] [INFO] Image subsizes deferral enabled for import
+[20:07:09 UTC] [INFO] Image subsizes deferral enabled for import
+[20:07:10 UTC] [INFO] info | Context: {"xml_url_provided":false}
+[20:07:10 UTC] [INFO] info | Context: {"xml_url":"C:\\xampp\\htdocs\\wordpress\/wp-content\/uploads\/2026\/05\/wxr.xml","file_size":632148}
+[20:07:30 UTC] [INFO] Image subsizes deferral enabled for import
+[20:07:31 UTC] [INFO] Image subsizes deferral enabled for import
+[20:07:35 UTC] [INFO] Image subsizes deferral enabled for import
+[20:07:42 UTC] [INFO] Image subsizes deferral enabled for import
+[20:07:48 UTC] [INFO] success | Context: {"post_id":1714,"post_type":"custom_css","original_id":9,"post_title":"astra"}
+[20:07:48 UTC] [INFO] success | Context: {"post_id":113,"post_type":"nav_menu_item","original_id":113,"post_title":""}
+[20:07:48 UTC] [INFO] success | Context: {"post_id":115,"post_type":"nav_menu_item","original_id":115,"post_title":""}
+[20:07:48 UTC] [INFO] success | Context: {"post_id":116,"post_type":"nav_menu_item","original_id":116,"post_title":""}
+[20:07:48 UTC] [INFO] success | Context: {"post_id":117,"post_type":"nav_menu_item","original_id":117,"post_title":""}
+[20:07:50 UTC] [INFO] Image subsizes deferral enabled for import
+[20:07:51 UTC] [INFO] success | Context: {"post_id":1715,"post_type":"custom_css","original_id":1715,"post_title":"twentytwenty"}
+[20:07:51 UTC] [INFO] success | Context: {"post_id":1716,"post_type":"custom_css","original_id":1716,"post_title":"astra"}
+[20:07:58 UTC] [INFO] success | Context: {"post_id":70,"post_type":"page","original_id":70,"post_title":"Shop"}
+[20:07:58 UTC] [INFO] success | Context: {"post_id":71,"post_type":"page","original_id":71,"post_title":"Cart"}
+[20:07:58 UTC] [INFO] success | Context: {"post_id":72,"post_type":"page","original_id":72,"post_title":"Checkout"}
+[20:07:58 UTC] [INFO] success | Context: {"post_id":73,"post_type":"page","original_id":73,"post_title":"My account"}
+[20:07:58 UTC] [INFO] success | Context: {"post_id":75,"post_type":"product","original_id":75,"post_title":"Old Lady Cactus"}
+[20:07:58 UTC] [INFO] success | Context: {"post_id":118,"post_type":"page","original_id":118,"post_title":"Store"}
+[20:07:59 UTC] [INFO] success | Context: {"post_id":119,"post_type":"page","original_id":119,"post_title":"About Us"}
+[20:07:59 UTC] [INFO] success | Context: {"post_id":120,"post_type":"page","original_id":120,"post_title":"Contact Us"}
+[20:07:59 UTC] [INFO] success | Context: {"post_id":124,"post_type":"nav_menu_item","original_id":124,"post_title":""}
+[20:07:59 UTC] [INFO] success | Context: {"post_id":125,"post_type":"nav_menu_item","original_id":125,"post_title":""}
+[20:07:59 UTC] [INFO] success | Context: {"post_id":126,"post_type":"nav_menu_item","original_id":126,"post_title":""}
+[20:07:59 UTC] [INFO] success | Context: {"post_id":1417,"post_type":"nav_menu_item","original_id":1417,"post_title":"Introduction"}
+[20:07:59 UTC] [INFO] success | Context: {"post_id":1418,"post_type":"nav_menu_item","original_id":1418,"post_title":"know more About Us"}
+[20:07:59 UTC] [INFO] success | Context: {"post_id":1419,"post_type":"nav_menu_item","original_id":1419,"post_title":"Visit Store"}
+[20:07:59 UTC] [INFO] success | Context: {"post_id":1420,"post_type":"nav_menu_item","original_id":1420,"post_title":"Let's Connect"}
+[20:07:59 UTC] [INFO] success | Context: {"post_id":1421,"post_type":"nav_menu_item","original_id":1421,"post_title":"Privacy Policy"}
+[20:08:00 UTC] [INFO] success | Context: {"post_id":1422,"post_type":"nav_menu_item","original_id":1422,"post_title":"Terms & Conditions"}
+[20:08:00 UTC] [INFO] success | Context: {"post_id":1423,"post_type":"nav_menu_item","original_id":1423,"post_title":"Shipping Details"}
+[20:08:00 UTC] [INFO] success | Context: {"post_id":1424,"post_type":"nav_menu_item","original_id":1424,"post_title":"Media Kit"}
+[20:08:00 UTC] [INFO] success | Context: {"post_id":1717,"post_type":"page","original_id":1717,"post_title":"Home"}
+[20:08:00 UTC] [INFO] success | Context: {"post_id":2509,"post_type":"wp_navigation","original_id":4,"post_title":"Navigation"}
+[20:08:00 UTC] [INFO] success | Context: {"post_id":76,"post_type":"product","original_id":76,"post_title":"Mini San Pedro Cactus"}
+[20:08:00 UTC] [INFO] success | Context: {"post_id":77,"post_type":"product","original_id":77,"post_title":"Cleistocactus"}
+[20:08:00 UTC] [INFO] success | Context: {"post_id":78,"post_type":"product","original_id":78,"post_title":"Ball Cactus"}
+[20:08:01 UTC] [INFO] success | Context: {"post_id":80,"post_type":"product","original_id":80,"post_title":"Star Cactus"}
+[20:08:01 UTC] [INFO] success | Context: {"post_id":81,"post_type":"product","original_id":81,"post_title":"Mini Astrophytum"}
+[20:08:01 UTC] [INFO] success | Context: {"post_id":82,"post_type":"product","original_id":82,"post_title":"Rattle Snake Tail"}
+[20:08:01 UTC] [INFO] success | Context: {"post_id":83,"post_type":"product","original_id":83,"post_title":"Piorro Quisquam"}
+[20:08:01 UTC] [INFO] success | Context: {"post_id":84,"post_type":"product","original_id":84,"post_title":"Green Soil Lotus"}
+[20:08:02 UTC] [INFO] success | Context: {"post_id":85,"post_type":"product","original_id":85,"post_title":"Boncellensis Secullant"}
+[20:08:02 UTC] [INFO] success | Context: {"post_id":86,"post_type":"product","original_id":86,"post_title":"Aluminum Plant"}
+[20:08:02 UTC] [INFO] success | Context: {"post_id":87,"post_type":"product","original_id":87,"post_title":"Money Plant"}
+[20:08:02 UTC] [INFO] success | Context: {"post_id":286,"post_type":"wp_global_styles","original_id":286,"post_title":"Custom Styles"}
+[20:08:02 UTC] [INFO] success | Context: {"post_id":994,"post_type":"wp_navigation","original_id":994,"post_title":"Main Menu"}
+[20:08:02 UTC] [INFO] success | Context: {"post_id":1622,"post_type":"sureforms_form","original_id":1622,"post_title":"Simple Contact Form"}
+[20:08:02 UTC] [INFO] success | Context: {"post_id":1702,"post_type":"wp_global_styles","original_id":1702,"post_title":"Custom Styles"}
+[20:08:03 UTC] [INFO] success | Context: {"xml_url":"C:\\xampp\\htdocs\\wordpress\/wp-content\/uploads\/2026\/05\/wxr.xml"}
+[20:08:05 UTC] [INFO] Image subsizes deferral enabled for import
+[20:08:06 UTC] [INFO] ---
+
+[20:08:06 UTC] [INFO] Starting import options
+[20:08:06 UTC] [INFO] Importing site options | Context: {"options":[]}
+[20:08:06 UTC] [INFO] Starting site options import | Context: {"options_count":62}
+[20:08:06 UTC] [INFO] Old site options backed up
+[20:08:06 UTC] [INFO] Processing option | Context: {"option_name":"woocommerce_product_attributes"}
+[20:08:06 UTC] [INFO] Updating standard option | Context: {"option_name":"woocommerce_product_attributes"}
+[20:08:06 UTC] [INFO] Processing option | Context: {"option_name":"woocommerce_product_cat_list"}
+[20:08:06 UTC] [INFO] Updating standard option | Context: {"option_name":"woocommerce_product_cat_list"}
+[20:08:06 UTC] [INFO] Processing option | Context: {"option_name":"woocommerce_product_cat"}
+[20:08:06 UTC] [INFO] Updating standard option | Context: {"option_name":"woocommerce_product_cat"}
+[20:08:06 UTC] [INFO] Processing option | Context: {"option_name":"custom_logo"}
+[20:08:06 UTC] [INFO] Importing custom logo | Context: {"logo_id":"https:\/\/websitedemos.net\/plant-store-09\/wp-content\/uploads\/sites\/1551\/2020\/08\/plants-store-logo-green.svg"}
+[20:08:06 UTC] [INFO] info | Context: {"url":"https:\/\/websitedemos.net\/plant-store-09\/wp-content\/uploads\/sites\/1551\/2020\/08\/plants-store-logo-green.svg"}
+[20:08:06 UTC] [INFO] info | Context: {"url":"https:\/\/websitedemos.net\/plant-store-09\/wp-content\/uploads\/sites\/1551\/2020\/08\/plants-store-logo-green.svg","sha1":"120b1ac42860749398feb7f9e0d26d827e8311fd"}
+[20:08:06 UTC] [INFO] info | Context: {"url":"https:\/\/websitedemos.net\/plant-store-09\/wp-content\/uploads\/sites\/1551\/2020\/08\/plants-store-logo-green.svg","sha1":"120b1ac42860749398feb7f9e0d26d827e8311fd"}
+[20:08:06 UTC] [INFO] success | Context: {"url":"https:\/\/websitedemos.net\/plant-store-09\/wp-content\/uploads\/sites\/1551\/2020\/08\/plants-store-logo-green.svg","attachment_id":"16","attachment_url":"http:\/\/localhost\/wordpress\/wp-content\/uploads\/2020\/08\/plants-store-logo-green.svg"}
+[20:08:06 UTC] [INFO] success | Context: {"url":"https:\/\/websitedemos.net\/plant-store-09\/wp-content\/uploads\/sites\/1551\/2020\/08\/plants-store-logo-green.svg","attachment_id":"16"}
+[20:08:06 UTC] [INFO] success | Context: {"url":"https:\/\/websitedemos.net\/plant-store-09\/wp-content\/uploads\/sites\/1551\/2020\/08\/plants-store-logo-green.svg","attachment_id":"16","logo_url":"http:\/\/localhost\/wordpress\/wp-content\/uploads\/2020\/08\/plants-store-logo-green.svg"}
+[20:08:07 UTC] [INFO] Processing option | Context: {"option_name":"nav_menu_locations"}
+[20:08:07 UTC] [INFO] Setting navigation menu locations | Context: {"menu_count":1}
+[20:08:07 UTC] [INFO] info | Context: {"total_locations":1}
+[20:08:07 UTC] [INFO] info | Context: {"location":"primary","slug":"main-menu","menu_id":22}
+[20:08:07 UTC] [INFO] success | Context: {"successful_mappings":1,"failed_locations":[],"total_locations":1}
+[20:08:07 UTC] [INFO] Processing option | Context: {"option_name":"show_on_front"}
+[20:08:07 UTC] [INFO] Updating standard option | Context: {"option_name":"show_on_front"}
+[20:08:07 UTC] [INFO] Processing option | Context: {"option_name":"page_on_front"}
+[20:08:07 UTC] [INFO] Updating page ID option | Context: {"option_name":"page_on_front","option_value":"Home"}
+[20:08:07 UTC] [INFO] info | Context: {"option_name":"page_on_front","option_value":"Home"}
+[20:08:07 UTC] [INFO] success | Context: {"option_name":"page_on_front","page_title":"Home","page_id":1717}
+[20:08:07 UTC] [INFO] Processing option | Context: {"option_name":"page_for_posts"}
+[20:08:07 UTC] [INFO] Updating page ID option | Context: {"option_name":"page_for_posts","option_value":""}
+[20:08:07 UTC] [INFO] warning | Context: {"option_name":"page_for_posts"}
+[20:08:07 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"_fl_builder_enabled_icons"}
+[20:08:07 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"_fl_builder_enabled_modules"}
+[20:08:07 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"_fl_builder_post_types"}
+[20:08:07 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"_fl_builder_color_presets"}
+[20:08:07 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"_fl_builder_services"}
+[20:08:07 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"_fl_builder_settings"}
+[20:08:07 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"_fl_builder_user_access"}
+[20:08:07 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"_fl_builder_enabled_templates"}
+[20:08:07 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"elementor_container_width"}
+[20:08:07 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"elementor_cpt_support"}
+[20:08:07 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"elementor_css_print_method"}
+[20:08:07 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"elementor_default_generic_fonts"}
+[20:08:07 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"elementor_disable_color_schemes"}
+[20:08:07 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"elementor_disable_typography_schemes"}
+[20:08:07 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"elementor_editor_break_lines"}
+[20:08:07 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"elementor_exclude_user_roles"}
+[20:08:07 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"elementor_global_image_lightbox"}
+[20:08:07 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"elementor_page_title_selector"}
+[20:08:07 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"elementor_scheme_color"}
+[20:08:07 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"elementor_scheme_color-picker]"}
+[20:08:07 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"elementor_scheme_typography"}
+[20:08:07 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"elementor_space_between_widgets"}
+[20:08:07 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"elementor_stretched_section_container"}
+[20:08:07 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"elementor_load_fa4_shim"}
+[20:08:07 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"elementor_active_kit"}
+[20:08:07 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"elementor_experiment-container"}
+[20:08:07 UTC] [INFO] Processing option | Context: {"option_name":"elementor_install_history"}
+[20:08:07 UTC] [INFO] Updating standard option | Context: {"option_name":"elementor_install_history"}
+[20:08:07 UTC] [INFO] Processing option | Context: {"option_name":"woocommerce_shop_page_title"}
+[20:08:07 UTC] [INFO] Updating standard option | Context: {"option_name":"woocommerce_shop_page_title"}
+[20:08:07 UTC] [INFO] Processing option | Context: {"option_name":"woocommerce_cart_page_title"}
+[20:08:07 UTC] [INFO] Updating standard option | Context: {"option_name":"woocommerce_cart_page_title"}
+[20:08:07 UTC] [INFO] Processing option | Context: {"option_name":"woocommerce_checkout_page_title"}
+[20:08:07 UTC] [INFO] Updating standard option | Context: {"option_name":"woocommerce_checkout_page_title"}
+[20:08:07 UTC] [INFO] Processing option | Context: {"option_name":"woocommerce_myaccount_page_title"}
+[20:08:07 UTC] [INFO] Updating standard option | Context: {"option_name":"woocommerce_myaccount_page_title"}
+[20:08:07 UTC] [INFO] Processing option | Context: {"option_name":"woocommerce_edit_address_page_title"}
+[20:08:07 UTC] [INFO] Updating standard option | Context: {"option_name":"woocommerce_edit_address_page_title"}
+[20:08:07 UTC] [INFO] Processing option | Context: {"option_name":"woocommerce_view_order_page_title"}
+[20:08:07 UTC] [INFO] Updating standard option | Context: {"option_name":"woocommerce_view_order_page_title"}
+[20:08:07 UTC] [INFO] Processing option | Context: {"option_name":"woocommerce_change_password_page_title"}
+[20:08:07 UTC] [INFO] Updating standard option | Context: {"option_name":"woocommerce_change_password_page_title"}
+[20:08:07 UTC] [INFO] Processing option | Context: {"option_name":"woocommerce_logout_page_title"}
+[20:08:07 UTC] [INFO] Updating standard option | Context: {"option_name":"woocommerce_logout_page_title"}
+[20:08:07 UTC] [INFO] Processing option | Context: {"option_name":"woocommerce_enable_guest_checkout"}
+[20:08:07 UTC] [INFO] Updating standard option | Context: {"option_name":"woocommerce_enable_guest_checkout"}
+[20:08:07 UTC] [INFO] Processing option | Context: {"option_name":"woocommerce_enable_checkout_login_reminder"}
+[20:08:07 UTC] [INFO] Updating standard option | Context: {"option_name":"woocommerce_enable_checkout_login_reminder"}
+[20:08:07 UTC] [INFO] Processing option | Context: {"option_name":"woocommerce_enable_signup_and_login_from_checkout"}
+[20:08:07 UTC] [INFO] Updating standard option | Context: {"option_name":"woocommerce_enable_signup_and_login_from_checkout"}
+[20:08:07 UTC] [INFO] Processing option | Context: {"option_name":"woocommerce_enable_myaccount_registration"}
+[20:08:07 UTC] [INFO] Updating standard option | Context: {"option_name":"woocommerce_enable_myaccount_registration"}
+[20:08:07 UTC] [INFO] Processing option | Context: {"option_name":"woocommerce_registration_generate_username"}
+[20:08:07 UTC] [INFO] Updating standard option | Context: {"option_name":"woocommerce_registration_generate_username"}
+[20:08:07 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"edd_settings"}
+[20:08:07 UTC] [INFO] Processing option | Context: {"option_name":"wpforms_settings"}
+[20:08:07 UTC] [INFO] Updating standard option | Context: {"option_name":"wpforms_settings"}
+[20:08:07 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"learndash_settings_theme_ld30"}
+[20:08:07 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"learndash_settings_courses_themes"}
+[20:08:07 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"srfm_general_settings_options"}
+[20:08:07 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"get_default_dynamic_block_option"}
+[20:08:07 UTC] [INFO] Processing option | Context: {"option_name":"srfm_default_dynamic_block_option"}
+[20:08:07 UTC] [INFO] Updating standard option | Context: {"option_name":"srfm_default_dynamic_block_option"}
+[20:08:07 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"srfm_email_summary_settings_options"}
+[20:08:08 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"srfm_security_settings_options"}
+[20:08:08 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"cfvsw_global"}
+[20:08:08 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"cfvsw_shop"}
+[20:08:08 UTC] [INFO] Option value is null, skipping | Context: {"option_name":"cfvsw_style"}
+[20:08:08 UTC] [INFO] Processing option | Context: {"option_name":"astra-color-palettes"}
+[20:08:08 UTC] [INFO] Updating standard option | Context: {"option_name":"astra-color-palettes"}
+[20:08:08 UTC] [INFO] Processing option | Context: {"option_name":"astra-typography-presets"}
+[20:08:08 UTC] [INFO] Updating standard option | Context: {"option_name":"astra-typography-presets"}
+[20:08:08 UTC] [INFO] Running st_importer_import_site_options action
+[20:08:08 UTC] [INFO] Processing site options import - Total options: 62
+[20:08:08 UTC] [INFO] Updated option: woocommerce_product_attributes
+[20:08:08 UTC] [INFO] Updated option: woocommerce_product_cat_list | Context: {"252":{"term_id":252,"name":"Uncategorized","slug":"uncategorized","description":""},"368":{"term_id":368,"name":"Cactus","slug":"cactus","description":""},"414":{"term_id":414,"name":"Plants","slug":"plants","description":""}}
+[20:08:08 UTC] [INFO] Processing WooCommerce product categories - Total: 3
+[20:08:08 UTC] [SUCCESS] WooCommerce product categories processed successfully
+[20:08:08 UTC] [INFO] Inserting custom logo from URL: https://websitedemos.net/plant-store-09/wp-content/uploads/sites/1551/2020/08/plants-store-logo-green.svg
+[20:08:08 UTC] [INFO] Starting image import for URL: https://websitedemos.net/plant-store-09/wp-content/uploads/sites/1551/2020/08/plants-store-logo-green.svg
+[20:08:08 UTC] [INFO] Image already exists in media library (ID: 16), skipping download
+[20:08:08 UTC] [SUCCESS] Custom logo set successfully - ID: 16
+[20:08:08 UTC] [INFO] Setting nav menu locations - Total menus: 1
+[20:08:08 UTC] [INFO] Menu location 'primary' set to term ID: 22
+[20:08:08 UTC] [SUCCESS] Nav menu locations updated successfully
+[20:08:08 UTC] [INFO] Updated option: show_on_front | Context: "page"
+[20:08:08 UTC] [INFO] Updating page ID for option: page_on_front with value: Home
+[20:08:08 UTC] [INFO] Page ID updated for page_on_front: 1717
+[20:08:08 UTC] [INFO] Updating page ID for option: page_for_posts with value: 
+[20:08:08 UTC] [INFO] Updated option: elementor_install_history | Context: {"3.29.1":1749209701}
+[20:08:08 UTC] [INFO] Updating WooCommerce page ID for option: woocommerce_shop_page_title with value: Shop
+[20:08:08 UTC] [INFO] Updating page ID for option: woocommerce_shop_page_id with value: Shop
+[20:08:08 UTC] [INFO] Page ID updated for woocommerce_shop_page_id: 70
+[20:08:08 UTC] [INFO] Updating WooCommerce page ID for option: woocommerce_cart_page_title with value: Cart
+[20:08:08 UTC] [INFO] Updating page ID for option: woocommerce_cart_page_id with value: Cart
+[20:08:08 UTC] [INFO] Page ID updated for woocommerce_cart_page_id: 71
+[20:08:08 UTC] [INFO] Updating WooCommerce page ID for option: woocommerce_checkout_page_title with value: Checkout
+[20:08:08 UTC] [INFO] Updating page ID for option: woocommerce_checkout_page_id with value: Checkout
+[20:08:08 UTC] [INFO] Page ID updated for woocommerce_checkout_page_id: 72
+[20:08:08 UTC] [INFO] Updating WooCommerce page ID for option: woocommerce_myaccount_page_title with value: My account
+[20:08:08 UTC] [INFO] Updating page ID for option: woocommerce_myaccount_page_id with value: My account
+[20:08:08 UTC] [INFO] Page ID updated for woocommerce_myaccount_page_id: 73
+[20:08:08 UTC] [INFO] Updating WooCommerce page ID for option: woocommerce_edit_address_page_title with value: 
+[20:08:08 UTC] [INFO] Updating page ID for option: woocommerce_edit_address_page_id with value: 
+[20:08:08 UTC] [INFO] Updating WooCommerce page ID for option: woocommerce_view_order_page_title with value: 
+[20:08:08 UTC] [INFO] Updating page ID for option: woocommerce_view_order_page_id with value: 
+[20:08:08 UTC] [INFO] Updating WooCommerce page ID for option: woocommerce_change_password_page_title with value: 
+[20:08:08 UTC] [INFO] Updating page ID for option: woocommerce_change_password_page_id with value: 
+[20:08:08 UTC] [INFO] Updating WooCommerce page ID for option: woocommerce_logout_page_title with value: 
+[20:08:08 UTC] [INFO] Updating page ID for option: woocommerce_logout_page_id with value: 
+[20:08:08 UTC] [INFO] Updated option: woocommerce_enable_guest_checkout | Context: "yes"
+[20:08:08 UTC] [INFO] Updated option: woocommerce_enable_checkout_login_reminder | Context: "no"
+[20:08:08 UTC] [INFO] Updated option: woocommerce_enable_signup_and_login_from_checkout | Context: "no"
+[20:08:08 UTC] [INFO] Updated option: woocommerce_enable_myaccount_registration | Context: "no"
+[20:08:08 UTC] [INFO] Updated option: woocommerce_registration_generate_username | Context: "yes"
+[20:08:08 UTC] [INFO] Updated option: wpforms_settings | Context: {"disable-css":"2","global-assets":false,"gdpr":false,"modern-markup":"0","modern-markup-is-set":true}
+[20:08:08 UTC] [INFO] Updated option: srfm_default_dynamic_block_option | Context: {"srfm_url_block_required_text":"This field is required.","srfm_input_block_required_text":"This field is required.","srfm_input_block_unique_text":"Value needs to be unique.","srfm_address_block_required_text":"This field is required.","srfm_phone_block_required_text":"This field is required.","srfm_phone_block_unique_text":"Value needs to be unique.","srfm_number_block_required_text":"This field is required.","srfm_textarea_block_required_text":"This field is required.","srfm_multi_choice_block_required_text":"This field is required.","srfm_checkbox_block_required_text":"This field is required.","srfm_gdpr_block_required_text":"This field is required.","srfm_email_block_required_text":"This field is required.","srfm_email_block_unique_text":"Value needs to be unique.","srfm_dropdown_block_required_text":"This field is required.","srfm_rating_block_required_text":"This field is required.","srfm_valid_phone_number":"Please enter a valid phone number.","srfm_valid_url":"Please enter a valid URL.","srfm_confirm_email_same":"Confirmation email does not match.","srfm_valid_email":"Please enter a valid email address.","srfm_input_min_value":"Minimum value is %s","srfm_input_max_value":"Maximum value is %s","srfm_dropdown_min_selections":"Minimum %s selections are required","srfm_dropdown_max_selections":"Maximum %s selections are allowed","srfm_multi_choice_min_selections":"Minimum %s selections are required","srfm_multi_choice_max_selections":"Maximum %s selections are allowed"}
+[20:08:08 UTC] [INFO] Updated option: astra-color-palettes | Context: {"currentPalette":"palette_1","palettes":{"palette_1":["#8dd348","#75c32c","#2b2f38","#5d6167","#f9f9f9","#ffffff","#4e5768","#efeef4","#bfd1ff"],"palette_2":["#0274be","#3a3a3a","#3a3a3a","#4B4F58","#ffffff","#FFFFFF","#000000","#ffffff","#000000"],"palette_3":["#00cc92","#01bd88","#ffffff","#f5f5f5","#191919","#000000","#000000","#ffffff","#000000"],"palette_4":["#0085FF","#0177E3","#FFFFFF","#E7F6FF","#212A37","#0F172A","#4F5B62","#070614","#222222"]},"flag":true,"presets":{"Oak":["#0067FF","#005EE9","#0F172A","#364151","#E7F6FF","#FFFFFF","#D1DAE5","#070614","#222222"],"Viola":["#6528F7","#5511F8","#0F172A","#454F5E","#F2F0FE","#FFFFFF","#D8D8F5","#0D0614","#222222"],"Cedar":["#DD183B","#CC1939","#0F172A","#3A3A3A","#FFEDE6","#FFFFFF","#FFD1BF","#140609","#222222"],"Willow":["#54B435","#379237","#0F172A","#2F3B40","#EDFBE2","#FFFFFF","#D5EAD8","#0C1406","#222222"],"Lily":["#DCA54A","#D09A40","#0F172A","#4A4A4A","#FAF5E5","#FFFFFF","#F0E6C5","#141004","#222222"],"Rose":["#FB5FAB","#EA559D","#0F172A","#454F5E","#FCEEF5","#FFFFFF","#FAD8E9","#140610","#222222"],"Sage":["#1B9C85","#178E79","#0F172A","#454F5E","#EDF6EE","#FFFFFF","#D4F3D7","#06140C","#222222"],"Flare":["#FD9800","#E98C00","#0F172A","#454F5E","#FEF9E1","#FFFFFF","#F9F0C8","#141006","#222222"],"Maple":["#FF6210","#F15808","#1C0D0A","#353535","#FEF1E4","#FFFFFF","#E5D7D1","#140B06","#222222"],"Birch":["#737880","#65696F","#151616","#393C40","#F6F6F6","#FFFFFF","#F1F0F0","#232529","#222222"],"Dark":["#0085FF","#0177E3","#FFFFFF","#E7F6FF","#212A37","#0F172A","#4F5B62","#070614","#222222"]},"presetNames":{"palette_1":null,"palette_2":null,"palette_3":null,"palette_4":"Dark"}}
+[20:08:08 UTC] [INFO] Updated option: astra-typography-presets
+[20:08:08 UTC] [SUCCESS] Classic templates options import completed successfully
+[20:08:08 UTC] [SUCCESS] Site options import completed successfully | Context: {"processed_count":26,"skipped_count":36,"total_count":62}
+[20:08:08 UTC] [SUCCESS] Site options Imported!
+[20:08:10 UTC] [INFO] Image subsizes deferral enabled for import
+[20:08:11 UTC] [INFO] Image subsizes deferral enabled for import
+[20:08:12 UTC] [INFO] ---
+
+[20:08:12 UTC] [INFO] Starting import widgets
+[20:08:12 UTC] [INFO] Importing widgets
+[20:08:12 UTC] [INFO] Starting widgets import
+[20:08:12 UTC] [INFO] Processing widget data | Context: {"data_type":"string","widgets_data_type":"string"}
+[20:08:12 UTC] [INFO] Parsing widget data from JSON string
+[20:08:12 UTC] [INFO] Importing widget data via ST_Widget_Importer
+[20:08:12 UTC] [INFO] Starting widget import process
+[20:08:12 UTC] [INFO] Checking available widgets | Context: {"widget_control_count":41}
+[20:08:13 UTC] [INFO] Widget availability check completed | Context: {"available_widget_count":37,"available_widgets":["pages","calendar","archives","media_audio","media_image","media_gallery","media_video","meta","search","text","categories","recent-posts","recent-comments","rss","tag_cloud","nav_menu","custom_html","block","astra-widget-address","astra-widget-list-icons","astra-widget-social-profiles","woocommerce_widget_cart","woocommerce_layered_nav_filters","woocommerce_layered_nav","woocommerce_price_filter","woocommerce_product_categories","woocommerce_product_search","woocommerce_product_tag_cloud","woocommerce_products","woocommerce_recently_viewed_products","woocommerce_top_rated_products","woocommerce_recent_reviews","woocommerce_rating_filter","wc_brands_brand_description","woocommerce_brand_nav","wc_brands_brand_thumbnails","currency_switcher_widget"]}
+[20:08:13 UTC] [INFO] Loaded widget configuration | Context: {"available_widget_types":37,"sidebar_count":7}
+[20:08:13 UTC] [INFO] Processing sidebars from import data | Context: {"sidebar_count_in_data":6}
+[20:08:13 UTC] [INFO] Processing sidebar: sidebar-1 | Context: {"sidebar_name":"Barra lateral principal","widget_count":8,"availability":"available"}
+[20:08:13 UTC] [INFO] Processing widget: search-2 | Context: {"widget_type":"search","instance_id":"2","sidebar_id":"sidebar-1"}
+[20:08:13 UTC] [INFO] Widget data formatted and saved: search | Context: {"widget_type":"search","instance_count":2,"update_result":true}
+[20:08:13 UTC] [SUCCESS] Widget imported successfully: search-1 | Context: {"widget_type":"search","new_instance_id":"search-1","sidebar_id":"sidebar-1","widget_title":"No Title"}
+[20:08:13 UTC] [INFO] Processing widget: recent-posts-2 | Context: {"widget_type":"recent-posts","instance_id":"2","sidebar_id":"sidebar-1"}
+[20:08:13 UTC] [INFO] Widget data formatted and saved: recent-posts | Context: {"widget_type":"recent-posts","instance_count":2,"update_result":true}
+[20:08:13 UTC] [SUCCESS] Widget imported successfully: recent-posts-1 | Context: {"widget_type":"recent-posts","new_instance_id":"recent-posts-1","sidebar_id":"sidebar-1","widget_title":"No Title"}
+[20:08:13 UTC] [INFO] Processing widget: recent-comments-2 | Context: {"widget_type":"recent-comments","instance_id":"2","sidebar_id":"sidebar-1"}
+[20:08:13 UTC] [INFO] Widget data formatted and saved: recent-comments | Context: {"widget_type":"recent-comments","instance_count":2,"update_result":true}
+[20:08:13 UTC] [SUCCESS] Widget imported successfully: recent-comments-1 | Context: {"widget_type":"recent-comments","new_instance_id":"recent-comments-1","sidebar_id":"sidebar-1","widget_title":"No Title"}
+[20:08:13 UTC] [INFO] Processing widget: archives-2 | Context: {"widget_type":"archives","instance_id":"2","sidebar_id":"sidebar-1"}
+[20:08:13 UTC] [INFO] Widget data formatted and saved: archives | Context: {"widget_type":"archives","instance_count":2,"update_result":true}
+[20:08:13 UTC] [SUCCESS] Widget imported successfully: archives-1 | Context: {"widget_type":"archives","new_instance_id":"archives-1","sidebar_id":"sidebar-1","widget_title":"No Title"}
+[20:08:13 UTC] [INFO] Processing widget: categories-2 | Context: {"widget_type":"categories","instance_id":"2","sidebar_id":"sidebar-1"}
+[20:08:13 UTC] [INFO] Widget data formatted and saved: categories | Context: {"widget_type":"categories","instance_count":2,"update_result":true}
+[20:08:13 UTC] [SUCCESS] Widget imported successfully: categories-1 | Context: {"widget_type":"categories","new_instance_id":"categories-1","sidebar_id":"sidebar-1","widget_title":"No Title"}
+[20:08:13 UTC] [INFO] Processing widget: meta-2 | Context: {"widget_type":"meta","instance_id":"2","sidebar_id":"sidebar-1"}
+[20:08:13 UTC] [INFO] Widget data formatted and saved: meta | Context: {"widget_type":"meta","instance_count":2,"update_result":true}
+[20:08:13 UTC] [SUCCESS] Widget imported successfully: meta-1 | Context: {"widget_type":"meta","new_instance_id":"meta-1","sidebar_id":"sidebar-1","widget_title":"No Title"}
+[20:08:13 UTC] [INFO] Processing widget: media_image-2 | Context: {"widget_type":"media_image","instance_id":"2","sidebar_id":"sidebar-1"}
+[20:08:13 UTC] [INFO] Widget data formatted and saved: media_image | Context: {"widget_type":"media_image","instance_count":2,"update_result":true}
+[20:08:13 UTC] [SUCCESS] Widget imported successfully: media_image-1 | Context: {"widget_type":"media_image","new_instance_id":"media_image-1","sidebar_id":"sidebar-1","widget_title":"No Title"}
+[20:08:13 UTC] [INFO] Processing widget: astra-widget-social-profiles-2 | Context: {"widget_type":"astra-widget-social-profiles","instance_id":"2","sidebar_id":"sidebar-1"}
+[20:08:13 UTC] [INFO] Widget data formatted and saved: astra-widget-social-profiles | Context: {"widget_type":"astra-widget-social-profiles","instance_count":2,"update_result":true}
+[20:08:13 UTC] [SUCCESS] Widget imported successfully: astra-widget-social-profiles-1 | Context: {"widget_type":"astra-widget-social-profiles","new_instance_id":"astra-widget-social-profiles-1","sidebar_id":"sidebar-1","widget_title":"Simply Natural"}
+[20:08:13 UTC] [INFO] Processing sidebar: footer-widget-1 | Context: {"sidebar_name":"Footer Builder Widget 1","widget_count":1,"availability":"available"}
+[20:08:13 UTC] [INFO] Processing widget: text-5 | Context: {"widget_type":"text","instance_id":"5","sidebar_id":"footer-widget-1"}
+[20:08:13 UTC] [INFO] Widget data formatted and saved: text | Context: {"widget_type":"text","instance_count":2,"update_result":true}
+[20:08:13 UTC] [SUCCESS] Widget imported successfully: text-1 | Context: {"widget_type":"text","new_instance_id":"text-1","sidebar_id":"footer-widget-1","widget_title":"Get In Touch With Us For The Best Quality Plants & Succulents"}
+[20:08:13 UTC] [INFO] Processing sidebar: footer-widget-2 | Context: {"sidebar_name":"Footer Builder Widget 2","widget_count":1,"availability":"available"}
+[20:08:13 UTC] [INFO] Processing widget: text-6 | Context: {"widget_type":"text","instance_id":"6","sidebar_id":"footer-widget-2"}
+[20:08:13 UTC] [INFO] Widget data formatted and saved: text | Context: {"widget_type":"text","instance_count":3,"update_result":true}
+[20:08:13 UTC] [SUCCESS] Widget imported successfully: text-2 | Context: {"widget_type":"text","new_instance_id":"text-2","sidebar_id":"footer-widget-2","widget_title":"No Title"}
+[20:08:13 UTC] [INFO] Processing sidebar: footer-widget-3 | Context: {"sidebar_name":"Footer Builder Widget 3","widget_count":1,"availability":"available"}
+[20:08:13 UTC] [INFO] Processing widget: nav_menu-7 | Context: {"widget_type":"nav_menu","instance_id":"7","sidebar_id":"footer-widget-3"}
+[20:08:13 UTC] [INFO] Widget data formatted and saved: nav_menu | Context: {"widget_type":"nav_menu","instance_count":2,"update_result":true}
+[20:08:13 UTC] [SUCCESS] Widget imported successfully: nav_menu-1 | Context: {"widget_type":"nav_menu","new_instance_id":"nav_menu-1","sidebar_id":"footer-widget-3","widget_title":"Quick Links"}
+[20:08:13 UTC] [INFO] Processing sidebar: footer-widget-4 | Context: {"sidebar_name":"Footer Builder Widget 4","widget_count":1,"availability":"available"}
+[20:08:13 UTC] [INFO] Processing widget: nav_menu-8 | Context: {"widget_type":"nav_menu","instance_id":"8","sidebar_id":"footer-widget-4"}
+[20:08:13 UTC] [INFO] Widget data formatted and saved: nav_menu | Context: {"widget_type":"nav_menu","instance_count":3,"update_result":true}
+[20:08:13 UTC] [SUCCESS] Widget imported successfully: nav_menu-2 | Context: {"widget_type":"nav_menu","new_instance_id":"nav_menu-2","sidebar_id":"footer-widget-4","widget_title":"Important Links"}
+[20:08:13 UTC] [INFO] Processing sidebar: astra-woo-shop-sidebar | Context: {"sidebar_name":"Barra lateral de WooCommerce","widget_count":3,"availability":"available"}
+[20:08:13 UTC] [INFO] Processing widget: block-20 | Context: {"widget_type":"block","instance_id":"20","sidebar_id":"astra-woo-shop-sidebar"}
+[20:08:13 UTC] [INFO] Widget data formatted and saved: block | Context: {"widget_type":"block","instance_count":7,"update_result":true}
+[20:08:13 UTC] [SUCCESS] Widget imported successfully: block-7 | Context: {"widget_type":"block","new_instance_id":"block-7","sidebar_id":"astra-woo-shop-sidebar","widget_title":"No Title"}
+[20:08:13 UTC] [INFO] Processing widget: woocommerce_product_categories-2 | Context: {"widget_type":"woocommerce_product_categories","instance_id":"2","sidebar_id":"astra-woo-shop-sidebar"}
+[20:08:13 UTC] [INFO] Widget data formatted and saved: woocommerce_product_categories | Context: {"widget_type":"woocommerce_product_categories","instance_count":2,"update_result":true}
+[20:08:13 UTC] [SUCCESS] Widget imported successfully: woocommerce_product_categories-1 | Context: {"widget_type":"woocommerce_product_categories","new_instance_id":"woocommerce_product_categories-1","sidebar_id":"astra-woo-shop-sidebar","widget_title":"Categories"}
+[20:08:13 UTC] [INFO] Processing widget: block-21 | Context: {"widget_type":"block","instance_id":"21","sidebar_id":"astra-woo-shop-sidebar"}
+[20:08:13 UTC] [INFO] Widget data formatted and saved: block | Context: {"widget_type":"block","instance_count":8,"update_result":true}
+[20:08:13 UTC] [SUCCESS] Widget imported successfully: block-8 | Context: {"widget_type":"block","new_instance_id":"block-8","sidebar_id":"astra-woo-shop-sidebar","widget_title":"No Title"}
+[20:08:13 UTC] [INFO] Widget import process completed | Context: {"total_sidebars_processed":6,"successful_imports":15,"warnings":0,"errors":0,"total_widgets_processed":15}
+[20:08:13 UTC] [INFO] Retrieving current sidebars and widgets
+[20:08:13 UTC] [INFO] Backing up old widgets data | Context: {"sidebars_count":12}
+[20:08:13 UTC] [SUCCESS] Widgets import completed successfully
+[20:08:13 UTC] [SUCCESS] Widget Imported!
+[20:08:16 UTC] [INFO] Image subsizes deferral enabled for import
+[20:08:17 UTC] [INFO] ---
+
+[20:08:17 UTC] [INFO] Setting site data: site-colors
+[20:08:19 UTC] [INFO] Image subsizes deferral enabled for import
+[20:08:21 UTC] [INFO] ---
+
+[20:08:21 UTC] [INFO] Setting site data: site-typography
+[20:08:23 UTC] [INFO] Image subsizes deferral enabled for import
+[20:08:24 UTC] [INFO] ---
+
+[20:08:24 UTC] [INFO] Starting import end process
+[20:08:24 UTC] [INFO] Finalizing import process
+[20:08:24 UTC] [INFO] Setting permalink structure to post name
+[20:08:24 UTC] [INFO] Executing import complete actions
+[20:08:24 UTC] [INFO] Batch processing started
+[20:08:24 UTC] [INFO] Batch processing queue created | Context: {"total_classes":10,"attachment_count":47,"has_images":true}
+[20:08:25 UTC] [INFO] Batch processing queue dispatched to background
+[20:08:26 UTC] [INFO] Batch Process Started..
+[20:08:26 UTC] [INFO] Starter Templates - Importing Images for Blog name 'Demo' (1)
+[20:08:27 UTC] [SUCCESS] Import completed successfully!
+[20:08:28 UTC] [INFO] Gutenberg batch processing started
+[20:08:28 UTC] [INFO] Gutenberg posts retrieved for processing | Context: {"post_count":12,"post_types":"page, post, wp_block, wp_template, wp_navigation, wp_template_part, wp_global_styles, sc_form, spectra-popup, sfwd-courses, sfwd-lessons, sfwd-topic, sfwd-quiz, sfwd-certificates, sfwd-assignment"}
+[20:08:28 UTC] [INFO] Processing Gutenberg post | Context: {"post_id":286}
+[20:08:28 UTC] [INFO] Updating post content (first pass) | Context: {"post_id":286}
+[20:08:28 UTC] [INFO] Starting link extraction and replacement process
+[20:08:28 UTC] [INFO] Links discovered in content | Context: {"total_links":0}
+[20:08:28 UTC] [INFO] No links found in content, skipping replacement
+[20:08:28 UTC] [INFO] Updating post content (second pass with link replacements) | Context: {"post_id":286}
+[20:08:28 UTC] [SUCCESS] Successfully completed processing Gutenberg post | Context: {"post_id":286}
+[20:08:28 UTC] [INFO] Processing Gutenberg post | Context: {"post_id":994}
+[20:08:28 UTC] [INFO] Updating post content (first pass) | Context: {"post_id":994}
+[20:08:28 UTC] [INFO] Starting link extraction and replacement process
+[20:08:28 UTC] [INFO] Links discovered in content | Context: {"total_links":7}
+[20:08:28 UTC] [INFO] Starting link replacements in content | Context: {"replacements_count":7}
+[20:08:28 UTC] [SUCCESS] Link replacement process completed | Context: {"total_replacements":7}
+[20:08:28 UTC] [INFO] Updating post content (second pass with link replacements) | Context: {"post_id":994}
+[20:08:28 UTC] [SUCCESS] Successfully completed processing Gutenberg post | Context: {"post_id":994}
+[20:08:28 UTC] [INFO] Processing Gutenberg post | Context: {"post_id":1702}
+[20:08:28 UTC] [INFO] Updating post content (first pass) | Context: {"post_id":1702}
+[20:08:28 UTC] [INFO] Starting link extraction and replacement process
+[20:08:28 UTC] [INFO] Links discovered in content | Context: {"total_links":0}
+[20:08:28 UTC] [INFO] No links found in content, skipping replacement
+[20:08:28 UTC] [INFO] Updating post content (second pass with link replacements) | Context: {"post_id":1702}
+[20:08:28 UTC] [SUCCESS] Successfully completed processing Gutenberg post | Context: {"post_id":1702}
+[20:08:28 UTC] [INFO] Processing Gutenberg post | Context: {"post_id":1717}
+[20:08:28 UTC] [INFO] Updating post content (first pass) | Context: {"post_id":1717}
+[20:08:28 UTC] [INFO] Starting link extraction and replacement process
+[20:08:28 UTC] [INFO] Links discovered in content | Context: {"total_links":9}
+[20:08:28 UTC] [INFO] Downloading images through ST_Image_Importer | Context: {"image_count":9}
+[20:08:28 UTC] [INFO] Starting image import for URL: https://websitedemos.net/plant-store-09/wp-content/uploads/sites/1551/2020/08/hero-bg.jpg
+[20:08:28 UTC] [INFO] Image already exists in media library (ID: 23), skipping download
+[20:08:28 UTC] [INFO] Starting image import for URL: https://websitedemos.net/plant-store-09/wp-content/uploads/sites/1551/2020/08/plant6-free-img.jpg
+[20:08:28 UTC] [INFO] Image already exists in media library (ID: 28), skipping download
+[20:08:28 UTC] [INFO] Starting image import for URL: https://websitedemos.net/plant-store-09/wp-content/uploads/sites/1551/2020/08/cactus2-free-img.jpg
+[20:08:28 UTC] [INFO] Image already exists in media library (ID: 40), skipping download
+[20:08:28 UTC] [INFO] Starting image import for URL: https://websitedemos.net/plant-store-09/wp-content/uploads/sites/1551/2020/08/plant4-free-img.jpg
+[20:08:28 UTC] [INFO] Image already exists in media library (ID: 27), skipping download
+[20:08:28 UTC] [INFO] Starting image import for URL: https://websitedemos.net/plant-store-09/wp-content/uploads/sites/1551/2025/07/pexels-scottwebb-1931143.jpg
+[20:08:28 UTC] [INFO] Image already exists in media library (ID: 1662), skipping download
+[20:08:28 UTC] [INFO] Starting image import for URL: https://websitedemos.net/plant-store-09/wp-content/uploads/sites/1551/2020/08/user1-free-img.jpg
+[20:08:28 UTC] [INFO] Image already exists in media library (ID: 35), skipping download
+[20:08:28 UTC] [INFO] Starting image import for URL: https://websitedemos.net/plant-store-09/wp-content/uploads/sites/1551/2020/08/testimonial-2.jpg
+[20:08:29 UTC] [INFO] Image already exists in media library (ID: 34), skipping download
+[20:08:29 UTC] [INFO] Starting image import for URL: https://websitedemos.net/plant-store-08/wp-content/uploads/sites/654/2020/08/user3-free-img.jpg
+[20:08:29 UTC] [INFO] Image already exists in media library (ID: 36), skipping download
+[20:08:29 UTC] [INFO] Starting image import for URL: https://websitedemos.net/plant-store-09/wp-content/uploads/sites/1551/2020/08/CTA-bg.jpg
+[20:08:29 UTC] [INFO] Image already exists in media library (ID: 22), skipping download
+[20:08:29 UTC] [INFO] Starting link replacements in content | Context: {"replacements_count":9}
+[20:08:29 UTC] [SUCCESS] Link replacement process completed | Context: {"total_replacements":9}
+[20:08:29 UTC] [INFO] Updating post content (second pass with link replacements) | Context: {"post_id":1717}
+[20:08:29 UTC] [SUCCESS] Successfully completed processing Gutenberg post | Context: {"post_id":1717}
+[20:08:29 UTC] [INFO] Processing Gutenberg post | Context: {"post_id":2509}
+[20:08:29 UTC] [INFO] Updating post content (first pass) | Context: {"post_id":2509}
+[20:08:29 UTC] [INFO] Starting link extraction and replacement process
+[20:08:29 UTC] [INFO] Links discovered in content | Context: {"total_links":0}
+[20:08:29 UTC] [INFO] No links found in content, skipping replacement
+[20:08:29 UTC] [INFO] Updating post content (second pass with link replacements) | Context: {"post_id":2509}
+[20:08:29 UTC] [SUCCESS] Successfully completed processing Gutenberg post | Context: {"post_id":2509}
+[20:08:29 UTC] [INFO] Processing Gutenberg post | Context: {"post_id":119}
+[20:08:29 UTC] [INFO] Updating post content (first pass) | Context: {"post_id":119}
+[20:08:29 UTC] [INFO] Starting link extraction and replacement process
+[20:08:29 UTC] [INFO] Links discovered in content | Context: {"total_links":6}
+[20:08:29 UTC] [INFO] Downloading images through ST_Image_Importer | Context: {"image_count":6}
+[20:08:29 UTC] [INFO] Starting image import for URL: https://websitedemos.net/plant-store-09/wp-content/uploads/sites/1551/2025/07/pawel-czerwinski-lWBZ01XRRoI-unsplash.jpg
+[20:08:29 UTC] [INFO] Image already exists in media library (ID: 1670), skipping download
+[20:08:29 UTC] [INFO] Starting image import for URL: https://websitedemos.net/plant-store-09/wp-content/uploads/sites/1551/2020/08/bg4-free-img.jpg
+[20:08:29 UTC] [INFO] Image already exists in media library (ID: 38), skipping download
+[20:08:29 UTC] [INFO] Starting image import for URL: https://websitedemos.net/plant-store-09/wp-content/uploads/sites/1551/2020/08/teammate-1.png
+[20:08:29 UTC] [INFO] Image already exists in media library (ID: 31), skipping download
+[20:08:29 UTC] [INFO] Starting image import for URL: https://websitedemos.net/plant-store-09/wp-content/uploads/sites/1551/2020/08/teammate-2.png
+[20:08:29 UTC] [INFO] Image already exists in media library (ID: 32), skipping download
+[20:08:29 UTC] [INFO] Starting image import for URL: https://websitedemos.net/plant-store-09/wp-content/uploads/sites/1551/2020/08/teammate-3-1.png
+[20:08:29 UTC] [INFO] Image already exists in media library (ID: 33), skipping download
+[20:08:29 UTC] [INFO] Starting image import for URL: https://websitedemos.net/plant-store-09/wp-content/uploads/sites/1551/2020/08/CTA-bg.jpg
+[20:08:29 UTC] [INFO] Image already exists in media library (ID: 22), skipping download
+[20:08:29 UTC] [INFO] Starting link replacements in content | Context: {"replacements_count":6}
+[20:08:29 UTC] [SUCCESS] Link replacement process completed | Context: {"total_replacements":6}
+[20:08:29 UTC] [INFO] Updating post content (second pass with link replacements) | Context: {"post_id":119}
+[20:08:29 UTC] [SUCCESS] Successfully completed processing Gutenberg post | Context: {"post_id":119}
+[20:08:29 UTC] [INFO] Processing Gutenberg post | Context: {"post_id":120}
+[20:08:29 UTC] [INFO] Updating post content (first pass) | Context: {"post_id":120}
+[20:08:29 UTC] [INFO] Starting link extraction and replacement process
+[20:08:29 UTC] [INFO] Links discovered in content | Context: {"total_links":1}
+[20:08:29 UTC] [INFO] Downloading images through ST_Image_Importer | Context: {"image_count":1}
+[20:08:29 UTC] [INFO] Starting image import for URL: https://websitedemos.net/plant-store-09/wp-content/uploads/sites/1551/2025/07/pexels-nietjuhart-32092476.jpg
+[20:08:29 UTC] [INFO] Image already exists in media library (ID: 1674), skipping download
+[20:08:29 UTC] [INFO] Starting link replacements in content | Context: {"replacements_count":1}
+[20:08:29 UTC] [SUCCESS] Link replacement process completed | Context: {"total_replacements":1}
+[20:08:29 UTC] [INFO] Updating post content (second pass with link replacements) | Context: {"post_id":120}
+[20:08:30 UTC] [SUCCESS] Successfully completed processing Gutenberg post | Context: {"post_id":120}
+[20:08:30 UTC] [INFO] Processing Gutenberg post | Context: {"post_id":71}
+[20:08:30 UTC] [INFO] Updating post content (first pass) | Context: {"post_id":71}
+[20:08:30 UTC] [INFO] Starting link extraction and replacement process
+[20:08:30 UTC] [INFO] Links discovered in content | Context: {"total_links":0}
+[20:08:30 UTC] [INFO] No links found in content, skipping replacement
+[20:08:30 UTC] [INFO] Updating post content (second pass with link replacements) | Context: {"post_id":71}
+[20:08:30 UTC] [SUCCESS] Successfully completed processing Gutenberg post | Context: {"post_id":71}
+[20:08:30 UTC] [INFO] Processing Gutenberg post | Context: {"post_id":72}
+[20:08:30 UTC] [INFO] Updating post content (first pass) | Context: {"post_id":72}
+[20:08:30 UTC] [INFO] Starting link extraction and replacement process
+[20:08:30 UTC] [INFO] Links discovered in content | Context: {"total_links":0}
+[20:08:30 UTC] [INFO] No links found in content, skipping replacement
+[20:08:30 UTC] [INFO] Updating post content (second pass with link replacements) | Context: {"post_id":72}
+[20:08:30 UTC] [SUCCESS] Successfully completed processing Gutenberg post | Context: {"post_id":72}
+[20:08:30 UTC] [INFO] Processing Gutenberg post | Context: {"post_id":73}
+[20:08:30 UTC] [INFO] Updating post content (first pass) | Context: {"post_id":73}
+[20:08:30 UTC] [INFO] Starting link extraction and replacement process
+[20:08:30 UTC] [INFO] Links discovered in content | Context: {"total_links":0}
+[20:08:30 UTC] [INFO] No links found in content, skipping replacement
+[20:08:30 UTC] [INFO] Updating post content (second pass with link replacements) | Context: {"post_id":73}
+[20:08:30 UTC] [SUCCESS] Successfully completed processing Gutenberg post | Context: {"post_id":73}
+[20:08:30 UTC] [INFO] Processing Gutenberg post | Context: {"post_id":118}
+[20:08:30 UTC] [INFO] Updating post content (first pass) | Context: {"post_id":118}
+[20:08:30 UTC] [INFO] Starting link extraction and replacement process
+[20:08:30 UTC] [INFO] Links discovered in content | Context: {"total_links":1}
+[20:08:30 UTC] [INFO] Downloading images through ST_Image_Importer | Context: {"image_count":1}
+[20:08:30 UTC] [INFO] Starting image import for URL: https://websitedemos.net/plant-store-09/wp-content/uploads/sites/1551/2020/08/store-bg.jpg
+[20:08:30 UTC] [INFO] Image already exists in media library (ID: 29), skipping download
+[20:08:30 UTC] [INFO] Starting link replacements in content | Context: {"replacements_count":1}
+[20:08:30 UTC] [SUCCESS] Link replacement process completed | Context: {"total_replacements":1}
+[20:08:30 UTC] [INFO] Updating post content (second pass with link replacements) | Context: {"post_id":118}
+[20:08:30 UTC] [SUCCESS] Successfully completed processing Gutenberg post | Context: {"post_id":118}
+[20:08:30 UTC] [INFO] Processing Gutenberg post | Context: {"post_id":70}
+[20:08:30 UTC] [INFO] Updating post content (first pass) | Context: {"post_id":70}
+[20:08:31 UTC] [INFO] Starting link extraction and replacement process
+[20:08:31 UTC] [INFO] Links discovered in content | Context: {"total_links":0}
+[20:08:31 UTC] [INFO] No links found in content, skipping replacement
+[20:08:31 UTC] [INFO] Updating post content (second pass with link replacements) | Context: {"post_id":70}
+[20:08:31 UTC] [SUCCESS] Successfully completed processing Gutenberg post | Context: {"post_id":70}
+[20:08:31 UTC] [SUCCESS] Gutenberg batch processing completed successfully | Context: {"posts_processed":12}
+[20:08:31 UTC] [INFO] Elementor batch processing started
+[20:08:31 UTC] [INFO] Elementor posts retrieved for processing | Context: {"post_count":12,"post_types":"page, post, wp_block, wp_template, wp_navigation, wp_template_part, wp_global_styles, sc_form"}
+[20:08:31 UTC] [INFO] Processing Elementor post | Context: {"post_id":994}
+[20:08:31 UTC] [INFO] Skipping post - not an Elementor page or missing data | Context: {"post_id":994,"has_version":false,"has_data":false}
+[20:08:31 UTC] [INFO] Processing Elementor post | Context: {"post_id":1702}
+[20:08:31 UTC] [INFO] Skipping post - not an Elementor page or missing data | Context: {"post_id":1702,"has_version":false,"has_data":false}
+[20:08:31 UTC] [INFO] Processing Elementor post | Context: {"post_id":286}
+[20:08:31 UTC] [INFO] Skipping post - not an Elementor page or missing data | Context: {"post_id":286,"has_version":false,"has_data":false}
+[20:08:31 UTC] [INFO] Processing Elementor post | Context: {"post_id":1717}
+[20:08:31 UTC] [INFO] Skipping post - not an Elementor page or missing data | Context: {"post_id":1717,"has_version":false,"has_data":false}
+[20:08:31 UTC] [INFO] Processing Elementor post | Context: {"post_id":2509}
+[20:08:31 UTC] [INFO] Skipping post - not an Elementor page or missing data | Context: {"post_id":2509,"has_version":false,"has_data":false}
+[20:08:31 UTC] [INFO] Processing Elementor post | Context: {"post_id":119}
+[20:08:31 UTC] [INFO] Skipping post - not an Elementor page or missing data | Context: {"post_id":119,"has_version":false,"has_data":false}
+[20:08:31 UTC] [INFO] Processing Elementor post | Context: {"post_id":120}
+[20:08:31 UTC] [INFO] Skipping post - not an Elementor page or missing data | Context: {"post_id":120,"has_version":false,"has_data":false}
+[20:08:31 UTC] [INFO] Processing Elementor post | Context: {"post_id":70}
+[20:08:31 UTC] [INFO] Skipping post - not an Elementor page or missing data | Context: {"post_id":70,"has_version":false,"has_data":false}
+[20:08:31 UTC] [INFO] Processing Elementor post | Context: {"post_id":71}
+[20:08:31 UTC] [INFO] Skipping post - not an Elementor page or missing data | Context: {"post_id":71,"has_version":false,"has_data":false}
+[20:08:31 UTC] [INFO] Processing Elementor post | Context: {"post_id":72}
+[20:08:31 UTC] [INFO] Skipping post - not an Elementor page or missing data | Context: {"post_id":72,"has_version":false,"has_data":false}
+[20:08:31 UTC] [INFO] Processing Elementor post | Context: {"post_id":73}
+[20:08:31 UTC] [INFO] Skipping post - not an Elementor page or missing data | Context: {"post_id":73,"has_version":false,"has_data":false}
+[20:08:31 UTC] [INFO] Processing Elementor post | Context: {"post_id":118}
+[20:08:31 UTC] [INFO] Skipping post - not an Elementor page or missing data | Context: {"post_id":118,"has_version":false,"has_data":false}
+[20:08:31 UTC] [SUCCESS] Elementor batch processing completed successfully | Context: {"posts_processed":12}
+[20:08:31 UTC] [INFO] Misc batch processing started
+[20:08:31 UTC] [INFO] Misc batch processing skipped (not AI template)
+[20:08:31 UTC] [INFO] Customizer image download batch processing started
+[20:08:31 UTC] [INFO] Starting customizer image processing | Context: {"customizer_options_count":2313}
+[20:08:31 UTC] [INFO] Processing customizer image | Context: {"original_url":"https:\/\/websitedemos.net\/plant-store-09\/wp-content\/uploads\/sites\/1551\/2025\/09\/logo1@2x-free-img-1.png"}
+[20:08:31 UTC] [INFO] Starting image import for URL: https://websitedemos.net/plant-store-09/wp-content/uploads/sites/1551/2025/09/logo1@2x-free-img-1.png
+[20:08:31 UTC] [INFO] Image already exists in media library (ID: 1741), skipping download
+[20:08:31 UTC] [SUCCESS] Customizer image processed successfully | Context: {"original_url":"https:\/\/websitedemos.net\/plant-store-09\/wp-content\/uploads\/sites\/1551\/2025\/09\/logo1@2x-free-img-1.png","downloaded_url":"http:\/\/localhost\/wordpress\/wp-content\/uploads\/2025\/09\/logo1@2x-free-img-1.png","image_data":{"id":"1741","url":"http:\/\/localhost\/wordpress\/wp-content\/uploads\/2025\/09\/logo1@2x-free-img-1.png"}}
+[20:08:31 UTC] [INFO] Processing customizer image | Context: {"original_url":"https:\/\/websitedemos.net\/plant-store-09\/wp-content\/uploads\/sites\/1551\/2025\/09\/logo@2x-free-img-1.png"}
+[20:08:31 UTC] [INFO] Starting image import for URL: https://websitedemos.net/plant-store-09/wp-content/uploads/sites/1551/2025/09/logo@2x-free-img-1.png
+[20:08:31 UTC] [INFO] Image already exists in media library (ID: 1742), skipping download
+[20:08:31 UTC] [SUCCESS] Customizer image processed successfully | Context: {"original_url":"https:\/\/websitedemos.net\/plant-store-09\/wp-content\/uploads\/sites\/1551\/2025\/09\/logo@2x-free-img-1.png","downloaded_url":"http:\/\/localhost\/wordpress\/wp-content\/uploads\/2025\/09\/logo@2x-free-img-1.png","image_data":{"id":"1742","url":"http:\/\/localhost\/wordpress\/wp-content\/uploads\/2025\/09\/logo@2x-free-img-1.png"}}
+[20:08:31 UTC] [SUCCESS] Customizer image download completed | Context: {"options_processed":2313,"images_processed_successfully":2,"images_failed":0,"total_images_attempted":2}
+[20:08:31 UTC] [SUCCESS] Customizer batch import method completed
+[20:08:31 UTC] [INFO] Starting CE image metadata processing | Context: {"total_attachments":47,"offset":10,"chunk_size":10}
+[20:08:31 UTC] [INFO] Processing CE image batch | Context: {"batch_size":10,"offset":10}
+[20:08:31 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":985,"file":"woocommerce-placeholder.webp"}
+[20:08:31 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":988,"file":"woocommerce-placeholder-1.webp"}
+[20:08:31 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":1710,"file":"woocommerce-placeholder-2.webp"}
+[20:08:31 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":1711,"file":"woocommerce-placeholder-3.webp"}
+[20:08:31 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":1712,"file":"woocommerce-placeholder-4.webp"}
+[20:08:31 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":1713,"file":"woocommerce-placeholder-5.webp"}
+[20:08:31 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":29,"file":"store-bg.jpg"}
+[20:08:31 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":31,"file":"teammate-1.png"}
+[20:08:31 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":32,"file":"teammate-2.png"}
+[20:08:31 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":33,"file":"teammate-3-1.png"}
+[20:08:31 UTC] [SUCCESS] CE image batch processing completed | Context: {"successful":10,"errors":0,"new_offset":20}
+[20:08:31 UTC] [INFO] Starting CE image metadata processing | Context: {"total_attachments":47,"offset":20,"chunk_size":10}
+[20:08:31 UTC] [INFO] Processing CE image batch | Context: {"batch_size":10,"offset":20}
+[20:08:31 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":34,"file":"testimonial-2.jpg"}
+[20:08:31 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":35,"file":"user1-free-img.jpg"}
+[20:08:31 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":36,"file":"user3-free-img.jpg"}
+[20:08:32 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":37,"file":"about-bg.jpg"}
+[20:08:32 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":38,"file":"bg4-free-img.jpg"}
+[20:08:32 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":39,"file":"cactus1-free-img.jpg"}
+[20:08:32 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":40,"file":"cactus2-free-img.jpg"}
+[20:08:32 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":41,"file":"cactus4-free-img.jpg"}
+[20:08:32 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":42,"file":"cactus5-free-img.jpg"}
+[20:08:32 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":51,"file":"plant-collection.png"}
+[20:08:32 UTC] [SUCCESS] CE image batch processing completed | Context: {"successful":10,"errors":0,"new_offset":30}
+[20:08:32 UTC] [INFO] Starting CE image metadata processing | Context: {"total_attachments":47,"offset":30,"chunk_size":10}
+[20:08:32 UTC] [INFO] Processing CE image batch | Context: {"batch_size":10,"offset":30}
+[20:08:32 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":52,"file":"free-shipping.png"}
+[20:08:32 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":53,"file":"money-back.png"}
+[20:08:32 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":88,"file":"plant5-free-img.jpg"}
+[20:08:32 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":89,"file":"cactus6-free-img.jpg"}
+[20:08:32 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":90,"file":"cactus3-free-img.jpg"}
+[20:08:32 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":187,"file":"woocommerce-placeholder.png"}
+[20:08:32 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":594,"file":"demo-screenshot.jpg"}
+[20:08:32 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":1662,"file":"pexels-scottwebb-1931143.jpg"}
+[20:08:32 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":1670,"file":"pawel-czerwinski-lWBZ01XRRoI-unsplash.jpg"}
+[20:08:32 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":1674,"file":"pexels-nietjuhart-32092476.jpg"}
+[20:08:32 UTC] [SUCCESS] CE image batch processing completed | Context: {"successful":10,"errors":0,"new_offset":40}
+[20:08:32 UTC] [INFO] Starting CE image metadata processing | Context: {"total_attachments":47,"offset":40,"chunk_size":10}
+[20:08:32 UTC] [INFO] Processing CE image batch | Context: {"batch_size":7,"offset":40}
+[20:08:32 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":1729,"file":"default.png"}
+[20:08:32 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":1969,"file":"woocommerce-placeholder-6.webp"}
+[20:08:32 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":2502,"file":"woocommerce-placeholder-7.webp"}
+[20:08:32 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":2503,"file":"woocommerce-placeholder-8.webp"}
+[20:08:32 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":2506,"file":"woocommerce-placeholder-9.webp"}
+[20:08:32 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":2507,"file":"woocommerce-placeholder-10.webp"}
+[20:08:32 UTC] [INFO] Generating attachment metadata | Context: {"attachment_id":2508,"file":"woocommerce-placeholder-11.webp"}
+[20:08:32 UTC] [SUCCESS] CE image batch processing completed | Context: {"successful":7,"errors":0,"new_offset":50}
+[20:08:32 UTC] [INFO] Starting CE image metadata processing | Context: {"total_attachments":47,"offset":50,"chunk_size":10}
+[20:08:32 UTC] [INFO] Processing CE image batch | Context: {"batch_size":0,"offset":50}
+[20:08:32 UTC] [SUCCESS] CE image batch processing completed | Context: {"successful":0,"errors":0,"new_offset":60}
+[20:08:32 UTC] [INFO] ---- Processing Images from Widgets -----
+[20:08:32 UTC] [INFO] Starting image import for URL: https://websitedemos.net/plant-store-09/wp-content/uploads/sites/1551/2020/08/plants-store-logo-green.svg
+[20:08:32 UTC] [INFO] Image already exists in media library (ID: 16), skipping download
+[20:08:32 UTC] [INFO] ---- Processing Contact Form Mapping from Text Widgets -----
+[20:08:32 UTC] [INFO] ---- Processing batch process for Customizer start ----
+[20:08:32 UTC] [INFO] Starting image import for URL: http://localhost/wordpress/wp-content/uploads/2025/09/logo1@2x-free-img-1.png
+[20:08:32 UTC] [WARNING] Invalid image URL provided: http://localhost/wordpress/wp-content/uploads/2025/09/logo1@2x-free-img-1.png
+[20:08:32 UTC] [INFO] Starting image import for URL: http://localhost/wordpress/wp-content/uploads/2025/09/logo@2x-free-img-1.png
+[20:08:32 UTC] [WARNING] Invalid image URL provided: http://localhost/wordpress/wp-content/uploads/2025/09/logo@2x-free-img-1.png
+[20:08:32 UTC] [INFO] ---- Processing batch process for Customizer done ----
+[20:08:32 UTC] [INFO] Import process completed. Cleaning up log file option.

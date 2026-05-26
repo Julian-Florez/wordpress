@@ -49,6 +49,37 @@
   });
 })();
 
+/* Ajustar posición del chat sticky para no tapar el footer */
+(function () {
+  function adjustChatSticky() {
+    try {
+      var chat = document.querySelector('.wl-chatbot-sticky');
+      var footer = document.querySelector('.wl-footer');
+      if (!chat || !footer) return;
+
+      var footerRect = footer.getBoundingClientRect();
+      var overlap = Math.max(0, window.innerHeight - footerRect.top);
+      var baseGap = Math.max(12, Math.min(24, window.innerWidth * 0.02));
+      if (overlap > 0) {
+        chat.style.bottom = (overlap + baseGap) + 'px';
+      } else {
+        chat.style.bottom = '';
+      }
+    } catch (e) {
+      // silent
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { adjustChatSticky(); });
+  } else {
+    adjustChatSticky();
+  }
+
+  window.addEventListener('scroll', adjustChatSticky, { passive: true });
+  window.addEventListener('resize', adjustChatSticky);
+})();
+
 /* Añadir al carrito con botón + desde tarjetas de producto (AJAX) */
 (function () {
   function updateFragments() {

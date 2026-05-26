@@ -164,8 +164,8 @@ $items = weirdlings_home_featured_items();
 <section class="wl-section">
   <div class="wl-container">
     <div class="wl-promise-grid">
-      <details class="wl-promise" open>
-        <summary class="wl-promise__summary">
+      <article class="wl-promise">
+        <div class="wl-promise__summary">
           <?php
             $file = get_theme_file_path( 'assets/images/SVG/detail1.svg' );
             $src = get_theme_file_uri( 'assets/images/SVG/detail1.svg' );
@@ -175,12 +175,12 @@ $items = weirdlings_home_featured_items();
           ?>
           <div class="wl-promise__icon"><img src="<?php echo esc_url( $src ); ?>" alt="Coleccionables" decoding="async" /></div>
           <h3>Coleccionables</h3>
-        </summary>
+        </div>
         <p>Ediciones limitadas y criaturas especiales.</p>
-      </details>
+      </article>
 
-      <details class="wl-promise" open>
-        <summary class="wl-promise__summary">
+      <article class="wl-promise">
+        <div class="wl-promise__summary">
           <?php
             $file = get_theme_file_path( 'assets/images/SVG/detail2.svg' );
             $src = get_theme_file_uri( 'assets/images/SVG/detail2.svg' );
@@ -190,12 +190,12 @@ $items = weirdlings_home_featured_items();
           ?>
           <div class="wl-promise__icon"><img src="<?php echo esc_url( $src ); ?>" alt="Hecho con amor" decoding="async" /></div>
           <h3>Hecho con amor</h3>
-        </summary>
+        </div>
         <p>Cada pieza lleva tiempo, paciencia y mucha magia.</p>
-      </details>
+      </article>
 
-      <details class="wl-promise" open>
-        <summary class="wl-promise__summary">
+      <article class="wl-promise">
+        <div class="wl-promise__summary">
           <?php
             $file = get_theme_file_path( 'assets/images/SVG/detail3.svg' );
             $src = get_theme_file_uri( 'assets/images/SVG/detail3.svg' );
@@ -205,12 +205,12 @@ $items = weirdlings_home_featured_items();
           ?>
           <div class="wl-promise__icon"><img src="<?php echo esc_url( $src ); ?>" alt="Presentación especial" decoding="async" /></div>
           <h3>Presentación especial</h3>
-        </summary>
+        </div>
         <p>Empaque cuidado con tarjeta incluida.</p>
-      </details>
+      </article>
 
-      <details class="wl-promise" open>
-        <summary class="wl-promise__summary">
+      <article class="wl-promise">
+        <div class="wl-promise__summary">
           <?php
             $file = get_theme_file_path( 'assets/images/SVG/detail4.svg' );
             $src = get_theme_file_uri( 'assets/images/SVG/detail4.svg' );
@@ -220,9 +220,9 @@ $items = weirdlings_home_featured_items();
           ?>
           <div class="wl-promise__icon"><img src="<?php echo esc_url( $src ); ?>" alt="Comunidad Weirdlings" decoding="async" /></div>
           <h3>Comunidad Weirdlings</h3>
-        </summary>
+        </div>
         <p>Invita a tu manada a seguir la marca en redes.</p>
-      </details>
+      </article>
     </div>
   </div>
 </section>

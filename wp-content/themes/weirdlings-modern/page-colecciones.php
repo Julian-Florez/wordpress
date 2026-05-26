@@ -55,9 +55,8 @@ if ( $selected_category ) {
 		<?php if ( $selected_category && $selected_image_url ) : ?>
 			<section class="wl-collections-hero" style="background-image: url('<?php echo esc_url( $selected_image_url ); ?>');">
 				<div class="wl-collections-hero__overlay">
-					<div class="wl-collections-hero__eyebrow"><?php esc_html_e( 'Colecciones', 'weirdlings-modern' ); ?></div>
 					<h1 class="wl-collections-hero__title"><?php echo esc_html( $selected_term->name ); ?></h1>
-					<p class="wl-collections-hero__text"><?php echo esc_html( sprintf( __( 'Mostrando la colección: %s', 'weirdlings-modern' ), $selected_term->name ) ); ?></p>
+                    
 					<div class="wl-collections-hero__actions">
 						<a class="wl-button wl-button--ghost" href="<?php echo esc_url( weirdlings_collections_page_url() ); ?>"><?php esc_html_e( 'Ver todas las colecciones', 'weirdlings-modern' ); ?></a>
 					</div>
@@ -66,15 +65,8 @@ if ( $selected_category ) {
 		<?php endif; ?>
 
 		<header class="wl-page-header wl-collections-header<?php echo $selected_category && $selected_image_url ? ' wl-collections-header--filtered' : ''; ?>">
-			<div class="wl-collections-header__eyebrow"><?php esc_html_e( 'Colecciones', 'weirdlings-modern' ); ?></div>
 			<h1><?php echo esc_html( $collections_title ); ?></h1>
-			<p>
-				<?php if ( $selected_term && ! is_wp_error( $selected_term ) ) : ?>
-					<?php echo esc_html( sprintf( __( 'Mostrando la colección: %s', 'weirdlings-modern' ), $selected_term->name ) ); ?>
-				<?php else : ?>
-					<?php esc_html_e( 'Explora todas las categorías con productos publicados. Cada card te lleva directo a su colección.', 'weirdlings-modern' ); ?>
-				<?php endif; ?>
-			</p>
+            
 
 			<?php if ( $selected_category && ! $selected_image_url ) : ?>
 				<div class="wl-collections-header__actions">

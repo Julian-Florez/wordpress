@@ -780,6 +780,107 @@ select {
   font-weight: 900;
 }
 
+/* Hover / focus animations for product cards */
+.wl-product-card {
+  transition: transform 260ms cubic-bezier(.2,.9,.3,1), box-shadow 260ms ease;
+  will-change: transform, box-shadow;
+}
+
+.wl-product-card:hover,
+.wl-product-card:focus-within {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 22px 50px rgba(0,0,0,0.45);
+}
+
+.wl-product-card__media img {
+  transition: transform 420ms cubic-bezier(.2,.9,.3,1);
+  will-change: transform;
+}
+
+.wl-product-card:hover .wl-product-card__media img,
+.wl-product-card:focus-within .wl-product-card__media img {
+  transform: scale(1.06);
+}
+
+/* Make add button react smoothly on hover */
+.wl-product-card__action:hover {
+  transform: translateY(-3px) scale(1.04);
+}
+
+/* Subtle global animation utilities for areas that benefit */
+.wl-collections-grid .wl-collection-card,
+.wl-banner,
+.wl-feature,
+.wl-promise {
+  transition: transform 320ms cubic-bezier(.2,.9,.3,1), opacity 260ms ease;
+}
+
+.wl-collection-card:hover,
+.wl-banner:hover,
+.wl-feature:hover,
+.wl-promise:hover {
+  transform: translateY(-6px);
+}
+
+/* Visual feedback for add-to-cart interaction (animated) */
+.wl-product-card__action {
+  transition: transform 200ms cubic-bezier(.2,.9,.3,1),
+              background 260ms ease,
+              box-shadow 260ms ease,
+              opacity 160ms ease;
+  will-change: transform, background, opacity;
+}
+
+/* Loading state: subtle scale + spinner */
+.wl-product-card__action.is-loading {
+  transform: scale(0.98);
+  pointer-events: none;
+  color: transparent; /* hide the plus */
+}
+
+.wl-product-card__action.is-loading::before {
+  content: "";
+  position: absolute;
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+  border: 2px solid rgba(9,7,13,0.14);
+  border-top-color: rgba(9,7,13,0.44);
+  box-sizing: border-box;
+  animation: wl-spin 900ms linear infinite;
+}
+
+/* Added state: pop-in check with green background */
+.wl-product-card__action.is-added {
+  background: linear-gradient(180deg, #7ed957 0%, #5bb34a 100%);
+  color: transparent; /* hide the plus while check animates */
+  transform: scale(1.08);
+  box-shadow: 0 10px 30px rgba(38, 83, 36, 0.28);
+}
+
+.wl-product-card__action.is-added::after {
+  content: "✓";
+  position: absolute;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: #07110a;
+  opacity: 0;
+  transform: scale(0.6) translateY(6px);
+  animation: wl-pop 420ms cubic-bezier(.2,.9,.3,1) forwards;
+}
+
+/* Gentle exit: when class removed the transition brings button back */
+
+@keyframes wl-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes wl-pop {
+  0% { opacity: 0; transform: scale(0.6) translateY(6px); }
+  60% { opacity: 1; transform: scale(1.16) translateY(-2px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
 .wl-banner {
   margin-top: 2rem;
   display: grid;
@@ -817,6 +918,39 @@ select {
   background-repeat: no-repeat;
   box-shadow: 0 18px 46px rgba(0,0,0,0.45);
   border: 1px solid rgba(255,255,255,0.04);
+}
+
+/* Hover glow for collection cards (desktop only) */
+@media (min-width: 768px) {
+  .wl-collection-card {
+    transition: transform 300ms cubic-bezier(.2,.9,.3,1), box-shadow 300ms ease, border-color 300ms ease;
+    will-change: transform, box-shadow;
+  }
+
+  .wl-collection-card:hover,
+  .wl-collection-card:focus-within {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 30px 80px rgba(99,18,90,0.35), 0 6px 30px rgba(0,0,0,0.45);
+    border-color: rgba(126,217,87,0.18);
+  }
+
+  .wl-collection-card::after {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    box-shadow: 0 0 0 2px rgba(126,217,87,0.06) inset, 0 0 30px rgba(126,217,87,0.06);
+    opacity: 0;
+    transform: scale(0.98);
+    transition: opacity 320ms ease, transform 320ms cubic-bezier(.2,.9,.3,1);
+  }
+
+  .wl-collection-card:hover::after,
+  .wl-collection-card:focus-within::after {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .wl-collection-card__link {
@@ -990,14 +1124,9 @@ select {
   flex-direction: column;
   align-items: center;
   gap: 0.6rem;
-  cursor: pointer;
+  cursor: default;
   border: 0;
   padding: 0;
-}
-
-.wl-promise__summary::-webkit-details-marker,
-.wl-promise__summary::marker {
-  display: none;
 }
 
 .wl-promise__icon {
@@ -2800,6 +2929,38 @@ select {
   overflow: hidden;
 }
 
+/* Animaciones: hover levanta y añade brillo lateral */
+.wl-faq-item {
+  transition: transform 260ms cubic-bezier(.2,.9,.3,1), box-shadow 260ms ease;
+  position: relative;
+}
+
+.wl-faq-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -30%;
+  width: 60%;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.06) 45%, rgba(255,255,255,0.08) 55%, rgba(255,255,255,0) 100%);
+  transform: translateX(-20%) skewX(-8deg);
+  opacity: 0;
+  transition: transform 420ms cubic-bezier(.2,.9,.3,1), opacity 420ms ease;
+}
+
+.wl-faq-item:hover,
+.wl-faq-item:focus-within {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 18px 46px rgba(0,0,0,0.45);
+}
+
+.wl-faq-item:hover::before,
+.wl-faq-item:focus-within::before {
+  transform: translateX(0) skewX(-8deg);
+  opacity: 1;
+}
+
 .wl-faq-item summary {
   list-style: none;
   cursor: pointer;
@@ -2826,8 +2987,47 @@ select {
   content: '–';
 }
 
+/* Animate the toggle symbol for smoother open/close */
+.wl-faq-item summary::after {
+  display: inline-block;
+  transition: transform 280ms cubic-bezier(.2,.9,.3,1), opacity 180ms ease;
+  transform-origin: 50% 50%;
+}
+.wl-faq-item summary:hover::after,
+.wl-faq-item summary:focus::after {
+  transform: scale(1.08) rotate(12deg);
+}
+.wl-faq-item[open] summary::after {
+  transform: rotate(180deg) scale(1.02);
+  opacity: 0.98;
+}
+
 .wl-faq-item__answer {
   padding: 0 1.05rem 1rem;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: max-height 420ms cubic-bezier(.2,.9,.3,1), opacity 320ms ease, transform 360ms cubic-bezier(.2,.9,.3,1);
+}
+
+.wl-faq-item[open] .wl-faq-item__answer {
+  max-height: 600px; /* large enough for content */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Reduce motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .wl-faq-item,
+  .wl-faq-item::before,
+  .wl-faq-item__answer,
+  .wl-product-card,
+  .wl-collection-card {
+    transition: none !important;
+    transform: none !important;
+  }
+  .wl-faq-item::before { display: none; }
 }
 
 .wl-faq-item__answer p {

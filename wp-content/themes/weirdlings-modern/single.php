@@ -5,11 +5,28 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 get_header();
+
+$weirdlings_split_post_content = static function ( string $content ): array {
+	$intro = '';
+	$rest  = $content;
+
+	if ( preg_match( '/<p[^>]*>.*?<\/p>/is', $content, $matches, PREG_OFFSET_CAPTURE ) ) {
+		$intro = $matches[0][0];
+		$rest  = substr( $content, $matches[0][1] + strlen( $matches[0][0] ) );
+		$rest  = ltrim( $rest );
+	}
+
+	return array( $intro, $rest );
+};
 ?>
 
 <section class="wl-page-wrap wl-blog-single-wrap">
 	<div class="wl-container wl-blog-single-container">
 		<?php while ( have_posts() ) : the_post(); ?>
+			<?php
+			$rendered_content = apply_filters( 'the_content', get_the_content() );
+			list( $intro_content, $body_content ) = $weirdlings_split_post_content( $rendered_content );
+			?>
 			<article <?php post_class( 'wl-blog-single' ); ?>>
 				<header class="wl-blog-single__header">
 					<div class="wl-blog-single__meta">
@@ -19,14 +36,24 @@ get_header();
 					<h1><?php the_title(); ?></h1>
 				</header>
 
-				<?php if ( has_post_thumbnail() ) : ?>
-					<figure class="wl-blog-single__thumb">
-						<?php the_post_thumbnail( 'large' ); ?>
-					</figure>
+				<?php if ( has_post_thumbnail() || '' !== trim( wp_strip_all_tags( $intro_content ) ) ) : ?>
+					<div class="wl-blog-single__intro<?php echo has_post_thumbnail() ? ' wl-blog-single__intro--with-thumb' : ''; ?>">
+						<?php if ( has_post_thumbnail() ) : ?>
+							<figure class="wl-blog-single__thumb">
+								<?php the_post_thumbnail( 'large' ); ?>
+							</figure>
+						<?php endif; ?>
+
+						<?php if ( '' !== trim( wp_strip_all_tags( $intro_content ) ) ) : ?>
+							<div class="wl-blog-single__intro-copy">
+								<?php echo wp_kses_post( $intro_content ); ?>
+							</div>
+						<?php endif; ?>
+					</div>
 				<?php endif; ?>
 
 				<div class="wl-blog-single__content">
-					<?php the_content(); ?>
+					<?php echo wp_kses_post( $body_content ); ?>
 				</div>
 
 				<footer class="wl-blog-single__footer">

@@ -135,6 +135,202 @@ function weirdlings_primary_menu_fallback() {
 	echo '</ul>';
 }
 
+function weirdlings_collections_page_url(): string {
+	$page = get_page_by_path( 'colecciones' );
+
+	if ( $page instanceof WP_Post ) {
+		return get_permalink( $page );
+	}
+
+	return home_url( '/colecciones/' );
+}
+
+function weirdlings_collections_normalize_token( string $value ): string {
+	return mb_strtolower( remove_accents( trim( $value ) ) );
+}
+
+function weirdlings_collection_terms(): array {
+	$terms = get_terms(
+		array(
+			'taxonomy'   => 'product_cat',
+			'hide_empty' => true,
+			'orderby'    => 'name',
+			'order'      => 'ASC',
+		)
+	);
+
+	return is_wp_error( $terms ) ? array() : $terms;
+}
+
+function weirdlings_collection_term_link( WP_Term $term ): string {
+	return add_query_arg( 'categoria', $term->slug, weirdlings_collections_page_url() );
+}
+
+function weirdlings_collection_term_image_html( WP_Term $term ): string {
+	$thumbnail_id = (int) get_term_meta( $term->term_id, 'thumbnail_id', true );
+
+	if ( $thumbnail_id > 0 ) {
+		return wp_get_attachment_image( $thumbnail_id, 'large', false, array( 'loading' => 'lazy' ) );
+	}
+
+	$products = new WP_Query(
+		array(
+			'post_type'           => 'product',
+			'post_status'         => 'publish',
+			'posts_per_page'      => 1,
+			'no_found_rows'       => true,
+			'ignore_sticky_posts' => true,
+			'fields'              => 'ids',
+			'tax_query'           => array(
+				array(
+					'taxonomy' => 'product_cat',
+					'field'    => 'term_id',
+					'terms'    => (int) $term->term_id,
+				),
+			),
+		)
+	);
+
+	if ( ! empty( $products->posts[0] ) ) {
+		$product_id   = (int) $products->posts[0];
+		$product      = function_exists( 'wc_get_product' ) ? wc_get_product( $product_id ) : null;
+		$attachment_id = (int) get_post_thumbnail_id( $product_id );
+
+		if ( $attachment_id > 0 ) {
+			return wp_get_attachment_image( $attachment_id, 'large', false, array( 'loading' => 'lazy' ) );
+		}
+
+		if ( $product ) {
+			return $product->get_image( 'large', array( 'loading' => 'lazy' ) );
+		}
+	}
+
+	return weirdlings_render_placeholder( $term->name, 'square', 1200, 900 );
+}
+
+/**
+ * Filtrado de la página "Colecciones" por ?categoria=...
+ * Soporta búsqueda por términos reales de product_cat y, si no existen,
+ * cae a meta/atributos usados en la tienda.
+ */
+function weirdlings_collections_pre_get_posts( \WP_Query $query ) {
+	if ( is_admin() || ! $query->is_main_query() ) {
+		return;
+	}
+
+	if ( ! is_page( 'colecciones' ) ) {
+		return;
+	}
+
+	$cat = isset( $_GET['categoria'] ) ? trim( sanitize_text_field( wp_unslash( $_GET['categoria'] ) ) ) : '';
+	$query->set( 'post_type', 'product' );
+	$query->set( 'post_status', 'publish' );
+
+	if ( '' === $cat ) {
+		return;
+	}
+
+	$cat_lookup = mb_strtolower( remove_accents( $cat ) );
+	$explicit_map = array(
+		'raro'               => 'raro',
+		'espeluznante'       => 'espeluznante',
+		'criatura del bosque' => 'criatura-del-bosque',
+		'criaturadelbosque'  => 'criatura-del-bosque',
+		'criadelbosque'      => 'criatura-del-bosque',
+		'alienigenas'        => 'alienigenas',
+		'alienígenas'        => 'alienigenas',
+	);
+
+	if ( isset( $explicit_map[ $cat_lookup ] ) ) {
+		$mapped_slug = $explicit_map[ $cat_lookup ];
+		$term        = get_term_by( 'slug', $mapped_slug, 'product_cat' );
+
+		if ( $term && ! is_wp_error( $term ) ) {
+			$query->set(
+				'tax_query',
+				array(
+					array(
+						'taxonomy' => 'product_cat',
+						'field'    => 'term_id',
+						'terms'    => (int) $term->term_id,
+					),
+				)
+			);
+			return;
+		}
+	}
+
+	$tax_query = array( 'relation' => 'OR' );
+
+	foreach ( array( 'product_cat', 'product_tag', 'pa_coleccion' ) as $taxonomy ) {
+		$terms = get_terms(
+			array(
+				'taxonomy'   => $taxonomy,
+				'hide_empty' => false,
+			)
+		);
+
+		if ( is_wp_error( $terms ) || empty( $terms ) ) {
+			continue;
+		}
+
+		foreach ( $terms as $term ) {
+			if ( weirdlings_collections_normalize_token( $term->slug ) === $cat_lookup || weirdlings_collections_normalize_token( $term->name ) === $cat_lookup ) {
+				$tax_query[] = array(
+					'taxonomy' => $taxonomy,
+					'field'    => 'term_id',
+					'terms'    => (int) $term->term_id,
+				);
+			}
+		}
+	}
+
+	if ( count( $tax_query ) > 1 ) {
+		$query->set( 'tax_query', $tax_query );
+		return;
+	}
+
+	$query->set(
+		'meta_query',
+		array(
+			'relation' => 'OR',
+			array(
+				'key'     => 'coleccion',
+				'value'   => $cat,
+				'compare' => 'LIKE',
+			),
+			array(
+				'key'     => '_wl_product_rarity',
+				'value'   => $cat_lookup,
+				'compare' => 'LIKE',
+			),
+		)
+	);
+}
+add_action( 'pre_get_posts', 'weirdlings_collections_pre_get_posts' );
+
+function weirdlings_force_collections_template( $template ) {
+	$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? wp_unslash( $_SERVER['REQUEST_URI'] ) : '';
+	$path        = trim( (string) wp_parse_url( $request_uri, PHP_URL_PATH ), '/' );
+
+	if ( 'colecciones' === $path || 'colecciones/' === $path || false !== strpos( $path, 'colecciones' ) ) {
+		global $wp_query;
+		if ( $wp_query instanceof WP_Query ) {
+			$wp_query->is_404 = false;
+		}
+		status_header( 200 );
+		nocache_headers();
+
+		$collections_template = get_theme_file_path( 'page-colecciones.php' );
+		if ( file_exists( $collections_template ) ) {
+			return $collections_template;
+		}
+	}
+
+	return $template;
+}
+add_filter( 'template_include', 'weirdlings_force_collections_template', 99 );
+
 function weirdlings_svg_icon_placeholder( string $label, int $size = 56 ): string {
 	$label = mb_substr( wp_strip_all_tags( $label ), 0, 8 );
 	$font_size = max( 8, (int) round( $size * 0.18 ) );
@@ -147,6 +343,35 @@ function weirdlings_svg_icon_placeholder( string $label, int $size = 56 ): strin
 		(int) round( $size / 2 - 2 ),
 		$font_size,
 		max( 7, (int) round( $size * 0.14 ) )
+	);
+}
+
+function weirdlings_render_header_icon( string $icon ): string {
+	$icons = array(
+		'instagram' => 'instagram.svg',
+		'tiktok'    => 'tiktok.svg',
+		'shop'      => 'tienda.svg',
+		'account'   => 'cuenta.svg',
+		'cart'      => 'carrito.svg',
+		'menu'      => 'menu.svg',
+	);
+
+	if ( ! isset( $icons[ $icon ] ) ) {
+		return '';
+	}
+
+	$src  = get_theme_file_uri( 'assets/images/SVG/' . $icons[ $icon ] );
+	$file = get_theme_file_path( 'assets/images/SVG/' . $icons[ $icon ] );
+
+	if ( file_exists( $file ) ) {
+		$ver = (int) filemtime( $file );
+		$src  = $src . ( strpos( $src, '?' ) === false ? '?' : '&' ) . 'v=' . $ver;
+	}
+
+	return sprintf(
+		'<img class="wl-header-icon wl-header-icon--%1$s" src="%2$s" alt="" aria-hidden="true" decoding="async" />',
+		esc_attr( $icon ),
+		esc_url( $src )
 	);
 }
 
@@ -291,6 +516,107 @@ function weirdlings_product_label( int $product_id ): string {
 	return __( 'Amigurumi', 'weirdlings-modern' );
 }
 
+function weirdlings_product_rarity_options(): array {
+	return array(
+		'comun'      => array(
+			'label' => __( 'Común', 'weirdlings-modern' ),
+			'icon'  => '●',
+		),
+		'raro'       => array(
+			'label' => __( 'Raro', 'weirdlings-modern' ),
+			'icon'  => '◆',
+		),
+		'epico'      => array(
+			'label' => __( 'Épico', 'weirdlings-modern' ),
+			'icon'  => '✦',
+		),
+		'legendario' => array(
+			'label' => __( 'Legendario', 'weirdlings-modern' ),
+			'icon'  => '♛',
+		),
+		'mitico'     => array(
+			'label' => __( 'Mítico', 'weirdlings-modern' ),
+			'icon'  => '✶',
+		),
+	);
+}
+
+function weirdlings_product_rarity_key( int $product_id ): string {
+	$rarity  = sanitize_key( (string) get_post_meta( $product_id, '_wl_product_rarity', true ) );
+	$options = weirdlings_product_rarity_options();
+
+	if ( isset( $options[ $rarity ] ) ) {
+		return $rarity;
+	}
+
+	return 'comun';
+}
+
+function weirdlings_render_rarity_badge_by_key( string $rarity, string $context = 'card' ): string {
+	$options = weirdlings_product_rarity_options();
+	$rarity  = sanitize_key( $rarity );
+
+	if ( ! isset( $options[ $rarity ] ) ) {
+		$rarity = 'comun';
+	}
+
+	$classes = array(
+		'wl-rarity-badge',
+		'wl-rarity-badge--' . $rarity,
+	);
+
+	if ( 'single' === $context ) {
+		$classes[] = 'wl-rarity-badge--single';
+	}
+
+	return sprintf(
+		'<span class="%1$s" aria-label="%2$s"><span class="wl-rarity-badge__icon" aria-hidden="true">%3$s</span><span class="wl-rarity-badge__label">%4$s</span></span>',
+		esc_attr( implode( ' ', $classes ) ),
+		esc_attr( sprintf( __( 'Rareza: %s', 'weirdlings-modern' ), $options[ $rarity ]['label'] ) ),
+		esc_html( $options[ $rarity ]['icon'] ),
+		esc_html( $options[ $rarity ]['label'] )
+	);
+}
+
+function weirdlings_render_rarity_badge( int $product_id, string $context = 'card' ): string {
+	return weirdlings_render_rarity_badge_by_key( weirdlings_product_rarity_key( $product_id ), $context );
+}
+
+function weirdlings_product_rarity_admin_field(): void {
+	global $post;
+
+	if ( ! ( $post instanceof WP_Post ) || 'product' !== $post->post_type ) {
+		return;
+	}
+
+	$options      = weirdlings_product_rarity_options();
+	$select_items = array();
+
+	foreach ( $options as $slug => $data ) {
+		$select_items[ $slug ] = $data['label'];
+	}
+
+	woocommerce_wp_select(
+		array(
+			'id'          => '_wl_product_rarity',
+			'label'       => __( 'Rareza', 'weirdlings-modern' ),
+			'description' => __( 'Define la rareza visual del producto para Home, Tienda y ficha del producto.', 'weirdlings-modern' ),
+			'desc_tip'    => true,
+			'options'     => $select_items,
+		)
+	);
+}
+add_action( 'woocommerce_product_options_general_product_data', 'weirdlings_product_rarity_admin_field' );
+
+function weirdlings_save_product_rarity_admin_field( WC_Product $product ): void {
+	$raw_value = isset( $_POST['_wl_product_rarity'] ) ? sanitize_key( wp_unslash( $_POST['_wl_product_rarity'] ) ) : '';
+	$options   = weirdlings_product_rarity_options();
+	$value     = isset( $options[ $raw_value ] ) ? $raw_value : 'comun';
+
+	$product->update_meta_data( '_wl_product_rarity', $value );
+}
+add_action( 'woocommerce_admin_process_product_object', 'weirdlings_save_product_rarity_admin_field' );
+
 function weirdlings_product_price_text( WC_Product $product ): string {
 	$price = $product->get_price();
 
@@ -350,7 +676,9 @@ function weirdlings_home_featured_items(): array {
 						);
 
 					return array(
+						'id'          => $product->get_id(),
 						'title'       => $product->get_name(),
+						'rarity'      => weirdlings_product_rarity_key( $product->get_id() ),
 						'type'        => weirdlings_product_label( $product->get_id() ),
 						'price'       => $price,
 						'link'        => get_permalink( $product->get_id() ),
@@ -366,10 +694,10 @@ function weirdlings_home_featured_items(): array {
 	}
 
 	return array(
-		array( 'title' => 'Baphy', 'type' => 'Amigurumi', 'price' => array( 'current' => weirdlings_currency_format( 75000 ) ), 'link' => '#', 'badge' => 'TOP', 'image' => weirdlings_render_placeholder( 'Baphy', 'square', 800, 900 ), 'description' => 'Criatura original', 'on_sale' => false ),
-		array( 'title' => 'Stitchy', 'type' => 'Llavero', 'price' => array( 'current' => weirdlings_currency_format( 25000 ) ), 'link' => '#', 'badge' => 'TOP', 'image' => weirdlings_render_placeholder( 'Stitchy', 'square', 800, 900 ), 'description' => 'Edición temporal', 'on_sale' => false ),
-		array( 'title' => 'Nocti', 'type' => 'Amigurumi', 'price' => array( 'current' => weirdlings_currency_format( 65000 ) ), 'link' => '#', 'badge' => 'TOP', 'image' => weirdlings_render_placeholder( 'Nocti', 'square', 800, 900 ), 'description' => 'Placeholder', 'on_sale' => false ),
-		array( 'title' => 'Cthuluita', 'type' => 'Llavero', 'price' => array( 'current' => weirdlings_currency_format( 28000 ) ), 'link' => '#', 'badge' => 'TOP', 'image' => weirdlings_render_placeholder( 'Cthuluita', 'square', 800, 900 ), 'description' => 'Placeholder', 'on_sale' => false ),
+		array( 'title' => 'Baphy', 'rarity' => 'epico', 'type' => 'Amigurumi', 'price' => array( 'current' => weirdlings_currency_format( 75000 ) ), 'link' => '#', 'badge' => 'TOP', 'image' => weirdlings_render_placeholder( 'Baphy', 'square', 800, 900 ), 'description' => 'Criatura original', 'on_sale' => false ),
+		array( 'title' => 'Stitchy', 'rarity' => 'raro', 'type' => 'Llavero', 'price' => array( 'current' => weirdlings_currency_format( 25000 ) ), 'link' => '#', 'badge' => 'TOP', 'image' => weirdlings_render_placeholder( 'Stitchy', 'square', 800, 900 ), 'description' => 'Edición temporal', 'on_sale' => false ),
+		array( 'title' => 'Nocti', 'rarity' => 'legendario', 'type' => 'Amigurumi', 'price' => array( 'current' => weirdlings_currency_format( 65000 ) ), 'link' => '#', 'badge' => 'TOP', 'image' => weirdlings_render_placeholder( 'Nocti', 'square', 800, 900 ), 'description' => 'Placeholder', 'on_sale' => false ),
+		array( 'title' => 'Cthuluita', 'rarity' => 'mitico', 'type' => 'Llavero', 'price' => array( 'current' => weirdlings_currency_format( 28000 ) ), 'link' => '#', 'badge' => 'TOP', 'image' => weirdlings_render_placeholder( 'Cthuluita', 'square', 800, 900 ), 'description' => 'Placeholder', 'on_sale' => false ),
 	);
 }
 

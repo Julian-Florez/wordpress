@@ -89,8 +89,9 @@ define( 'WP_DEBUG', false );
 
 /* Add any custom values between this line and the "stop editing" line. */
 
-define( 'WP_HOME', 'http://localhost/wordpress' );
-define( 'WP_SITEURL', 'http://localhost/wordpress' );
+define( 'WP_HOME', 'http://10.14.6.150/wordpress' );
+define( 'WP_SITEURL', 'http://10.14.6.150/wordpress' );
+define( 'WEIRDLINGS_CHATBOT_WEBHOOK', 'https://sistemas-cjp8.onrender.com/webhook-test/881cac3b-beaf-4f40-b4b1-6873784af6b3' );
 
 /* That's all, stop editing! Happy publishing. */
 

@@ -49,6 +49,55 @@
   });
 })();
 
+/* Añadir al carrito con botón + desde tarjetas de producto (AJAX) */
+(function () {
+  function updateFragments() {
+    return fetch('?wc-ajax=get_refreshed_fragments', { credentials: 'same-origin' })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (!data || !data.fragments) return;
+        Object.keys(data.fragments).forEach(function (selector) {
+          try {
+            var el = document.querySelector(selector);
+            if (el) el.innerHTML = data.fragments[selector];
+          } catch (e) {
+            // ignore invalid selectors
+          }
+        });
+      })
+      .catch(function () {});
+  }
+
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('.wl-product-card__action');
+    if (!btn) return;
+    e.preventDefault();
+    var pid = btn.dataset.productId || btn.getAttribute('data-product-id');
+    if (!pid || Number(pid) === 0) {
+      return;
+    }
+
+    btn.classList.add('is-loading');
+
+    var body = new FormData();
+    body.append('product_id', pid);
+    body.append('quantity', '1');
+
+    fetch('?wc-ajax=add_to_cart', { method: 'POST', body: body, credentials: 'same-origin' })
+      .then(function (res) { return res.json(); })
+      .then(function (json) {
+        btn.classList.remove('is-loading');
+        btn.classList.add('is-added');
+        setTimeout(function () { btn.classList.remove('is-added'); }, 1200);
+        // refresh fragments (mini-cart, cart count)
+        updateFragments();
+      })
+      .catch(function () {
+        btn.classList.remove('is-loading');
+      });
+  });
+})();
+
 /* Inicializar Select2 (o SelectWoo) en selects del checkout si está disponible */
 (function () {
   function initCheckoutSelects($) {
@@ -325,6 +374,120 @@
     messages.scrollTop = messages.scrollHeight;
   }
 
+  function clearOptions() {
+    if (!optionsWrap) {
+      return;
+    }
+
+    optionsWrap.innerHTML = '';
+    optionsWrap.hidden = true;
+  }
+
+  function normalizeChatOptions(rawOptions) {
+    if (!rawOptions) {
+      return [];
+    }
+
+    var list = Array.isArray(rawOptions) ? rawOptions : [rawOptions];
+
+    return list.map(function (option) {
+      if (typeof option === 'string') {
+        return {
+          label: option,
+          value: option
+        };
+      }
+
+      if (option && typeof option === 'object') {
+        return {
+          label: option.label || option.text || option.title || option.name || option.value || option.payload || '',
+          value: option.value || option.payload || option.label || option.text || option.title || option.name || ''
+        };
+      }
+
+      return {
+        label: '',
+        value: ''
+      };
+    }).filter(function (option) {
+      return Boolean((option.label || '').trim()) && Boolean((option.value || '').trim());
+    });
+  }
+
+  function renderOptions(rawOptions) {
+    if (!optionsWrap) {
+      return;
+    }
+
+    var options = normalizeChatOptions(rawOptions);
+
+    optionsWrap.innerHTML = '';
+
+    if (!options.length) {
+      optionsWrap.hidden = true;
+      return;
+    }
+
+    options.forEach(function (option) {
+      var button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'wl-chatbot-option';
+      button.dataset.chatbotOption = option.value;
+      button.textContent = option.label;
+      optionsWrap.appendChild(button);
+    });
+
+    optionsWrap.hidden = false;
+  }
+
+  function appendAttachmentMessage(files) {
+    if (!messages || !files || !files.length) {
+      return;
+    }
+
+    var item = document.createElement('article');
+    item.className = 'wl-chatbot-message wl-chatbot-message--user wl-chatbot-message--media';
+
+    var caption = document.createElement('p');
+    caption.textContent = files.length === 1 ? 'Adjuntaste 1 archivo.' : 'Adjuntaste ' + files.length + ' archivos.';
+    item.appendChild(caption);
+
+    var gallery = document.createElement('div');
+    gallery.className = 'wl-chatbot-message__media';
+
+    Array.prototype.forEach.call(files, function (file) {
+      var figure = document.createElement('figure');
+      figure.className = 'wl-chatbot-media-tile';
+
+      if (file.type && file.type.indexOf('image/') === 0) {
+        var image = document.createElement('img');
+        var objectUrl = URL.createObjectURL(file);
+        image.src = objectUrl;
+        image.alt = file.name;
+        image.addEventListener('load', function () {
+          window.setTimeout(function () {
+            URL.revokeObjectURL(objectUrl);
+          }, 0);
+        });
+        figure.appendChild(image);
+      } else {
+        var placeholder = document.createElement('div');
+        placeholder.className = 'wl-chatbot-media-tile__file';
+        placeholder.textContent = file.name;
+        figure.appendChild(placeholder);
+      }
+
+      var meta = document.createElement('figcaption');
+      meta.textContent = file.name;
+      figure.appendChild(meta);
+      gallery.appendChild(figure);
+    });
+
+    item.appendChild(gallery);
+    messages.appendChild(item);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
   function openPanel() {
     panel.hidden = false;
     panel.classList.add('is-open');
@@ -361,9 +524,37 @@
     attachments.hidden = false;
   }
 
+  function getSessionId() {
+    var storageKey = 'weirdlings_session';
+    var sessionId = null;
+
+    try {
+      sessionId = window.localStorage.getItem(storageKey);
+    } catch (error) {
+      sessionId = null;
+    }
+
+    if (!sessionId) {
+      if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+        sessionId = window.crypto.randomUUID();
+      } else {
+        sessionId = 'wl-' + Math.random().toString(36).slice(2) + Date.now().toString(36);
+      }
+
+      try {
+        window.localStorage.setItem(storageKey, sessionId);
+      } catch (error) {
+        // Si el almacenamiento no está disponible, igual seguimos con la sesión generada.
+      }
+    }
+
+    return sessionId;
+  }
+
   function buildPayload(messageText) {
     return {
       event: 'chatbot_message',
+      session_id: getSessionId(),
       source: 'front_page',
       message: messageText,
       page_url: window.location.href,
@@ -409,10 +600,53 @@
     fallbackForm.remove();
   }
 
+  function parseChatbotResponse(result) {
+    var reply = '';
+    var options = [];
+
+    if (typeof result === 'string') {
+      reply = result;
+    } else if (result && typeof result === 'object') {
+      if (Array.isArray(result) && result.length && typeof result[0] === 'object') {
+        var first = result[0];
+        reply = first.reply || first.message || first.response || first.output || first.text || '';
+        options = first.options || first.buttons || first.quick_replies || first.quickReplies || first.choices || [];
+      } else {
+        reply = result.reply || result.message || result.response || result.output || result.answer || result.text || '';
+        options = result.options || result.buttons || result.quick_replies || result.quickReplies || result.choices || [];
+
+        if (!reply && result.data && typeof result.data === 'object') {
+          reply = result.data.reply || result.data.message || result.data.response || result.data.output || result.data.answer || result.data.text || '';
+          options = options.length ? options : (result.data.options || result.data.buttons || result.data.quick_replies || result.data.quickReplies || result.data.choices || []);
+        }
+
+        if (!options.length && Array.isArray(result.messages)) {
+          result.messages.forEach(function (message) {
+            if (!reply && message && typeof message === 'object') {
+              reply = message.reply || message.message || message.response || message.output || message.text || reply;
+            }
+            if (!options.length && message && typeof message === 'object') {
+              options = message.options || message.buttons || message.quick_replies || message.quickReplies || message.choices || options;
+            }
+          });
+        }
+      }
+    }
+
+    if (!reply || !String(reply).trim()) {
+      reply = 'Recibimos tu mensaje, pero n8n no devolvió texto de respuesta.';
+    }
+
+    return {
+      reply: String(reply),
+      options: normalizeChatOptions(options)
+    };
+  }
+
   function sendMessage(messageText, files) {
     var webhookUrl = toggleButton.dataset.chatbotWebhook;
     if (!webhookUrl || toggleButton.dataset.chatbotState === 'loading') {
-      return;
+      return Promise.reject(new Error('Webhook no disponible o chat en estado de carga.'));
     }
 
     setState('loading', 'Enviando a la manada...');
@@ -427,15 +661,34 @@
       });
     }
 
-    fetch(webhookUrl, {
+    return fetch(webhookUrl, {
       method: 'POST',
-      mode: 'no-cors',
+      headers: {
+        Accept: 'application/json, text/plain;q=0.9, */*;q=0.8'
+      },
       body: formData
-    }).then(function () {
-      setState('done', 'Mensaje enviado.');
+    }).then(function (response) {
+      if (!response.ok) {
+        throw new Error('Error HTTP ' + response.status);
+      }
+
+      var contentType = (response.headers.get('content-type') || '').toLowerCase();
+      if (contentType.indexOf('application/json') !== -1) {
+        return response.json();
+      }
+
+      return response.text().then(function (text) {
+        return { text: text };
+      });
+    }).then(function (result) {
+      var response = parseChatbotResponse(result);
+
+      setState('done', 'Respuesta recibida.');
       window.setTimeout(function () {
         setState('idle', '');
       }, 2400);
+
+      return response;
     }).catch(function () {
       try {
         submitFallbackPost(webhookUrl, payload, files || []);
@@ -443,8 +696,13 @@
         window.setTimeout(function () {
           setState('idle', '');
         }, 2400);
+        return {
+          reply: 'No pudimos leer la respuesta en tiempo real. El mensaje sí fue enviado a n8n.',
+          options: []
+        };
       } catch (error) {
         setState('error', 'No se pudo enviar. Intenta de nuevo.');
+        throw error;
       }
     });
   }
@@ -472,7 +730,9 @@
         return;
       }
       input.value = value;
-      input.focus();
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      clearOptions();
+      form.requestSubmit ? form.requestSubmit() : form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
     });
   }
 
@@ -485,15 +745,22 @@
 
     var text = (input.value || '').trim();
     var files = fileInput && fileInput.files ? fileInput.files : [];
-    var fallbackMessage = 'Hola, criatura. ¿En qué podemos ayudarte hoy?';
+    var fallbackMessage = 'Hola, soy WeirdBot. ¿En qué puedo ayudarte?';
     var finalMessage = text || fallbackMessage;
 
+    clearOptions();
     appendMessage(finalMessage, 'user');
     if (files.length) {
-      appendMessage('Adjuntaste ' + files.length + ' archivo(s).', 'user');
+      appendAttachmentMessage(files);
     }
 
-    sendMessage(finalMessage, files);
+    sendMessage(finalMessage, files).then(function (response) {
+      appendMessage(response.reply, 'bot');
+      renderOptions(response.options);
+    }).catch(function () {
+      appendMessage('No pudimos conectar con n8n. Revisa el webhook y vuelve a intentar.', 'bot');
+      clearOptions();
+    });
 
     input.value = '';
     if (fileInput) {
@@ -501,8 +768,5 @@
       updateAttachmentList();
     }
 
-    window.setTimeout(function () {
-      appendMessage('Gracias. Nuestra manada revisa tu mensaje y te responde pronto.', 'bot');
-    }, 220);
   });
 })();

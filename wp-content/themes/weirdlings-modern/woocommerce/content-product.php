@@ -15,6 +15,7 @@ $badge = $product->is_on_sale() ? 'NUEVO' : 'TOP';
 
 <li <?php wc_product_class( 'wl-product-card wl-product-card--wc', $product ); ?>>
   <span class="wl-product-card__badge"><?php echo esc_html( $badge ); ?></span>
+  <?php echo weirdlings_render_rarity_badge( $product->get_id() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
   <a href="<?php the_permalink(); ?>" class="wl-product-card__media">
     <?php
     if ( has_post_thumbnail() ) {
@@ -29,5 +30,5 @@ $badge = $product->is_on_sale() ? 'NUEVO' : 'TOP';
     <h2 class="wl-product-card__title"><?php the_title(); ?></h2>
     <div class="wl-product-card__price"><?php echo esc_html( weirdlings_product_price_text( $product ) ); ?></div>
   </div>
-  <a class="wl-product-card__action" href="<?php the_permalink(); ?>" aria-label="<?php echo esc_attr( get_the_title() ); ?>">+</a>
+  <button type="button" class="wl-product-card__action" data-product-id="<?php echo esc_attr( $product->get_id() ); ?>" aria-label="Añadir <?php echo esc_attr( get_the_title() ); ?> al carrito">+</button>
 </li>

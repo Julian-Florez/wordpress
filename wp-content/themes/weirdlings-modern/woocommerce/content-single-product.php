@@ -33,6 +33,7 @@ if ( post_password_required() ) {
 		</div>
 
 		<div class="wl-single-product__sidebar">
+			<?php echo weirdlings_render_rarity_badge( $product->get_id(), 'single' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			<div class="summary entry-summary">
 				<?php
 				/**

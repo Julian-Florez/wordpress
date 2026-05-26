@@ -37,28 +37,64 @@ $items = weirdlings_home_featured_items();
 <section class="wl-feature-strip">
   <div class="wl-container wl-feature-strip__inner">
     <article class="wl-feature">
-      <div class="wl-feature__icon" aria-hidden="true"><?php echo weirdlings_svg_icon_placeholder( 'Hechos a mano' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
+      <div class="wl-feature__icon" aria-hidden="true">
+        <?php
+          $file = get_theme_file_path( 'assets/images/SVG/band1.svg' );
+          $src = get_theme_file_uri( 'assets/images/SVG/band1.svg' );
+          if ( file_exists( $file ) ) {
+            $src .= '?' . (int) filemtime( $file );
+          }
+        ?>
+        <img src="<?php echo esc_url( $src ); ?>" alt="Hechos a mano" decoding="async" />
+      </div>
       <div>
         <h3>Hechos a mano</h3>
         <p>Cada criatura nace punto a punto y con carácter propio.</p>
       </div>
     </article>
     <article class="wl-feature">
-      <div class="wl-feature__icon" aria-hidden="true"><?php echo weirdlings_svg_icon_placeholder( 'Diseños originales' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
+      <div class="wl-feature__icon" aria-hidden="true">
+        <?php
+          $file = get_theme_file_path( 'assets/images/SVG/band2.svg' );
+          $src = get_theme_file_uri( 'assets/images/SVG/band2.svg' );
+          if ( file_exists( $file ) ) {
+            $src .= '?' . (int) filemtime( $file );
+          }
+        ?>
+        <img src="<?php echo esc_url( $src ); ?>" alt="Diseños originales" decoding="async" />
+      </div>
       <div>
         <h3>Diseños originales</h3>
         <p>No verás estas criaturas en otro lugar.</p>
       </div>
     </article>
     <article class="wl-feature">
-      <div class="wl-feature__icon" aria-hidden="true"><?php echo weirdlings_svg_icon_placeholder( 'Personalizados' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
+      <div class="wl-feature__icon" aria-hidden="true">
+        <?php
+          $file = get_theme_file_path( 'assets/images/SVG/band3.svg' );
+          $src = get_theme_file_uri( 'assets/images/SVG/band3.svg' );
+          if ( file_exists( $file ) ) {
+            $src .= '?' . (int) filemtime( $file );
+          }
+        ?>
+        <img src="<?php echo esc_url( $src ); ?>" alt="Personalizados" decoding="async" />
+      </div>
       <div>
         <h3>Personalizados</h3>
         <p>Convertimos ideas extrañas en crochet real.</p>
       </div>
     </article>
     <article class="wl-feature">
-      <div class="wl-feature__icon" aria-hidden="true"><?php echo weirdlings_svg_icon_placeholder( 'Envíos seguros' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
+      <div class="wl-feature__icon" aria-hidden="true">
+        <?php
+          $file = get_theme_file_path( 'assets/images/SVG/band4.svg' );
+          $src = get_theme_file_uri( 'assets/images/SVG/band4.svg' );
+          if ( file_exists( $file ) ) {
+            $src .= '?' . (int) filemtime( $file );
+          }
+        ?>
+        <img src="<?php echo esc_url( $src ); ?>" alt="Envíos seguros" decoding="async" />
+      </div>
       <div>
         <h3>Envíos seguros</h3>
         <p>Empaque cuidado y protección para cada pedido.</p>
@@ -76,6 +112,7 @@ $items = weirdlings_home_featured_items();
       <?php foreach ( $items as $item ) : ?>
         <article class="wl-product-card">
           <span class="wl-product-card__badge <?php echo ! empty( $item['on_sale'] ) ? 'wl-product-card__badge--sale' : ''; ?>"><?php echo esc_html( $item['on_sale'] ? 'SALE' : $item['badge'] ); ?></span>
+          <?php echo weirdlings_render_rarity_badge_by_key( $item['rarity'] ?? 'comun' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
           <a href="<?php echo esc_url( $item['link'] ); ?>" class="wl-product-card__media" aria-label="<?php echo esc_attr( $item['title'] ); ?>">
             <?php echo $item['image']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
           </a>
@@ -91,7 +128,7 @@ $items = weirdlings_home_featured_items();
               <?php endif; ?>
             </div>
           </div>
-          <a class="wl-product-card__action" href="<?php echo esc_url( $item['link'] ); ?>" aria-label="Ver <?php echo esc_attr( $item['title'] ); ?>">+</a>
+          <button type="button" class="wl-product-card__action" data-product-id="<?php echo esc_attr( $item['id'] ?? 0 ); ?>" aria-label="Añadir <?php echo esc_attr( $item['title'] ); ?> al carrito">+</button>
         </article>
       <?php endforeach; ?>
     </div>
@@ -110,11 +147,15 @@ $items = weirdlings_home_featured_items();
         </div>
       </div>
       <div class="wl-banner__visuals">
-        <?php echo weirdlings_render_placeholder( 'Personalizado', 'portrait', 860, 1100 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-        <div class="wl-polaroid">
-          <?php echo weirdlings_render_placeholder( 'Polaroid', 'square', 700, 900 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-          <div class="wl-polaroid__caption">Tu criatura, tu historia ♥</div>
-        </div>
+        <?php
+          $custom_hero_file = get_theme_file_path( 'assets/images/custom-hero.png' );
+          $custom_hero_src  = get_theme_file_uri( 'assets/images/custom-hero.png' );
+
+          if ( file_exists( $custom_hero_file ) ) {
+            $custom_hero_src .= '?' . (int) filemtime( $custom_hero_file );
+          }
+        ?>
+        <img class="wl-banner__custom-hero" src="<?php echo esc_url( $custom_hero_src ); ?>" alt="Personalizados Weirdlings" decoding="async" />
       </div>
     </div>
   </div>
@@ -123,36 +164,80 @@ $items = weirdlings_home_featured_items();
 <section class="wl-section">
   <div class="wl-container">
     <div class="wl-promise-grid">
-      <article class="wl-promise">
-        <div class="wl-promise__icon"><?php echo weirdlings_svg_icon_placeholder( 'Coleccionables' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
-        <h3>Coleccionables</h3>
+      <details class="wl-promise" open>
+        <summary class="wl-promise__summary">
+          <?php
+            $file = get_theme_file_path( 'assets/images/SVG/detail1.svg' );
+            $src = get_theme_file_uri( 'assets/images/SVG/detail1.svg' );
+            if ( file_exists( $file ) ) {
+              $src .= '?' . (int) filemtime( $file );
+            }
+          ?>
+          <div class="wl-promise__icon"><img src="<?php echo esc_url( $src ); ?>" alt="Coleccionables" decoding="async" /></div>
+          <h3>Coleccionables</h3>
+        </summary>
         <p>Ediciones limitadas y criaturas especiales.</p>
-      </article>
-      <article class="wl-promise">
-        <div class="wl-promise__icon"><?php echo weirdlings_svg_icon_placeholder( 'Hecho con amor' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
-        <h3>Hecho con amor</h3>
+      </details>
+
+      <details class="wl-promise" open>
+        <summary class="wl-promise__summary">
+          <?php
+            $file = get_theme_file_path( 'assets/images/SVG/detail2.svg' );
+            $src = get_theme_file_uri( 'assets/images/SVG/detail2.svg' );
+            if ( file_exists( $file ) ) {
+              $src .= '?' . (int) filemtime( $file );
+            }
+          ?>
+          <div class="wl-promise__icon"><img src="<?php echo esc_url( $src ); ?>" alt="Hecho con amor" decoding="async" /></div>
+          <h3>Hecho con amor</h3>
+        </summary>
         <p>Cada pieza lleva tiempo, paciencia y mucha magia.</p>
-      </article>
-      <article class="wl-promise">
-        <div class="wl-promise__icon"><?php echo weirdlings_svg_icon_placeholder( 'Presentación especial' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
-        <h3>Presentación especial</h3>
+      </details>
+
+      <details class="wl-promise" open>
+        <summary class="wl-promise__summary">
+          <?php
+            $file = get_theme_file_path( 'assets/images/SVG/detail3.svg' );
+            $src = get_theme_file_uri( 'assets/images/SVG/detail3.svg' );
+            if ( file_exists( $file ) ) {
+              $src .= '?' . (int) filemtime( $file );
+            }
+          ?>
+          <div class="wl-promise__icon"><img src="<?php echo esc_url( $src ); ?>" alt="Presentación especial" decoding="async" /></div>
+          <h3>Presentación especial</h3>
+        </summary>
         <p>Empaque cuidado con tarjeta incluida.</p>
-      </article>
-      <article class="wl-promise">
-        <div class="wl-promise__icon"><?php echo weirdlings_svg_icon_placeholder( 'Comunidad' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></div>
-        <h3>Comunidad Weirdlings</h3>
+      </details>
+
+      <details class="wl-promise" open>
+        <summary class="wl-promise__summary">
+          <?php
+            $file = get_theme_file_path( 'assets/images/SVG/detail4.svg' );
+            $src = get_theme_file_uri( 'assets/images/SVG/detail4.svg' );
+            if ( file_exists( $file ) ) {
+              $src .= '?' . (int) filemtime( $file );
+            }
+          ?>
+          <div class="wl-promise__icon"><img src="<?php echo esc_url( $src ); ?>" alt="Comunidad Weirdlings" decoding="async" /></div>
+          <h3>Comunidad Weirdlings</h3>
+        </summary>
         <p>Invita a tu manada a seguir la marca en redes.</p>
-      </article>
+      </details>
     </div>
   </div>
 </section>
 
+<?php
+$chatbot_webhook_url = defined( 'WEIRDLINGS_CHATBOT_WEBHOOK' )
+	? (string) WEIRDLINGS_CHATBOT_WEBHOOK
+	: 'https://sistemas-cjp8.onrender.com/webhook-test/72f50ccc-feb1-42a6-8f24-7815314faef9';
+?>
 <div class="wl-chatbot-sticky" aria-live="polite" data-chatbot-widget>
   <button
     type="button"
     class="wl-chatbot-sticky__button"
     data-chatbot-toggle
-    data-chatbot-webhook="https://sistemas-cjp8.onrender.com/webhook-test/72f50ccc-feb1-42a6-8f24-7815314faef9"
+    data-chatbot-webhook="<?php echo esc_url( $chatbot_webhook_url ); ?>"
     data-chatbot-state="idle"
     aria-expanded="false"
     aria-controls="wl-chatbot-panel"
@@ -174,14 +259,15 @@ $items = weirdlings_home_featured_items();
     <div class="wl-chatbot-panel__body">
       <div class="wl-chatbot-messages" data-chatbot-messages>
         <article class="wl-chatbot-message wl-chatbot-message--bot">
-          <p>Hola, criatura. ¿En qué podemos ayudarte hoy?</p>
+          <p>Hola, soy WeirdBot.</p>
+          <p>¿En qué puedo ayudarte?</p>
         </article>
       </div>
 
       <div class="wl-chatbot-options" data-chatbot-options>
-        <button type="button" class="wl-chatbot-option" data-chatbot-option="Quiero cotizar un personalizado">Cotizar personalizado</button>
-        <button type="button" class="wl-chatbot-option" data-chatbot-option="Necesito ayuda con un pedido">Estado de pedido</button>
-        <button type="button" class="wl-chatbot-option" data-chatbot-option="Quiero recomendaciones de criaturas">Recomendaciones</button>
+        <button type="button" class="wl-chatbot-option" data-chatbot-option="Recomendar criatura">Recomendar criatura</button>
+        <button type="button" class="wl-chatbot-option" data-chatbot-option="Estado de pedido">Estado de pedido</button>
+        <button type="button" class="wl-chatbot-option" data-chatbot-option="Tengo un problema">Tengo un problema</button>
       </div>
 
       <form class="wl-chatbot-form" data-chatbot-form>

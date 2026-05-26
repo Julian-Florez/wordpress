@@ -230,7 +230,7 @@ $items = weirdlings_home_featured_items();
 <?php
 $chatbot_webhook_url = defined( 'WEIRDLINGS_CHATBOT_WEBHOOK' )
 	? (string) WEIRDLINGS_CHATBOT_WEBHOOK
-	: 'https://sistemas-cjp8.onrender.com/webhook-test/72f50ccc-feb1-42a6-8f24-7815314faef9';
+  : 'https://sistemas-cjp8.onrender.com/webhook/72f50ccc-feb1-42a6-8f24-7815314faef9';
 ?>
 <div class="wl-chatbot-sticky" aria-live="polite" data-chatbot-widget>
   <button

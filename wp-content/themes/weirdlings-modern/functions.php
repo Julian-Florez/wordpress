@@ -38,6 +38,15 @@ function weirdlings_enqueue_assets() {
 
 	wp_enqueue_script( 'weirdlings-modern-script', get_theme_file_uri( 'assets/js/theme.js' ), array( 'jquery' ), filemtime( get_theme_file_path( 'assets/js/theme.js' ) ), true );
 	wp_script_add_data( 'weirdlings-modern-script', 'defer', true );
+	wp_localize_script(
+		'weirdlings-modern-script',
+		'WeirdlingsChatbot',
+		array(
+			'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+			'action'  => 'weirdlings_chatbot_proxy',
+			'nonce'   => wp_create_nonce( 'weirdlings_chatbot_proxy' ),
+		)
+	);
 
 	// On checkout, ensure WooCommerce enhanced selects (Select2/SelectWoo) are available
 	if ( function_exists( 'is_checkout' ) && is_checkout() ) {
@@ -46,6 +55,119 @@ function weirdlings_enqueue_assets() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'weirdlings_enqueue_assets' );
+
+function weirdlings_chatbot_proxy_request( string $message_text, string $payload_json, array $files = array() ) {
+	if ( ! defined( 'WEIRDLINGS_CHATBOT_WEBHOOK' ) || ! WEIRDLINGS_CHATBOT_WEBHOOK ) {
+		return new WP_Error( 'weirdlings_chatbot_webhook_missing', __( 'No se configuró el webhook del chatbot.', 'weirdlings-modern' ) );
+	}
+
+	$body = array(
+		'payload' => $payload_json,
+	);
+
+	if ( ! empty( $files ) ) {
+		$body['media[]'] = $files;
+	}
+
+	$response = wp_remote_post(
+		WEIRDLINGS_CHATBOT_WEBHOOK,
+		array(
+			'timeout' => 45,
+			'body'    => $body,
+		)
+	);
+
+	if ( is_wp_error( $response ) ) {
+		return $response;
+	}
+
+	$status_code = (int) wp_remote_retrieve_response_code( $response );
+	$raw_body    = (string) wp_remote_retrieve_body( $response );
+	$decoded     = json_decode( $raw_body, true );
+	$reply       = '';
+	$html        = '';
+	$options     = array();
+
+	if ( is_array( $decoded ) ) {
+		$reply   = isset( $decoded['reply'] ) ? (string) $decoded['reply'] : '';
+		$html    = isset( $decoded['html'] ) ? (string) $decoded['html'] : '';
+		$options = isset( $decoded['options'] ) && is_array( $decoded['options'] ) ? $decoded['options'] : array();
+
+		if ( '' === $reply ) {
+			$reply = isset( $decoded['message'] ) ? (string) $decoded['message'] : '';
+		}
+		if ( '' === $reply ) {
+			$reply = isset( $decoded['response'] ) ? (string) $decoded['response'] : '';
+		}
+		if ( '' === $reply ) {
+			$reply = isset( $decoded['output'] ) ? (string) $decoded['output'] : '';
+		}
+		if ( '' === $reply ) {
+			$reply = isset( $decoded['answer'] ) ? (string) $decoded['answer'] : '';
+		}
+		if ( '' === $reply ) {
+			$reply = isset( $decoded['text'] ) ? (string) $decoded['text'] : '';
+		}
+	}
+
+	if ( '' === $reply ) {
+		$reply = wp_strip_all_tags( $raw_body );
+	}
+
+	if ( '' === $reply ) {
+		$reply = __( 'Recibimos tu mensaje, pero n8n no devolvió texto de respuesta.', 'weirdlings-modern' );
+	}
+
+	return array(
+		'status'  => $status_code,
+		'reply'   => $reply,
+		'html'    => $html,
+		'options' => $options,
+	);
+}
+
+function weirdlings_chatbot_proxy_ajax() {
+	check_ajax_referer( 'weirdlings_chatbot_proxy', 'nonce' );
+
+	$payload_json = isset( $_POST['payload'] ) ? wp_unslash( (string) $_POST['payload'] ) : '';
+	$payload      = json_decode( $payload_json, true );
+	$message_text = '';
+
+	if ( is_array( $payload ) && isset( $payload['message'] ) ) {
+		$message_text = sanitize_text_field( (string) $payload['message'] );
+	}
+
+	$forward_files = array();
+	if ( class_exists( 'CURLFile' ) && ! empty( $_FILES['media'] ) && is_array( $_FILES['media'] ) && ! empty( $_FILES['media']['name'] ) ) {
+		$file_count = is_array( $_FILES['media']['name'] ) ? count( $_FILES['media']['name'] ) : 0;
+		for ( $index = 0; $index < $file_count; $index++ ) {
+			if ( empty( $_FILES['media']['name'][ $index ] ) || empty( $_FILES['media']['tmp_name'][ $index ] ) ) {
+				continue;
+			}
+
+			$forward_files[] = new CURLFile(
+				$_FILES['media']['tmp_name'][ $index ],
+				sanitize_mime_type( (string) $_FILES['media']['type'][ $index ] ),
+				sanitize_file_name( (string) $_FILES['media']['name'][ $index ] )
+			);
+		}
+	}
+
+	$result = weirdlings_chatbot_proxy_request( $message_text, $payload_json, $forward_files );
+
+	if ( is_wp_error( $result ) ) {
+		wp_send_json_error(
+			array(
+				'message' => $result->get_error_message(),
+			),
+			500
+		);
+	}
+
+	wp_send_json_success( $result, 200 );
+}
+add_action( 'wp_ajax_weirdlings_chatbot_proxy', 'weirdlings_chatbot_proxy_ajax' );
+add_action( 'wp_ajax_nopriv_weirdlings_chatbot_proxy', 'weirdlings_chatbot_proxy_ajax' );
 
 function weirdlings_open_cart_controls_wrapper() {
 	echo '<div class="wl-cart-controls"><div class="wl-cart-controls__quantity"><button type="button" class="wl-qty-btn wl-qty-btn--minus" aria-label="Disminuir cantidad">−</button>';
@@ -167,10 +289,43 @@ function weirdlings_collection_term_link( WP_Term $term ): string {
 }
 
 function weirdlings_collection_term_image_html( WP_Term $term ): string {
+	$image_url = weirdlings_collection_term_image_url( $term );
+
+	if ( $image_url ) {
+		return sprintf(
+			'<img src="%1$s" alt="%2$s" loading="lazy" />',
+			esc_url( $image_url ),
+			esc_attr( $term->name )
+		);
+	}
+
+	return weirdlings_render_placeholder( $term->name, 'square', 1200, 900 );
+}
+
+function weirdlings_collection_term_image_url( WP_Term $term ): string {
 	$thumbnail_id = (int) get_term_meta( $term->term_id, 'thumbnail_id', true );
 
 	if ( $thumbnail_id > 0 ) {
-		return wp_get_attachment_image( $thumbnail_id, 'large', false, array( 'loading' => 'lazy' ) );
+		$image_url = wp_get_attachment_image_url( $thumbnail_id, 'large' );
+		if ( $image_url ) {
+			return $image_url;
+		}
+	}
+
+	$slug_base  = 'assets/images/collections/' . $term->slug;
+	$found_file = '';
+	foreach ( array( 'jpg', 'jpeg', 'png', 'webp' ) as $ext ) {
+		$candidate = $slug_base . '.' . $ext;
+		$candidate_path = get_theme_file_path( $candidate );
+		if ( file_exists( $candidate_path ) ) {
+			$found_file = get_theme_file_uri( $candidate );
+			$found_file .= ( strpos( $found_file, '?' ) === false ? '?' : '&' ) . 'v=' . (int) filemtime( $candidate_path );
+			break;
+		}
+	}
+
+	if ( $found_file ) {
+		return $found_file;
 	}
 
 	$products = new WP_Query(
@@ -192,20 +347,32 @@ function weirdlings_collection_term_image_html( WP_Term $term ): string {
 	);
 
 	if ( ! empty( $products->posts[0] ) ) {
-		$product_id   = (int) $products->posts[0];
-		$product      = function_exists( 'wc_get_product' ) ? wc_get_product( $product_id ) : null;
+		$product_id    = (int) $products->posts[0];
 		$attachment_id = (int) get_post_thumbnail_id( $product_id );
 
 		if ( $attachment_id > 0 ) {
-			return wp_get_attachment_image( $attachment_id, 'large', false, array( 'loading' => 'lazy' ) );
+			$image_url = wp_get_attachment_image_url( $attachment_id, 'large' );
+			if ( $image_url ) {
+				wp_reset_postdata();
+				return $image_url;
+			}
 		}
 
-		if ( $product ) {
-			return $product->get_image( 'large', array( 'loading' => 'lazy' ) );
+		if ( function_exists( 'wc_get_product' ) ) {
+			$product = wc_get_product( $product_id );
+			if ( $product ) {
+				$image_url = wp_get_attachment_image_url( $product->get_image_id(), 'large' );
+				if ( $image_url ) {
+					wp_reset_postdata();
+					return $image_url;
+				}
+			}
 		}
 	}
 
-	return weirdlings_render_placeholder( $term->name, 'square', 1200, 900 );
+	wp_reset_postdata();
+
+	return get_theme_file_uri( 'assets/images/collections/default-collection.jpg' );
 }
 
 /**

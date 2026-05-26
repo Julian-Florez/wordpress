@@ -811,7 +811,7 @@ select {
   position: relative;
   border-radius: 18px;
   overflow: hidden;
-  min-height: 12.5rem;
+  min-height: 20rem; /* aumentado 50% desde 12.5rem */
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -838,14 +838,17 @@ select {
 }
 
 .wl-collection-card__overlay {
-  position: relative;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: -6px; /* extender unos píxeles hacia abajo para cubrir líneas inferiores */
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
   padding: 1.4rem 1.6rem;
-  height: 100%;
-  background: linear-gradient(to top, rgba(0,0,0,0.7) 12%, rgba(0,0,0,0.35) 30%, rgba(0,0,0,0.04) 70%);
+  background: linear-gradient(to top, rgba(0,0,0,0.98) 0%, rgba(0,0,0,0.7) 35%, rgba(0,0,0,0.18) 70%);
   align-items: flex-end;
   z-index: 2;
 }
@@ -1193,6 +1196,64 @@ select {
   margin-top: 1rem;
 }
 
+.wl-collections-header--filtered {
+  display: none;
+}
+
+.wl-collections-hero {
+  position: relative;
+  width: 100%;
+  min-height: clamp(18rem, 32vw, 28rem);
+  margin-bottom: 1.25rem;
+  border-radius: 28px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: var(--wl-shadow);
+}
+
+.wl-collections-hero__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.35rem;
+  padding: clamp(1.1rem, 2vw, 2rem);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.18) 35%, rgba(0, 0, 0, 0.88) 100%);
+}
+
+.wl-collections-hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 0.78rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.wl-collections-hero__title {
+  margin: 0;
+  font-family: var(--wl-display);
+  font-size: clamp(2.2rem, 5vw, 4.6rem);
+  line-height: 0.95;
+  color: #fff;
+  text-shadow: 0 10px 24px rgba(0, 0, 0, 0.42);
+}
+
+.wl-collections-hero__text {
+  margin: 0;
+  max-width: 38rem;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.wl-collections-hero__actions {
+  margin-top: 0.6rem;
+}
+
 .wl-collections-intro {
   margin-bottom: 1.25rem;
   padding: 1.1rem 1.2rem;
@@ -1220,13 +1281,13 @@ select {
 .wl-collection-card__link {
   display: grid;
   grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
-  min-height: 260px;
+  min-height: 390px; /* aumentado 50% desde 260px */
   width: 100%;
 }
 
 .wl-collection-card__media {
   position: relative;
-  min-height: 260px;
+  min-height: 390px; /* aumentado 50% desde 260px */
   background: linear-gradient(180deg, rgba(217, 117, 183, 0.16), rgba(124, 89, 199, 0.12));
 }
 
@@ -1234,7 +1295,7 @@ select {
 .wl-collection-card__media .wl-placeholder {
   width: 100%;
   height: 100%;
-  min-height: 260px;
+  min-height: 390px; /* aumentado 50% desde 260px */
   object-fit: cover;
 }
 
@@ -1266,6 +1327,24 @@ select {
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
+
+/* Overrides específicos para el layout de colecciones (debe ir al final para ganar prioridad) */
+.wl-collections-grid .wl-collection-card__link {
+  display: block !important;
+  grid-template-columns: none !important;
+  min-height: 0 !important;
+}
+
+.wl-collections-grid .wl-collection-card__bg {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  z-index: 0 !important;
+}
+
+/* debug removed */
 
 .wl-collection-card__title {
   margin: 0;
@@ -1304,12 +1383,29 @@ select {
   gap: 1rem !important;
   margin: 0;
   padding: 0;
+  grid-auto-flow: row;
+  justify-content: stretch;
+  align-content: start;
+}
+
+.woocommerce ul.products::before,
+.woocommerce ul.products::after,
+.products::before,
+.products::after {
+  content: none !important;
+  display: none !important;
 }
 
 .woocommerce ul.products li.product,
 .products .product {
   width: auto !important;
   margin: 0 !important;
+  float: none !important;
+  clear: none !important;
+  grid-column: auto !important;
+  grid-row: auto !important;
+  justify-self: stretch;
+  align-self: stretch;
 }
 
 .wl-product-card--wc,

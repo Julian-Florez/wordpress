@@ -10,6 +10,7 @@ $collections_title  = $collections_page instanceof WP_Post ? get_the_title( $col
 $collections_content = $collections_page instanceof WP_Post ? apply_filters( 'the_content', $collections_page->post_content ) : '';
 $selected_category  = isset( $_GET['categoria'] ) ? sanitize_text_field( wp_unslash( $_GET['categoria'] ) ) : '';
 $selected_term      = $selected_category ? get_term_by( 'slug', $selected_category, 'product_cat' ) : false;
+$selected_image_url = ( $selected_term && ! is_wp_error( $selected_term ) ) ? weirdlings_collection_term_image_url( $selected_term ) : '';
 
 $collections_map = array(
 	'raro'               => 'raro',
@@ -51,7 +52,20 @@ if ( $selected_category ) {
 
 <section class="wl-page-wrap wl-collections-wrap">
 	<div class="wl-container">
-		<header class="wl-page-header wl-collections-header">
+		<?php if ( $selected_category && $selected_image_url ) : ?>
+			<section class="wl-collections-hero" style="background-image: url('<?php echo esc_url( $selected_image_url ); ?>');">
+				<div class="wl-collections-hero__overlay">
+					<div class="wl-collections-hero__eyebrow"><?php esc_html_e( 'Colecciones', 'weirdlings-modern' ); ?></div>
+					<h1 class="wl-collections-hero__title"><?php echo esc_html( $selected_term->name ); ?></h1>
+					<p class="wl-collections-hero__text"><?php echo esc_html( sprintf( __( 'Mostrando la colección: %s', 'weirdlings-modern' ), $selected_term->name ) ); ?></p>
+					<div class="wl-collections-hero__actions">
+						<a class="wl-button wl-button--ghost" href="<?php echo esc_url( weirdlings_collections_page_url() ); ?>"><?php esc_html_e( 'Ver todas las colecciones', 'weirdlings-modern' ); ?></a>
+					</div>
+				</div>
+			</section>
+		<?php endif; ?>
+
+		<header class="wl-page-header wl-collections-header<?php echo $selected_category && $selected_image_url ? ' wl-collections-header--filtered' : ''; ?>">
 			<div class="wl-collections-header__eyebrow"><?php esc_html_e( 'Colecciones', 'weirdlings-modern' ); ?></div>
 			<h1><?php echo esc_html( $collections_title ); ?></h1>
 			<p>
@@ -62,7 +76,7 @@ if ( $selected_category ) {
 				<?php endif; ?>
 			</p>
 
-			<?php if ( $selected_category ) : ?>
+			<?php if ( $selected_category && ! $selected_image_url ) : ?>
 				<div class="wl-collections-header__actions">
 					<a class="wl-button wl-button--ghost" href="<?php echo esc_url( weirdlings_collections_page_url() ); ?>"><?php esc_html_e( 'Ver todas las colecciones', 'weirdlings-modern' ); ?></a>
 				</div>
@@ -97,55 +111,64 @@ if ( $selected_category ) {
 						$thumbnail_id = (int) get_term_meta( $term->term_id, 'thumbnail_id', true );
 						$image_url    = '';
 
-						if ( $thumbnail_id > 0 ) {
-							$image_url = wp_get_attachment_image_url( $thumbnail_id, 'large' );
-						} else {
-							$products = new WP_Query(
-								array(
-									'post_type'           => 'product',
-									'post_status'         => 'publish',
-									'posts_per_page'      => 1,
-									'no_found_rows'       => true,
-									'ignore_sticky_posts' => true,
-									'fields'              => 'ids',
-									'tax_query'           => array(
-										array(
-											'taxonomy' => 'product_cat',
-											'field'    => 'term_id',
-											'terms'    => (int) $term->term_id,
-										),
-									),
-								)
-							);
-
-							if ( ! empty( $products->posts[0] ) ) {
-								$product_id    = (int) $products->posts[0];
-								$attachment_id = (int) get_post_thumbnail_id( $product_id );
-								if ( $attachment_id > 0 ) {
-									$image_url = wp_get_attachment_image_url( $attachment_id, 'large' );
-								}
+						// Primero: buscar archivo por slug en assets/images/collections/{slug}.{ext}
+						$slug_base = 'assets/images/collections/' . $term->slug;
+						$found_file = '';
+						foreach ( array( 'jpg', 'jpeg', 'png', 'webp' ) as $ext ) {
+							$candidate = $slug_base . '.' . $ext;
+							$candidate_path = get_theme_file_path( $candidate );
+							if ( file_exists( $candidate_path ) ) {
+								$found_file = get_theme_file_uri( $candidate );
+								$found_file .= ( strpos( $found_file, '?' ) === false ? '?' : '&' ) . 'v=' . (int) filemtime( $candidate_path );
+								break;
 							}
-
-							wp_reset_postdata();
 						}
 
-						// Intentar archivo por slug en assets/images/collections/{slug}.{ext}
-						if ( ! $image_url ) {
-							$slug_base = 'assets/images/collections/' . $term->slug;
-							$found_file = '';
-							foreach ( array( 'jpg', 'jpeg', 'png', 'webp' ) as $ext ) {
-								$candidate = $slug_base . '.' . $ext;
-								$candidate_path = get_theme_file_path( $candidate );
-								if ( file_exists( $candidate_path ) ) {
-									$found_file = get_theme_file_uri( $candidate );
-									$found_file .= ( strpos( $found_file, '?' ) === false ? '?' : '&' ) . 'v=' . (int) filemtime( $candidate_path );
-									break;
-								}
+						if ( $found_file ) {
+							$image_url = $found_file;
+						} else {
+							// Si no hay archivo en assets, usar thumbnail de la categoría si existe
+							if ( $thumbnail_id > 0 ) {
+								$image_url = wp_get_attachment_image_url( $thumbnail_id, 'large' );
 							}
 
-							if ( $found_file ) {
-								$image_url = $found_file;
-							} else {
+							// Si aún no hay imagen, intentar tomar la imagen destacada del primer producto
+							if ( ! $image_url ) {
+								$products = new WP_Query(
+									array(
+										'post_type'           => 'product',
+										'post_status'         => 'publish',
+										'posts_per_page'      => 1,
+										'no_found_rows'       => true,
+										'ignore_sticky_posts' => true,
+										'fields'              => 'ids',
+										'tax_query'           => array(
+											array(
+												'taxonomy' => 'product_cat',
+												'field'    => 'term_id',
+												'terms'    => (int) $term->term_id,
+											),
+										),
+									)
+								);
+
+								if ( ! empty( $products->posts[0] ) ) {
+									$product_id    = (int) $products->posts[0];
+									$attachment_id = (int) get_post_thumbnail_id( $product_id );
+									if ( $attachment_id > 0 ) {
+										$image_url = wp_get_attachment_image_url( $attachment_id, 'large' );
+									} else {
+										$product = function_exists( 'wc_get_product' ) ? wc_get_product( $product_id ) : null;
+										if ( $product ) {
+											$image_url = get_the_post_thumbnail_url( $product_id, 'large' );
+										}
+									}
+								}
+
+								wp_reset_postdata();
+							}
+
+							if ( ! $image_url ) {
 								$image_url = get_theme_file_uri( 'assets/images/collections/default-collection.jpg' );
 							}
 						}
@@ -160,7 +183,7 @@ if ( $selected_category ) {
 										<div class="wl-collection-card__meta"><?php echo esc_html( sprintf( _n( '%d producto', '%d productos', (int) $term->count, 'weirdlings-modern' ), (int) $term->count ) ); ?></div>
 									</div>
 									<div class="wl-collection-card__right">
-										<span class="wl-button wl-button--primary wl-collection-card__button"><?php esc_html_e( 'entrar', 'weirdlings-modern' ); ?></span>
+										<span class="wl-button wl-button--primary wl-collection-card__button"><?php esc_html_e( 'Entrar', 'weirdlings-modern' ); ?></span>
 									</div>
 								</div>
 							</a>

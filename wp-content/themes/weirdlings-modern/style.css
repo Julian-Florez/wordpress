@@ -31,6 +31,64 @@ Text Domain: weirdlings-modern
   --wl-display: 'Fraunces', Georgia, serif;
 }
 
+  /* Password hint (help text) = light text on dark background */
+  .woocommerce-password-hint {
+    color: #efecea !important; /* claro */
+    background: transparent !important;
+  }
+
+  /* Password strength = dark text on light band */
+  .woocommerce-password-strength {
+    color: #111111 !important; /* oscuro legible */
+    background: #f6d6c2 !important; /* tono suave para resaltar */
+    border-radius: 4px !important;
+    padding: 0.5rem 0.75rem !important;
+    margin-top: 0.5rem !important;
+  }
+
+  /* Aggressive autofill forcing for Chrome - uses animation trick + very specific rules */
+  @keyframes onAutoFillStart { from { } to { } }
+
+  /* Apply animation to detect autofill (Chrome/WebKit) */
+  input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    animation-name: onAutoFillStart !important;
+    animation-duration: 0.01s !important;
+  }
+
+  /* The class applied when autofill is detected. Use very specific selector to win over UA styles. */
+  .wl-account-form-shell input.wl-autofilled,
+  .wl-account-form-shell textarea.wl-autofilled,
+  .wl-account-form-shell select.wl-autofilled,
+  .wl-account-form-shell input.wl-autofilled:-webkit-text-fill-color,
+  .wl-account-form-shell input.wl-autofilled:-webkit-autofill {
+    background-image: none !important;
+    -webkit-box-shadow: 0 0 0 1000px var(--wl-bg) inset !important;
+    box-shadow: 0 0 0 1000px var(--wl-bg) inset !important;
+    background-clip: padding-box !important;
+    color: var(--wl-text) !important;
+    -webkit-text-fill-color: var(--wl-text) !important;
+    caret-color: var(--wl-accent-2) !important;
+  }
+
+  /* Fallback very specific autofill rules (use worst-case colors) */
+  .wl-account-form-shell input:-webkit-autofill,
+  .wl-account-form-shell textarea:-webkit-autofill,
+  .wl-account-form-shell select:-webkit-autofill {
+    background-color: rgb(9,7,13) !important;
+    color: rgb(242,240,234) !important;
+    -webkit-text-fill-color: rgb(242,240,234) !important;
+    -webkit-box-shadow: 0 0 0 1000px rgb(9,7,13) inset !important;
+    box-shadow: 0 0 0 1000px rgb(9,7,13) inset !important;
+  }
+
+  /* If browser uses internal selector name (experimental) */
+  input:-internal-autofill-selected,
+  textarea:-internal-autofill-selected,
+  select:-internal-autofill-selected {
+    background-color: rgb(9,7,13) !important;
+    color: rgb(242,240,234) !important;
+  }
+
 html {
   scroll-behavior: smooth;
 }
@@ -714,6 +772,11 @@ select {
 .wl-product-card__media {
   aspect-ratio: 1 / 1.15;
   padding: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
 }
 
 .wl-product-card__media .wl-placeholder::before {
@@ -795,6 +858,12 @@ select {
 .wl-product-card__media img {
   transition: transform 420ms cubic-bezier(.2,.9,.3,1);
   will-change: transform;
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0 auto;
+  object-fit: contain;
+  object-position: center center;
 }
 
 .wl-product-card:hover .wl-product-card__media img,
@@ -1540,10 +1609,15 @@ select {
 .wl-product-card--wc,
 .woocommerce .product {
   border-radius: var(--wl-radius-lg);
-  overflow: hidden;
+  overflow: visible;
   background: linear-gradient(180deg, rgba(28, 19, 35, 0.98), rgba(14, 11, 18, 0.98));
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 14px 40px rgba(0, 0, 0, 0.28);
+}
+
+.wl-product-card__media {
+  overflow: hidden;
+  border-radius: calc(var(--wl-radius-lg) - 2px) calc(var(--wl-radius-lg) - 2px) 0 0;
 }
 
 .woocommerce .product .woocommerce-loop-product__title {
@@ -1657,10 +1731,144 @@ select {
 
 .wl-single-product__related {
   margin-top: 1.1rem;
+  padding-inline: clamp(0.5rem, 1.6vw, 1.25rem);
 }
 
 .wl-single-product__related > h2 {
   margin-left: 0.8rem;
+}
+
+.wl-related-carousel {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.wl-related-carousel__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0 0.35rem;
+}
+
+.wl-related-carousel__head h2 {
+  margin: 0;
+}
+
+.wl-related-carousel__controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.wl-related-carousel__button {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: linear-gradient(180deg, rgba(191, 201, 62, 0.92), rgba(150, 161, 41, 0.92));
+  color: #09070d;
+  font-size: 1.4rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+  transition: transform 0.2s ease, opacity 0.2s ease, filter 0.2s ease;
+}
+
+.wl-related-carousel__button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+.wl-related-carousel__button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.wl-related-carousel__viewport {
+  position: relative;
+  overflow: hidden;
+  padding-inline: clamp(0.2rem, 0.8vw, 0.75rem);
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.wl-related-carousel__track {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: stretch;
+  gap: 1rem;
+  overflow-x: auto;
+  overflow-y: visible;
+  width: 100%;
+  padding: 0.15rem clamp(0.35rem, 1vw, 0.9rem) 0.5rem;
+  margin: 0;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scroll-padding-inline: clamp(0.35rem, 1vw, 0.9rem);
+  scrollbar-width: none;
+}
+
+body .woocommerce div.product .wl-single-product__related .wl-related-carousel__viewport {
+  overflow: visible;
+  padding-block: 0.6rem;
+}
+
+body .woocommerce div.product .wl-single-product__related .wl-related-carousel__track.products {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  grid-template-columns: none !important;
+  grid-auto-flow: column !important;
+  grid-auto-columns: 290px !important;
+  align-items: stretch !important;
+  gap: 1rem !important;
+  width: 100% !important;
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+  padding: 0.6rem clamp(0.75rem, 1.6vw, 1.2rem) 0.85rem !important;
+  margin: 0 !important;
+  scroll-padding-inline: clamp(0.75rem, 1.6vw, 1.2rem) !important;
+}
+
+.wl-related-carousel__track::-webkit-scrollbar {
+  display: none;
+}
+
+.wl-related-carousel__track > li.product {
+  scroll-snap-align: start;
+  flex: 0 0 290px !important;
+  width: 290px !important;
+  max-width: none;
+}
+
+body .woocommerce div.product .wl-single-product__related .wl-related-carousel__track.products > li.product {
+  display: block !important;
+  flex: 0 0 290px !important;
+  width: 290px !important;
+  max-width: none !important;
+  margin: 0 !important;
+}
+
+body .woocommerce div.product .wl-single-product__related .wl-related-carousel__track.products > li.product:hover,
+body .woocommerce div.product .wl-single-product__related .wl-related-carousel__track.products > li.product:focus-within {
+  position: relative;
+  z-index: 4;
+}
+
+.wl-related-carousel__track .wl-product-card {
+  height: 100%;
+}
+
+.wl-related-carousel__track .wl-product-card__media {
+  aspect-ratio: 1 / 1.12;
+}
+
+.wl-related-carousel__track .wl-product-card__content {
+  gap: 0.35rem;
 }
 
 .wl-single-product__reviews {
@@ -2202,6 +2410,22 @@ select {
   padding-bottom: 1.15rem;
 }
 
+@media (max-width: 760px) {
+  .wl-related-carousel__head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .wl-related-carousel__track {
+    gap: 0.85rem;
+  }
+
+  .wl-related-carousel__track > li.product {
+    flex-basis: clamp(180px, 72vw, 260px) !important;
+    width: clamp(180px, 72vw, 260px) !important;
+  }
+}
+
 .woocommerce #reviews #comments,
 .woocommerce #review_form_wrapper,
 .woocommerce #review_form {
@@ -2275,9 +2499,253 @@ select {
   padding: 0 1rem;
 }
 
+/* Autofill and password strength contrast fixes */
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill,
+input:-webkit-autofill:hover,
+textarea:-webkit-autofill:hover,
+select:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill:focus,
+input::-webkit-autofill,
+textarea::-webkit-autofill,
+select::-webkit-autofill,
+input::-webkit-autofill:focus,
+textarea::-webkit-autofill:focus,
+select::-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--wl-text) !important;
+  color: var(--wl-text) !important;
+  background-color: var(--wl-bg) !important;
+  background-image: none !important;
+  -webkit-box-shadow: 0 0 0 1000px var(--wl-bg) inset !important;
+  box-shadow: 0 0 0 1000px var(--wl-bg) inset !important;
+}
+
+/* Ensure placeholder remains visible when autofilled */
+input:-webkit-autofill::placeholder,
+textarea:-webkit-autofill::placeholder,
+input::-webkit-autofill::placeholder,
+textarea::-webkit-autofill::placeholder {
+  color: rgba(242,240,234,0.6) !important;
+}
+
+/* Password strength / hint readability */
+.woocommerce-password-hint {
+  color: var(--wl-text) !important;
+  background: rgba(0,0,0,0.45) !important;
+  padding: 0.45rem 0.6rem !important;
+  border-radius: 10px !important;
+  display: inline-block !important;
+  margin-top: 0.5rem !important;
+}
+
+.woocommerce-password-strength {
+  color: #111 !important;
+}
+
+/* More specific autofill overrides for account forms */
+/* Autofill overrides scoped to account forms (aggressive) */
+.wl-account-form-shell input:-webkit-autofill,
+.wl-account-form-shell textarea:-webkit-autofill,
+.wl-account-form-shell select:-webkit-autofill,
+.wl-account-auth-card input:-webkit-autofill,
+.wl-account-auth-card textarea:-webkit-autofill,
+.wl-account-auth-card select:-webkit-autofill,
+.wl-account-form-shell input::-webkit-autofill,
+.wl-account-form-shell textarea::-webkit-autofill,
+.wl-account-form-shell select::-webkit-autofill,
+.wl-account-auth-card input::-webkit-autofill,
+.wl-account-auth-card textarea::-webkit-autofill,
+.wl-account-auth-card select::-webkit-autofill,
+.wl-account-form-shell input:-webkit-autofill:focus,
+.wl-account-auth-card input:-webkit-autofill:focus,
+.wl-account-form-shell input:-webkit-autofill:hover,
+.wl-account-auth-card input:-webkit-autofill:hover {
+  -webkit-text-fill-color: var(--wl-text) !important;
+  color: var(--wl-text) !important;
+  /* Force a solid dark background using background-image (Chrome respects this) */
+  background-image: linear-gradient(var(--wl-bg), var(--wl-bg)) !important;
+  background-color: var(--wl-bg) !important;
+  background-clip: padding-box !important;
+  -webkit-background-clip: padding-box !important;
+  -webkit-box-shadow: 0 0 0 1000px var(--wl-bg) inset !important;
+  box-shadow: 0 0 0 1000px var(--wl-bg) inset !important;
+  caret-color: var(--wl-accent-2) !important;
+}
+
+/* Ensure autofill first-line uses correct color */
+.wl-account-form-shell input:-webkit-autofill::first-line,
+.wl-account-auth-card input:-webkit-autofill::first-line {
+  color: var(--wl-text) !important;
+}
+
+/* Ensure autofilled first-line (Chrome) uses correct color */
+.wl-account-form-shell input:-webkit-autofill::first-line,
+.wl-account-auth-card input:-webkit-autofill::first-line {
+  color: var(--wl-text) !important;
+}
+
+/* Highly specific rules to override any other color on the strength meter */
+body .wl-account-form-shell .woocommerce-password-hint {
+  color: var(--wl-text) !important;
+  background: rgba(0, 0, 0, 0.55) !important;
+  padding: 0.45rem 0.6rem !important;
+  border-radius: 10px !important;
+  display: inline-block !important;
+  margin-top: 0.5rem !important;
+}
+
+body .wl-account-form-shell .woocommerce-password-strength,
+body .wl-account-form-shell .woocommerce-password-strength.strong,
+body .wl-account-form-shell .woocommerce-password-strength.good,
+body .wl-account-form-shell .woocommerce-password-strength.bad,
+body .wl-account-form-shell .woocommerce-password-strength.short {
+  color: #111111 !important;
+  -webkit-text-fill-color: #111111 !important;
+  background: #f6d6c2 !important;
+  padding: 0.45rem 0.6rem !important;
+  border-radius: 10px !important;
+  display: inline-block !important;
+  margin-top: 0.5rem !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+}
+
+body .wl-account-form-shell #password_strength,
+body .wl-account-form-shell #password_strength.short,
+body .wl-account-form-shell #password_strength.good,
+body .wl-account-form-shell #password_strength.bad,
+body .wl-account-form-shell #password_strength.strong {
+  color: #111111 !important;
+  -webkit-text-fill-color: #111111 !important;
+  background: #f6d6c2 !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+}
+
 .woocommerce #review_form #respond textarea {
   min-height: 10rem;
   resize: vertical;
+}
+
+/* Inputs de cuenta con la misma estética que personalización */
+.woocommerce .woocommerce-EditAccountForm input.input-text,
+.woocommerce .woocommerce-EditAccountForm textarea,
+.woocommerce .woocommerce-EditAccountForm select,
+.wl-account-form-shell input[type="text"],
+.wl-account-form-shell input[type="email"],
+.wl-account-form-shell input[type="password"],
+.wl-account-form-shell input[type="tel"],
+.wl-account-form-shell input[type="url"],
+.wl-account-form-shell input[type="number"],
+.wl-account-form-shell select,
+.wl-account-form-shell textarea,
+.wl-account-auth-card .woocommerce-EditAccountForm input.input-text,
+.wl-account-auth-card .woocommerce-EditAccountForm textarea,
+.wl-account-auth-card .woocommerce-EditAccountForm select,
+.wl-account-auth-card .woocommerce-form-login .input-text,
+.wl-account-auth-card .woocommerce-form-register .input-text,
+.wl-account-auth-card .woocommerce-form-login input[type="text"],
+.wl-account-auth-card .woocommerce-form-login input[type="email"],
+.wl-account-auth-card .woocommerce-form-login input[type="password"],
+.wl-account-auth-card .woocommerce-form-register input[type="text"],
+.wl-account-auth-card .woocommerce-form-register input[type="email"],
+.wl-account-auth-card .woocommerce-form-register input[type="password"],
+.wl-account-auth-card .woocommerce-form-register input[type="tel"],
+.wl-account-auth-card .woocommerce-form-register input[type="search"],
+.wl-account-auth-card .woocommerce-form-login textarea,
+.wl-account-auth-card .woocommerce-form-register textarea,
+.wl-account-auth-card .woocommerce-form-login select,
+.wl-account-auth-card .woocommerce-form-register select {
+  width: 100%;
+  min-height: 3.1rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  color: var(--wl-text) !important;
+  -webkit-text-fill-color: var(--wl-text) !important;
+  padding: 0.85rem 1rem;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+  outline: none;
+  caret-color: var(--wl-accent-2);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease, background 180ms ease, color 180ms ease;
+}
+
+.woocommerce .woocommerce-EditAccountForm input.input-text::placeholder,
+.woocommerce .woocommerce-EditAccountForm textarea::placeholder,
+.wl-account-form-shell input::placeholder,
+.wl-account-form-shell textarea::placeholder,
+.wl-account-auth-card .woocommerce-form-login input::placeholder,
+.wl-account-auth-card .woocommerce-form-register input::placeholder,
+.wl-account-auth-card .woocommerce-form-login textarea::placeholder,
+.wl-account-auth-card .woocommerce-form-register textarea::placeholder {
+  color: #b9b0bd;
+}
+
+.woocommerce .woocommerce-EditAccountForm input.input-text:hover,
+.woocommerce .woocommerce-EditAccountForm textarea:hover,
+.woocommerce .woocommerce-EditAccountForm select:hover,
+.wl-account-form-shell input:hover,
+.wl-account-form-shell textarea:hover,
+.wl-account-form-shell select:hover,
+.wl-account-auth-card .woocommerce-form-login input:hover,
+.wl-account-auth-card .woocommerce-form-register input:hover,
+.wl-account-auth-card .woocommerce-form-login textarea:hover,
+.wl-account-auth-card .woocommerce-form-register textarea:hover,
+.wl-account-auth-card .woocommerce-form-login select:hover,
+.wl-account-auth-card .woocommerce-form-register select:hover {
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+.woocommerce .woocommerce-EditAccountForm input.input-text:focus,
+.woocommerce .woocommerce-EditAccountForm input.input-text:focus-visible,
+.woocommerce .woocommerce-EditAccountForm textarea:focus,
+.woocommerce .woocommerce-EditAccountForm textarea:focus-visible,
+.woocommerce .woocommerce-EditAccountForm select:focus,
+.woocommerce .woocommerce-EditAccountForm select:focus-visible,
+.wl-account-form-shell input:focus,
+.wl-account-form-shell input:focus-visible,
+.wl-account-form-shell textarea:focus,
+.wl-account-form-shell textarea:focus-visible,
+.wl-account-form-shell select:focus,
+.wl-account-form-shell select:focus-visible,
+.wl-account-auth-card .woocommerce-form-login input:focus,
+.wl-account-auth-card .woocommerce-form-login input:focus-visible,
+.wl-account-auth-card .woocommerce-form-register input:focus,
+.wl-account-auth-card .woocommerce-form-register input:focus-visible,
+.wl-account-auth-card .woocommerce-form-login textarea:focus,
+.wl-account-auth-card .woocommerce-form-login textarea:focus-visible,
+.wl-account-auth-card .woocommerce-form-register textarea:focus,
+.wl-account-auth-card .woocommerce-form-register textarea:focus-visible,
+.wl-account-auth-card .woocommerce-form-login select:focus,
+.wl-account-auth-card .woocommerce-form-login select:focus-visible,
+.wl-account-auth-card .woocommerce-form-register select:focus,
+.wl-account-auth-card .woocommerce-form-register select:focus-visible {
+  border-color: rgba(255, 255, 255, 0.22) !important;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2), 0 0 0 2px rgba(255, 255, 255, 0.04);
+  transform: none;
+}
+
+.wl-account-form-shell label,
+.wl-account-auth-card label {
+  display: inline-block;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--wl-text-muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.wl-account-form-shell .required,
+.wl-account-auth-card .required {
+  color: var(--wl-accent-2);
 }
 
 /* Estilos para el formulario de checkout — inputs, selects y textarea */
@@ -2287,7 +2755,30 @@ select {
 .woocommerce .woocommerce-billing-fields input.input-text,
 .woocommerce .woocommerce-shipping-fields input.input-text,
 .woocommerce .woocommerce-billing-fields textarea,
-.woocommerce .woocommerce-shipping-fields textarea {
+.woocommerce .woocommerce-shipping-fields textarea,
+.woocommerce .woocommerce-EditAccountForm input.input-text,
+.woocommerce .woocommerce-EditAccountForm textarea,
+.woocommerce .woocommerce-EditAccountForm select,
+.wl-account-auth-card .woocommerce-EditAccountForm input.input-text,
+.wl-account-auth-card .woocommerce-EditAccountForm textarea,
+.wl-account-auth-card .woocommerce-EditAccountForm select,
+.wl-account-form-shell .woocommerce-EditAccountForm input.input-text,
+.wl-account-form-shell .woocommerce-EditAccountForm textarea,
+.wl-account-form-shell .woocommerce-EditAccountForm select,
+.wl-account-auth-card .woocommerce-form-login .input-text,
+.wl-account-auth-card .woocommerce-form-register .input-text,
+.wl-account-auth-card .woocommerce-form-login input[type="text"],
+.wl-account-auth-card .woocommerce-form-login input[type="email"],
+.wl-account-auth-card .woocommerce-form-login input[type="password"],
+.wl-account-auth-card .woocommerce-form-register input[type="text"],
+.wl-account-auth-card .woocommerce-form-register input[type="email"],
+.wl-account-auth-card .woocommerce-form-register input[type="password"],
+.wl-account-auth-card .woocommerce-form-register input[type="tel"],
+.wl-account-auth-card .woocommerce-form-register input[type="search"],
+.wl-account-auth-card .woocommerce-form-login textarea,
+.wl-account-auth-card .woocommerce-form-register textarea,
+.wl-account-auth-card .woocommerce-form-login select,
+.wl-account-auth-card .woocommerce-form-register select {
   width: 100%;
   min-height: 3rem;
   border-radius: 16px;
@@ -2339,6 +2830,44 @@ select {
   border-radius: 12px;
   font-weight: 600;
   font-size: 0.98rem;
+}
+
+.woocommerce .woocommerce-EditAccountForm .form-row {
+  margin-bottom: 1rem;
+}
+
+.woocommerce .woocommerce-EditAccountForm .form-row-first,
+.woocommerce .woocommerce-EditAccountForm .form-row-last {
+  width: 100%;
+  display: block;
+}
+
+@media (min-width: 900px) {
+  .woocommerce .woocommerce-EditAccountForm .form-row-first {
+    width: calc(50% - 0.5rem);
+    display: inline-block;
+    margin-right: 1rem;
+    vertical-align: top;
+  }
+  .woocommerce .woocommerce-EditAccountForm .form-row-last {
+    width: calc(50% - 0.5rem);
+    display: inline-block;
+    vertical-align: top;
+  }
+}
+
+.woocommerce .woocommerce-EditAccountForm fieldset {
+  margin: 1rem 0 0;
+  padding: 1rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.04);
+}
+
+.woocommerce .woocommerce-EditAccountForm fieldset legend {
+  padding: 0 0.25rem;
+  color: var(--wl-text);
+  font-weight: 700;
 }
 
 /* Estilos para selects nativos y Select2 en checkout (país, departamento) */
@@ -3385,23 +3914,6 @@ select {
   margin: 0;
 }
 
-.wl-account-form-shell input[type="text"],
-.wl-account-form-shell input[type="email"],
-.wl-account-form-shell input[type="password"],
-.wl-account-form-shell input[type="tel"],
-.wl-account-form-shell input[type="url"],
-.wl-account-form-shell input[type="number"],
-.wl-account-form-shell select,
-.wl-account-form-shell textarea {
-  width: 100%;
-  min-height: 3rem;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--wl-text);
-  padding: 0.8rem 1rem;
-}
-
 .wl-account-form-shell fieldset {
   margin: 0;
   padding: 1rem;
@@ -3439,16 +3951,23 @@ select {
   margin: 0;
 }
 
-.wl-account-auth-card input[type="text"],
-.wl-account-auth-card input[type="email"],
-.wl-account-auth-card input[type="password"] {
-  width: 100%;
-  min-height: 3rem;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--wl-text);
-  padding: 0.8rem 1rem;
+
+.wl-account-auth-card .woocommerce-form-login,
+.wl-account-auth-card .woocommerce-form-register {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.wl-account-auth-card .woocommerce-form-row,
+.wl-account-auth-card .form-row {
+  margin: 0;
+}
+
+.wl-account-auth-card .woocommerce-form__input-checkbox {
+  width: auto;
+  min-height: auto;
+  accent-color: var(--wl-accent-2);
+  box-shadow: none;
 }
 
 .wl-account-auth-card .woocommerce-button,
@@ -3471,6 +3990,65 @@ select {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
+}
+
+.wl-account-form-shell__block {
+  display: grid;
+  gap: 0.9rem;
+  padding: 1.15rem;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+}
+
+.wl-account-form-shell__block--register {
+  border-color: rgba(185, 195, 59, 0.2);
+  background: radial-gradient(circle at top right, rgba(185, 195, 59, 0.08), transparent 30%), linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+}
+
+.wl-account-test-register {
+  margin-top: 1rem;
+}
+
+.wl-account-test-register .wl-account-form-shell__block {
+  border-color: rgba(124, 89, 199, 0.22);
+}
+
+.wl-account-test-register .woocommerce-form-register__submit {
+  min-width: min(100%, 20rem);
+}
+
+.wl-account-form-shell__eyebrow {
+  display: inline-block;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  color: var(--wl-accent-2);
+}
+
+.wl-account-form-shell__text,
+.wl-account-register-note {
+  margin: 0;
+  color: var(--wl-text-muted);
+}
+
+.wl-account-form-shell__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .wl-account-auth-card #customer_login {
+    grid-template-columns: 1fr;
+  }
+
+  .wl-account-form-shell__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
 
 .wl-account-auth-card #customer_login .u-column1,

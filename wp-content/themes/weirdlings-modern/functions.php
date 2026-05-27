@@ -169,6 +169,113 @@ function weirdlings_chatbot_proxy_ajax() {
 add_action( 'wp_ajax_weirdlings_chatbot_proxy', 'weirdlings_chatbot_proxy_ajax' );
 add_action( 'wp_ajax_nopriv_weirdlings_chatbot_proxy', 'weirdlings_chatbot_proxy_ajax' );
 
+function weirdlings_enable_myaccount_registration( $enabled ) {
+	return 'yes';
+}
+add_filter( 'pre_option_woocommerce_enable_myaccount_registration', 'weirdlings_enable_myaccount_registration' );
+
+function weirdlings_render_registration_fields() {
+	?>
+	<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+		<label for="reg_first_name"><?php esc_html_e( 'Nombre', 'weirdlings-modern' ); ?>&nbsp;<span class="required" aria-hidden="true">*</span><span class="screen-reader-text"><?php esc_html_e( 'Required', 'weirdlings-modern' ); ?></span></label>
+		<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="first_name" id="reg_first_name" autocomplete="given-name" value="<?php echo isset( $_POST['first_name'] ) ? esc_attr( wp_unslash( (string) $_POST['first_name'] ) ) : ''; ?>" required aria-required="true" /><?php // phpcs:ignore WordPress.Security.NonceVerification.Missing ?>
+	</p>
+
+	<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+		<label for="reg_last_name"><?php esc_html_e( 'Apellido', 'weirdlings-modern' ); ?>&nbsp;<span class="required" aria-hidden="true">*</span><span class="screen-reader-text"><?php esc_html_e( 'Required', 'weirdlings-modern' ); ?></span></label>
+		<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="last_name" id="reg_last_name" autocomplete="family-name" value="<?php echo isset( $_POST['last_name'] ) ? esc_attr( wp_unslash( (string) $_POST['last_name'] ) ) : ''; ?>" required aria-required="true" /><?php // phpcs:ignore WordPress.Security.NonceVerification.Missing ?>
+	</p>
+
+	<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+		<label for="reg_phone"><?php esc_html_e( 'Teléfono', 'weirdlings-modern' ); ?>&nbsp;<span class="screen-reader-text"><?php esc_html_e( 'Optional', 'weirdlings-modern' ); ?></span></label>
+		<input type="tel" class="woocommerce-Input woocommerce-Input--text input-text" name="phone" id="reg_phone" autocomplete="tel" value="<?php echo isset( $_POST['phone'] ) ? esc_attr( wp_unslash( (string) $_POST['phone'] ) ) : ''; ?>" /><?php // phpcs:ignore WordPress.Security.NonceVerification.Missing ?>
+	</p>
+
+	<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+		<label for="reg_password"><?php esc_html_e( 'Contraseña', 'weirdlings-modern' ); ?>&nbsp;<span class="required" aria-hidden="true">*</span><span class="screen-reader-text"><?php esc_html_e( 'Required', 'weirdlings-modern' ); ?></span></label>
+		<input type="password" class="woocommerce-Input woocommerce-Input--text input-text" name="password" id="reg_password" autocomplete="new-password" required aria-required="true" /><?php // phpcs:ignore WordPress.Security.NonceVerification.Missing ?>
+	</p>
+
+	<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+		<label for="reg_password_2"><?php esc_html_e( 'Confirmar contraseña', 'weirdlings-modern' ); ?>&nbsp;<span class="required" aria-hidden="true">*</span><span class="screen-reader-text"><?php esc_html_e( 'Required', 'weirdlings-modern' ); ?></span></label>
+		<input type="password" class="woocommerce-Input woocommerce-Input--text input-text" name="password_2" id="reg_password_2" autocomplete="new-password" required aria-required="true" />
+	</p>
+
+	<p class="wl-account-register-note"><?php esc_html_e( 'Crear una cuenta te permite seguir pedidos, guardar datos de envío y acelerar futuras compras.', 'weirdlings-modern' ); ?></p>
+	<?php
+}
+add_action( 'woocommerce_register_form', 'weirdlings_render_registration_fields' );
+
+function weirdlings_validate_registration_fields( $errors, $username, $email ) {
+	$first_name  = isset( $_POST['first_name'] ) ? trim( sanitize_text_field( wp_unslash( (string) $_POST['first_name'] ) ) ) : '';
+	$last_name   = isset( $_POST['last_name'] ) ? trim( sanitize_text_field( wp_unslash( (string) $_POST['last_name'] ) ) ) : '';
+	$phone       = isset( $_POST['phone'] ) ? trim( sanitize_text_field( wp_unslash( (string) $_POST['phone'] ) ) ) : '';
+	$password_1  = isset( $_POST['password'] ) ? (string) wp_unslash( $_POST['password'] ) : '';
+	$password_2  = isset( $_POST['password_2'] ) ? (string) wp_unslash( $_POST['password_2'] ) : '';
+
+	if ( '' === $first_name ) {
+		$errors->add( 'registration_first_name_missing', __( 'Por favor ingresa tu nombre.', 'weirdlings-modern' ) );
+	}
+
+	if ( '' === $last_name ) {
+		$errors->add( 'registration_last_name_missing', __( 'Por favor ingresa tu apellido.', 'weirdlings-modern' ) );
+	}
+
+	if ( '' === $password_1 ) {
+		$errors->add( 'registration_password_missing', __( 'Por favor ingresa una contraseña.', 'weirdlings-modern' ) );
+	}
+
+	if ( '' === $password_2 ) {
+		$errors->add( 'registration_password_confirm_missing', __( 'Confirma tu contraseña.', 'weirdlings-modern' ) );
+	}
+
+	if ( '' !== $password_1 && '' !== $password_2 && $password_1 !== $password_2 ) {
+		$errors->add( 'registration_password_mismatch', __( 'Las contraseñas no coinciden.', 'weirdlings-modern' ) );
+	}
+
+	return $errors;
+}
+add_filter( 'woocommerce_registration_errors', 'weirdlings_validate_registration_fields', 10, 3 );
+
+function weirdlings_force_manual_registration_password( $value ) {
+	return is_admin() ? $value : 'no';
+}
+add_filter( 'pre_option_woocommerce_registration_generate_password', 'weirdlings_force_manual_registration_password' );
+
+function weirdlings_save_registration_fields( $customer_id ) {
+	$first_name = isset( $_POST['first_name'] ) ? trim( sanitize_text_field( wp_unslash( (string) $_POST['first_name'] ) ) ) : '';
+	$last_name  = isset( $_POST['last_name'] ) ? trim( sanitize_text_field( wp_unslash( (string) $_POST['last_name'] ) ) ) : '';
+	$phone      = isset( $_POST['phone'] ) ? trim( sanitize_text_field( wp_unslash( (string) $_POST['phone'] ) ) ) : '';
+
+	if ( '' !== $first_name ) {
+		update_user_meta( $customer_id, 'first_name', $first_name );
+		update_user_meta( $customer_id, 'billing_first_name', $first_name );
+	}
+
+	if ( '' !== $last_name ) {
+		update_user_meta( $customer_id, 'last_name', $last_name );
+		update_user_meta( $customer_id, 'billing_last_name', $last_name );
+	}
+
+	if ( '' !== $phone ) {
+		update_user_meta( $customer_id, 'billing_phone', $phone );
+	} else {
+		delete_user_meta( $customer_id, 'billing_phone' );
+	}
+
+	$display_name = trim( $first_name . ' ' . $last_name );
+	if ( '' !== $display_name ) {
+		wp_update_user(
+			array(
+				'ID'           => $customer_id,
+				'display_name' => $display_name,
+				'nickname'     => $display_name,
+			)
+		);
+	}
+}
+add_action( 'woocommerce_created_customer', 'weirdlings_save_registration_fields' );
+
 function weirdlings_open_cart_controls_wrapper() {
 	echo '<div class="wl-cart-controls"><div class="wl-cart-controls__quantity"><button type="button" class="wl-qty-btn wl-qty-btn--minus" aria-label="Disminuir cantidad">−</button>';
 }
@@ -1657,11 +1764,149 @@ function weirdlings_render_account_page(): string {
 			<div class="wl-account-auth-card">
 				<?php wc_get_template( 'myaccount/form-login.php' ); ?>
 			</div>
+
+			<?php echo weirdlings_render_test_registration_form(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		</section>
 		<?php
 		return (string) ob_get_clean();
 	}
 
+
+function weirdlings_is_test_registration_enabled(): bool {
+	return (bool) apply_filters( 'weirdlings_enable_test_registration_flow', true );
+}
+
+function weirdlings_generate_registration_username( string $email ): string {
+	$base = sanitize_user( current( explode( '@', $email ) ), true );
+	$base = $base ? $base : 'cliente';
+	$username = $base;
+	$index = 1;
+
+	while ( username_exists( $username ) ) {
+		$username = $base . $index;
+		$index++;
+	}
+
+	return $username;
+}
+
+function weirdlings_render_test_registration_form(): string {
+	if ( ! weirdlings_is_test_registration_enabled() ) {
+		return '';
+	}
+
+	ob_start();
+	?>
+	<div class="wl-account-form-shell wl-account-test-register">
+		<div class="wl-account-form-shell__block wl-account-form-shell__block--register">
+			<div class="wl-account-form-shell__eyebrow"><?php esc_html_e( 'Registro de prueba', 'weirdlings-modern' ); ?></div>
+			<h2><?php esc_html_e( 'Crear usuario al instante', 'weirdlings-modern' ); ?></h2>
+			<p class="wl-account-form-shell__text"><?php esc_html_e( 'Este flujo crea la cuenta directamente y no envía verificación por correo. Úsalo para pruebas internas o para validar la experiencia de alta.', 'weirdlings-modern' ); ?></p>
+
+			<form class="woocommerce-form woocommerce-form-register register" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+				<input type="hidden" name="action" value="weirdlings_test_register" />
+				<?php wp_nonce_field( 'weirdlings_test_register', 'weirdlings_test_register_nonce' ); ?>
+
+				<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+					<label for="test_first_name"><?php esc_html_e( 'Nombre', 'weirdlings-modern' ); ?>&nbsp;<span class="required" aria-hidden="true">*</span></label>
+					<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="first_name" id="test_first_name" autocomplete="given-name" value="<?php echo isset( $_POST['first_name'] ) ? esc_attr( wp_unslash( (string) $_POST['first_name'] ) ) : ''; ?>" required /><?php // phpcs:ignore WordPress.Security.NonceVerification.Missing ?>
+				</p>
+
+				<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+					<label for="test_last_name"><?php esc_html_e( 'Apellido', 'weirdlings-modern' ); ?>&nbsp;<span class="required" aria-hidden="true">*</span></label>
+					<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="last_name" id="test_last_name" autocomplete="family-name" value="<?php echo isset( $_POST['last_name'] ) ? esc_attr( wp_unslash( (string) $_POST['last_name'] ) ) : ''; ?>" required /><?php // phpcs:ignore WordPress.Security.NonceVerification.Missing ?>
+				</p>
+
+				<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+					<label for="test_email"><?php esc_html_e( 'Correo electrónico', 'weirdlings-modern' ); ?>&nbsp;<span class="required" aria-hidden="true">*</span></label>
+					<input type="email" class="woocommerce-Input woocommerce-Input--text input-text" name="email" id="test_email" autocomplete="email" value="<?php echo isset( $_POST['email'] ) ? esc_attr( wp_unslash( (string) $_POST['email'] ) ) : ''; ?>" required /><?php // phpcs:ignore WordPress.Security.NonceVerification.Missing ?>
+				</p>
+
+				<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+					<label for="test_password"><?php esc_html_e( 'Contraseña', 'weirdlings-modern' ); ?>&nbsp;<span class="required" aria-hidden="true">*</span></label>
+					<input type="password" class="woocommerce-Input woocommerce-Input--text input-text" name="password" id="test_password" autocomplete="new-password" required />
+				</p>
+
+				<p class="wl-account-register-note"><?php esc_html_e( 'La cuenta se crea y se inicia sesión automáticamente en la misma prueba.', 'weirdlings-modern' ); ?></p>
+
+				<p class="form-row wl-account-form-shell__actions">
+					<button type="submit" class="woocommerce-Button woocommerce-button button woocommerce-form-register__submit"><?php esc_html_e( 'Crear usuario de prueba', 'weirdlings-modern' ); ?></button>
+				</p>
+			</form>
+		</div>
+	</div>
+	<?php
+
+	return (string) ob_get_clean();
+}
+
+function weirdlings_handle_test_registration() {
+	if ( ! weirdlings_is_test_registration_enabled() ) {
+		wp_die( esc_html__( 'El registro de prueba no está disponible en este entorno.', 'weirdlings-modern' ), 403 );
+	}
+
+	if ( ! isset( $_POST['weirdlings_test_register_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( (string) $_POST['weirdlings_test_register_nonce'] ) ), 'weirdlings_test_register' ) ) {
+		wp_safe_redirect( wp_get_referer() ? wp_get_referer() : wc_get_page_permalink( 'myaccount' ) );
+		exit;
+	}
+
+	$first_name = isset( $_POST['first_name'] ) ? trim( sanitize_text_field( wp_unslash( (string) $_POST['first_name'] ) ) ) : '';
+	$last_name  = isset( $_POST['last_name'] ) ? trim( sanitize_text_field( wp_unslash( (string) $_POST['last_name'] ) ) ) : '';
+	$email      = isset( $_POST['email'] ) ? sanitize_email( wp_unslash( (string) $_POST['email'] ) ) : '';
+	$password   = isset( $_POST['password'] ) ? (string) wp_unslash( $_POST['password'] ) : '';
+
+	if ( '' === $first_name || '' === $last_name || '' === $email || '' === $password ) {
+		wc_add_notice( __( 'Completa nombre, apellido, correo y contraseña.', 'weirdlings-modern' ), 'error' );
+		wp_safe_redirect( wp_get_referer() ? wp_get_referer() : wc_get_page_permalink( 'myaccount' ) );
+		exit;
+	}
+
+	if ( ! is_email( $email ) ) {
+		wc_add_notice( __( 'Ingresa un correo válido.', 'weirdlings-modern' ), 'error' );
+		wp_safe_redirect( wp_get_referer() ? wp_get_referer() : wc_get_page_permalink( 'myaccount' ) );
+		exit;
+	}
+
+	if ( email_exists( $email ) ) {
+		wc_add_notice( __( 'Ese correo ya tiene una cuenta creada.', 'weirdlings-modern' ), 'error' );
+		wp_safe_redirect( wp_get_referer() ? wp_get_referer() : wc_get_page_permalink( 'myaccount' ) );
+		exit;
+	}
+
+	$username = weirdlings_generate_registration_username( $email );
+	$user_id  = wp_insert_user(
+		array(
+			'user_login'   => $username,
+			'user_pass'    => $password,
+			'user_email'   => $email,
+			'first_name'   => $first_name,
+			'last_name'    => $last_name,
+			'display_name' => trim( $first_name . ' ' . $last_name ),
+			'nickname'     => trim( $first_name . ' ' . $last_name ),
+			'role'         => 'customer',
+		)
+	);
+
+	if ( is_wp_error( $user_id ) ) {
+		wc_add_notice( $user_id->get_error_message(), 'error' );
+		wp_safe_redirect( wp_get_referer() ? wp_get_referer() : wc_get_page_permalink( 'myaccount' ) );
+		exit;
+	}
+
+	update_user_meta( $user_id, 'billing_first_name', $first_name );
+	update_user_meta( $user_id, 'billing_last_name', $last_name );
+	update_user_meta( $user_id, 'billing_email', $email );
+
+	wp_set_current_user( (int) $user_id );
+	wp_set_auth_cookie( (int) $user_id, true );
+	do_action( 'wp_login', $username, get_user_by( 'id', $user_id ) );
+
+	wc_add_notice( __( 'Usuario de prueba creado e iniciado sesión.', 'weirdlings-modern' ), 'success' );
+	wp_safe_redirect( wc_get_page_permalink( 'myaccount' ) );
+	exit;
+}
+add_action( 'admin_post_nopriv_weirdlings_test_register', 'weirdlings_handle_test_registration' );
+add_action( 'admin_post_weirdlings_test_register', 'weirdlings_handle_test_registration' );
 	$current_user          = wp_get_current_user();
 	$orders_count          = function_exists( 'wc_get_customer_order_count' ) ? (int) wc_get_customer_order_count( $current_user->ID ) : 0;
 	$downloads_count       = function_exists( 'wc_get_customer_available_downloads' ) ? count( wc_get_customer_available_downloads( $current_user->ID ) ) : 0;

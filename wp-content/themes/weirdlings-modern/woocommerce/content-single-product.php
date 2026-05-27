@@ -61,7 +61,59 @@ if ( post_password_required() ) {
 	</div>
 
 	<div class="wl-single-product__related">
-		<?php woocommerce_output_related_products(); ?>
+		<?php
+		$related_args = apply_filters(
+			'woocommerce_output_related_products_args',
+			array(
+				'posts_per_page' => 8,
+				'columns'        => 4,
+			)
+		);
+
+		$related_ids = wc_get_related_products(
+			$product->get_id(),
+			$related_args['posts_per_page'],
+			array_merge( array( $product->get_id() ), $product->get_upsell_ids() )
+		);
+
+		if ( $related_ids ) :
+			?>
+			<div class="wl-related-carousel" data-related-carousel>
+				<div class="wl-related-carousel__head">
+					<h2><?php esc_html_e( 'Productos relacionados', 'weirdlings-modern' ); ?></h2>
+					<div class="wl-related-carousel__controls" aria-label="Productos relacionados">
+						<button type="button" class="wl-related-carousel__button wl-related-carousel__button--prev" data-related-scroll="prev" aria-label="Ver producto anterior">
+							<span aria-hidden="true">‹</span>
+						</button>
+						<button type="button" class="wl-related-carousel__button wl-related-carousel__button--next" data-related-scroll="next" aria-label="Ver producto siguiente">
+							<span aria-hidden="true">›</span>
+						</button>
+					</div>
+				</div>
+				<div class="wl-related-carousel__viewport">
+					<ul class="products columns-<?php echo esc_attr( max( 1, (int) $related_args['columns'] ) ); ?> wl-related-carousel__track">
+						<?php
+						global $post;
+						$original_post = $post;
+
+						foreach ( $related_ids as $related_id ) {
+							$post_object = get_post( $related_id );
+
+							if ( ! $post_object ) {
+								continue;
+							}
+
+							setup_postdata( $GLOBALS['post'] = $post_object );
+							wc_get_template_part( 'content', 'product' );
+						}
+
+						wp_reset_postdata();
+						$GLOBALS['post'] = $original_post;
+						?>
+					</ul>
+				</div>
+			</div>
+		<?php endif; ?>
 	</div>
 
 	<section class="wl-single-product__section wl-single-product__section--reviews wl-single-product__reviews">

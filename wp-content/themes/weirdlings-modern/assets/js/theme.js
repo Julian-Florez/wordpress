@@ -405,6 +405,175 @@
     messages.scrollTop = messages.scrollHeight;
   }
 
+  // Force inline styles on autofilled inputs inside account forms to override Chrome's autofill background
+  function fixAutofillAccountInputs() {
+    try {
+      var root = document.querySelector('.wl-account-form-shell') || document;
+      if (!root) return;
+      var inputs = root.querySelectorAll('input, textarea, select');
+      inputs.forEach(function (input) {
+        try {
+          var val = (input.value || '').toString().trim();
+          if (val.length > 0) {
+            input.style.setProperty('background-image', 'none', 'important');
+            input.style.setProperty('background-color', getComputedStyle(document.documentElement).getPropertyValue('--wl-bg') || '#09070d', 'important');
+            input.style.setProperty('color', getComputedStyle(document.documentElement).getPropertyValue('--wl-text') || '#f2f0ea', 'important');
+            input.style.setProperty('box-shadow', '0 0 0 1000px ' + (getComputedStyle(document.documentElement).getPropertyValue('--wl-bg') || '#09070d') + ' inset', 'important');
+            input.style.setProperty('caret-color', getComputedStyle(document.documentElement).getPropertyValue('--wl-accent-2') || '#d775b7', 'important');
+          }
+        } catch (e) {
+          // ignore per-input errors
+        }
+      });
+    } catch (e) {
+      // silent
+    }
+  }
+
+  function fixPasswordHintAndStrength() {
+    try {
+      var hint = document.querySelector('.wl-account-form-shell .woocommerce-password-hint');
+      if (hint) {
+        hint.style.setProperty('color', 'rgb(242, 240, 234)', 'important');
+        hint.style.setProperty('background-color', 'rgba(0, 0, 0, 0.45)', 'important');
+        hint.style.setProperty('padding', '0.45rem 0.6rem', 'important');
+        hint.style.setProperty('border-radius', '10px', 'important');
+        hint.style.setProperty('display', 'inline-block', 'important');
+        hint.style.setProperty('margin-top', '0.5rem', 'important');
+        hint.style.setProperty('-webkit-text-fill-color', 'rgb(242, 240, 234)', 'important');
+      }
+
+      var strength = document.querySelector('.wl-account-form-shell #password_strength, .wl-account-form-shell .woocommerce-password-strength');
+      if (strength) {
+        strength.style.setProperty('color', 'rgb(17, 17, 17)', 'important');
+        strength.style.setProperty('-webkit-text-fill-color', 'rgb(17, 17, 17)', 'important');
+        strength.style.setProperty('background-color', 'rgb(246, 214, 194)', 'important');
+        strength.style.setProperty('padding', '0.45rem 0.6rem', 'important');
+        strength.style.setProperty('border-radius', '10px', 'important');
+        strength.style.setProperty('display', 'inline-block', 'important');
+        strength.style.setProperty('margin-top', '0.5rem', 'important');
+        strength.style.setProperty('text-shadow', 'none', 'important');
+        strength.style.setProperty('opacity', '1', 'important');
+      }
+    } catch (e) {
+      // silent
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () {
+      setTimeout(fixAutofillAccountInputs, 120);
+      setTimeout(fixAutofillAccountInputs, 600);
+      setTimeout(fixAutofillAccountInputs, 1500);
+      setTimeout(fixPasswordHintAndStrength, 120);
+      setTimeout(fixPasswordHintAndStrength, 600);
+      setTimeout(fixPasswordHintAndStrength, 1500);
+    });
+  } else {
+    setTimeout(fixAutofillAccountInputs, 120);
+    setTimeout(fixAutofillAccountInputs, 600);
+    setTimeout(fixAutofillAccountInputs, 1500);
+    setTimeout(fixPasswordHintAndStrength, 120);
+    setTimeout(fixPasswordHintAndStrength, 600);
+    setTimeout(fixPasswordHintAndStrength, 1500);
+  }
+
+  // Also apply on focus/input and poll briefly to catch late autofill
+  (function () {
+    var root = document.querySelector('.wl-account-form-shell') || document;
+    if (!root) return;
+    var inputs = root.querySelectorAll('input, textarea, select');
+    function applyIfFilled(e) {
+      var input = e && e.target ? e.target : this;
+      try {
+        if ((input.value || '').toString().trim().length > 0) {
+          input.style.setProperty('background-image', 'none', 'important');
+          input.style.setProperty('background-color', getComputedStyle(document.documentElement).getPropertyValue('--wl-bg') || '#09070d', 'important');
+          input.style.setProperty('color', getComputedStyle(document.documentElement).getPropertyValue('--wl-text') || '#f2f0ea', 'important');
+          input.style.setProperty('box-shadow', '0 0 0 1000px ' + (getComputedStyle(document.documentElement).getPropertyValue('--wl-bg') || '#09070d') + ' inset', 'important');
+        }
+      } catch (er) {}
+    }
+    inputs.forEach(function (inp) {
+      inp.addEventListener('focus', applyIfFilled);
+      inp.addEventListener('input', applyIfFilled);
+      inp.addEventListener('change', applyIfFilled);
+    });
+
+    var tries = 0;
+    var iid = setInterval(function () {
+      tries++;
+      fixAutofillAccountInputs();
+      fixPasswordHintAndStrength();
+      if (tries > 8) clearInterval(iid);
+    }, 300);
+  })();
+
+  /* Detect autofill via CSS animationstart and mark inputs with .wl-autofilled as a robust fallback */
+  (function () {
+    function markAutofilled(input) {
+      try {
+        if (!input || !input.classList) return;
+        if (!input.classList.contains('wl-autofilled')) {
+          input.classList.add('wl-autofilled');
+          // extra inline fallback for stubborn Chrome versions
+          input.style.setProperty('background-image', 'none', 'important');
+          input.style.setProperty('box-shadow', '0 0 0 1000px ' + (getComputedStyle(document.documentElement).getPropertyValue('--wl-bg') || '#09070d') + ' inset', 'important');
+          input.style.setProperty('color', getComputedStyle(document.documentElement).getPropertyValue('--wl-text') || '#f2f0ea', 'important');
+          input.style.setProperty('caret-color', getComputedStyle(document.documentElement).getPropertyValue('--wl-accent-2') || '#d775b7', 'important');
+        }
+      } catch (e) { /* ignore */ }
+    }
+
+    document.addEventListener('animationstart', function (e) {
+      try {
+        if (!e || !e.animationName) return;
+        if (e.animationName === 'onAutoFillStart') {
+          var tgt = e.target;
+          if (tgt && (tgt.tagName === 'INPUT' || tgt.tagName === 'TEXTAREA' || tgt.tagName === 'SELECT')) {
+            markAutofilled(tgt);
+          }
+        }
+      } catch (err) { }
+    }, true);
+
+    function scanAndMark() {
+      try {
+        var root = document.querySelector('.wl-account-form-shell') || document;
+        if (!root) return;
+        var inputs = root.querySelectorAll('input, textarea, select');
+        Array.prototype.forEach.call(inputs, function (inp) {
+          try {
+            if ((inp.value || '').toString().trim().length > 0) {
+              markAutofilled(inp);
+            }
+          } catch (e) { }
+        });
+      } catch (e) { }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function () { setTimeout(scanAndMark, 50); setTimeout(scanAndMark, 400); });
+    } else {
+      setTimeout(scanAndMark, 50); setTimeout(scanAndMark, 400);
+    }
+
+    try {
+      var observerRoot = document.querySelector('.wl-account-form-shell') || document;
+      var mo = new MutationObserver(function (mutations) {
+        mutations.forEach(function (m) {
+          if (m.type === 'attributes' && (m.attributeName === 'value' || m.attributeName === 'class' || m.attributeName === 'style')) {
+            var el = m.target;
+            if (el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT') && (el.value || '').toString().trim().length > 0) {
+              markAutofilled(el);
+            }
+          }
+        });
+      });
+      mo.observe(observerRoot, { attributes: true, subtree: true, attributeFilter: ['value', 'class', 'style'] });
+    } catch (e) { }
+  })();
+
   function clearOptions() {
     if (!optionsWrap) {
       return;
@@ -800,4 +969,129 @@
     }
 
   });
+})();
+
+/* Productos relacionados en carrusel horizontal */
+(function () {
+  function getScrollStep(track) {
+    var card = track ? track.querySelector('li.product') : null;
+    if (!card) {
+      return Math.max(240, Math.round(window.innerWidth * 0.75));
+    }
+
+    var rect = card.getBoundingClientRect();
+    var gap = 16;
+    try {
+      var styles = window.getComputedStyle(track);
+      var columnGap = parseFloat(styles.columnGap || styles.gap || '0');
+      if (Number.isFinite(columnGap) && columnGap > 0) {
+        gap = columnGap;
+      }
+    } catch (e) {
+      // ignore
+    }
+
+    return Math.max(220, Math.round(rect.width + gap));
+  }
+
+  function updateControls(root, track) {
+    var prev = root.querySelector('[data-related-scroll="prev"]');
+    var next = root.querySelector('[data-related-scroll="next"]');
+    if (!prev || !next || !track) {
+      return;
+    }
+
+    var maxScroll = Math.max(0, track.scrollWidth - track.clientWidth - 1);
+    prev.disabled = track.scrollLeft <= 0;
+    next.disabled = track.scrollLeft >= maxScroll;
+  }
+
+  function applyRelatedCarouselLayout(root, track) {
+    if (!root || !track) {
+      return;
+    }
+
+    try {
+      var viewport = root.querySelector('.wl-related-carousel__viewport');
+      if (viewport) {
+        viewport.style.setProperty('overflow', 'visible', 'important');
+        viewport.style.setProperty('padding-top', '0.6rem', 'important');
+        viewport.style.setProperty('padding-bottom', '0.6rem', 'important');
+        viewport.style.setProperty('width', '100%', 'important');
+        viewport.style.setProperty('max-width', '100%', 'important');
+        viewport.style.setProperty('min-width', '0', 'important');
+      }
+
+      track.style.setProperty('display', 'flex', 'important');
+      track.style.setProperty('flex-wrap', 'nowrap', 'important');
+      track.style.setProperty('grid-template-columns', 'none', 'important');
+      track.style.setProperty('grid-auto-flow', 'column', 'important');
+      track.style.setProperty('grid-auto-columns', '290px', 'important');
+      track.style.setProperty('align-items', 'stretch', 'important');
+      track.style.setProperty('gap', '1rem', 'important');
+      track.style.setProperty('width', '100%', 'important');
+      track.style.setProperty('overflow-x', 'auto', 'important');
+      track.style.setProperty('overflow-y', 'visible', 'important');
+      track.style.setProperty('padding', '0.6rem clamp(0.75rem, 1.6vw, 1.2rem) 0.85rem', 'important');
+      track.style.setProperty('margin', '0', 'important');
+      track.style.setProperty('scroll-padding-inline', 'clamp(0.75rem, 1.6vw, 1.2rem)', 'important');
+
+      var cards = track.querySelectorAll('li.product');
+      cards.forEach(function (card) {
+        card.style.setProperty('display', 'block', 'important');
+        card.style.setProperty('flex', '0 0 290px', 'important');
+        card.style.setProperty('width', '290px', 'important');
+        card.style.setProperty('max-width', 'none', 'important');
+        card.style.setProperty('margin', '0', 'important');
+        card.style.setProperty('position', 'relative', 'important');
+      });
+    } catch (e) {
+      // ignore
+    }
+  }
+
+  function initRelatedCarousel(root) {
+    var track = root.querySelector('.wl-related-carousel__track');
+    if (!track) {
+      return;
+    }
+
+    var prev = root.querySelector('[data-related-scroll="prev"]');
+    var next = root.querySelector('[data-related-scroll="next"]');
+    if (!prev || !next) {
+      return;
+    }
+
+    var rafId = 0;
+    function scheduleUpdate() {
+      window.cancelAnimationFrame(rafId);
+      rafId = window.requestAnimationFrame(function () {
+        applyRelatedCarouselLayout(root, track);
+        updateControls(root, track);
+      });
+    }
+
+    prev.addEventListener('click', function () {
+      track.scrollBy({ left: -getScrollStep(track), behavior: 'smooth' });
+    });
+
+    next.addEventListener('click', function () {
+      track.scrollBy({ left: getScrollStep(track), behavior: 'smooth' });
+    });
+
+    track.addEventListener('scroll', scheduleUpdate, { passive: true });
+    window.addEventListener('resize', scheduleUpdate);
+    applyRelatedCarouselLayout(root, track);
+    scheduleUpdate();
+  }
+
+  function boot() {
+    document.querySelectorAll('[data-related-carousel]').forEach(initRelatedCarousel);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
 })();
